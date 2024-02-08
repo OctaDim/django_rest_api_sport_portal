@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class MoodCategoryConfig(AppConfig):
+class MoodLevelConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'apps.api.mood_category'
+    name = 'apps.api.mood_level'

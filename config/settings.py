@@ -64,7 +64,7 @@ INSTALLED_APPS = [
     "apps.api.dynamics.apps.DynamicsConfig",
     "apps.api.group.apps.GroupConfig",
     "apps.api.jwt_auth.apps.JwtAuthConfig",
-    "apps.api.mood_category.apps.MoodCategoryConfig",
+    "apps.api.mood_level.apps.MoodLevelConfig",
     "apps.api.status_level.apps.StatusLevelConfig",
     "apps.api.user.apps.UserConfig",
     ]
