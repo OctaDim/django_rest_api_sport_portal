@@ -28,8 +28,8 @@ class ListAllUsersGenericList(ListAPIView):
                                   "data": []}
                             )
 
-        serializer = self.serializer_class(instance=users)
+        serializer = self.serializer_class(instance=users, many=True)  # ATTENTION: DON'T FORGET many=True
         return Response(status=status.HTTP_200_OK,
-                        data={"message": "All users list",
+                        data={"message": "All users list:",
                               "data": serializer.data}
                         )
