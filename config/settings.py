@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     ##### 3-rd parties apps
+    "rest_framework",  # Added for DjangoRestFramework
 
 
     ##### local apps #####
