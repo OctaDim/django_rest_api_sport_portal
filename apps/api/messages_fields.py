@@ -1,0 +1,6 @@
+EMAIL="email"
+USERNAME="username"
+NICKNAME="nickname"
+FIRST_NAME="first name"
+LAST_NAME="last name"
+PHONE="phone"
