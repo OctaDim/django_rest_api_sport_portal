@@ -28,6 +28,7 @@ PHONE_REQUIRED_MESSAGE = "Empty phone number. Phone number is required"
 NOT_IS_STAFF_ERROR = "Admin must be staff"
 NOT_IS_SUPERUSER_ERROR = "Admin must be a superuser"
 
+NOT_SUPERUSER_FORBIDDEN = "Forbidden. Only superusers can create another superusers accounts"
 
 def USER_NOT_FOUND_MESSAGE(username_email_or_nickname: str) -> str:
     return f"User ({username_email_or_nickname}) was not found"
