@@ -25,7 +25,8 @@ from apps.api.messages_errors import (PASSWORD_REQUIRED_MSG,
 
 
 class UserRegistrySerializer(serializers.Serializer):
-    email = serializers.EmailField(
+    email = serializers.CharField(  # Temporally switched odd email validation by defining field type
+    # email = serializers.EmailField(
         max_length=100,
         validators=[UniqueValidator(queryset=User.objects.all())],
         style={"placeholder": gettext_lazy(ENTER_EMAIL_LIKE_MSG)}, )
