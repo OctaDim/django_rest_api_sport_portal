@@ -12,17 +12,19 @@ from django.utils.translation import gettext_lazy
 from apps.api.user.models import User  # Custom user
 # ##################################################################
 
-from apps.api.messages import (USERS_NOT_FOUND,
-                               ALL_USERS_LIST,
+from apps.api.messages import (NO_USERS_MSG,
+                               ALL_USERS_MSG,
+                               USER_CREATED_MSG,
+                               USER_NOT_CREATED_MSG,
                                )
+
+from apps.api.user.serzer_user_reg import UserRegistrySerializer
 
 from apps.api.user.serializers import AllUsersSerializer
 
 from rest_framework.generics import (ListAPIView,
                                      CreateAPIView,
                                      )
-
-
 
 class ListAllUsersGenericList(ListAPIView):
     serializer_class = AllUsersSerializer
@@ -36,16 +38,29 @@ class ListAllUsersGenericList(ListAPIView):
 
         if not users:
             return Response(status=status.HTTP_404_NOT_FOUND,
-                            data={"message": gettext_lazy(USERS_NOT_FOUND),
+                            data={"message": gettext_lazy(NO_USERS_MSG),
                                   "data": []}
                             )
 
         serializer = self.serializer_class(instance=users, many=True)  # IMPORTANT: DON'T FORGET many=True
         return Response(status=status.HTTP_200_OK,
-                        data={"message": gettext_lazy(ALL_USERS_LIST),
+                        data={"message": gettext_lazy(ALL_USERS_MSG),
                               "data": serializer.data}
                         )
 
 
 class RegisterNewUserGenericCreate(CreateAPIView):
-    pass
+    serializer_class = UserRegistrySerializer
+
+    def post(self, request: Request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(status=status.HTTP_200_OK,
+                            data={"message":gettext_lazy(USER_CREATED_MSG),
+                                  "data":serializer.data})
+
+        return Response(status=status.HTTP_400_BAD_REQUEST,
+                        data={"message":gettext_lazy(USER_NOT_CREATED_MSG),
+                              "data":serializer.errors})
