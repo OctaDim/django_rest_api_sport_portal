@@ -134,7 +134,9 @@ class UserRegistrySerializer(serializers.Serializer):
 
 
         if ERROR_MESSAGES:
-            raise serializers.ValidationError(gettext_lazy(ERROR_MESSAGES))
+            raise serializers.ValidationError(ERROR_MESSAGES)  # todo: ValidationError writes non-field errors
+
+        return attrs
 
     def create(self, validated_data):
         user = User.objects.create_user(
