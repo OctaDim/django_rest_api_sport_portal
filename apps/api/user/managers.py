@@ -68,7 +68,7 @@ class UserManager(BaseUserManager):
         #     # raise ValueError(gettext_lazy(PHONE_REQUIRED_MESSAGE))
 
         if ERROR_MESSAGES:
-            raise ValueError(", ".join(ERROR_MESSAGES))
+            raise ValueError(", ".join(ERROR_MESSAGES))  # todo: Why ValueError interrupting execution (ValidationError)
 
         user = self.model(email=email,  # Named parameters extracted to check or make ops
                           username=username,
