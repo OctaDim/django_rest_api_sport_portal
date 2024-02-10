@@ -7,11 +7,11 @@ from django.utils.translation import gettext_lazy
 from apps.api.user.models import User  # Custom user
 # ##################################################################
 
-from apps.api.messages import (ENTER_EMAIL_LIKE,
-                               ENTER_USERNAME,
-                               ENTER_NICKNAME,
-                               ENTER_PASSWORD,
-                               REPEAT_PASSWORD,
+from apps.api.messages import (ENTER_EMAIL_LIKE_MSG,
+                               ENTER_USERNAME_MSG,
+                               ENTER_NICKNAME_MSG,
+                               ENTER_PASSWORD_MSG,
+                               REPEAT_PASSWORD_MSG,
                                )
 
 from apps.api.messages_errors import (PASSWORD_REQUIRED_MSG,
@@ -26,30 +26,30 @@ from apps.api.messages_errors import (PASSWORD_REQUIRED_MSG,
 class UserRegistrySerializer(serializers.Serializer):
     email = serializers.EmailField(
         max_length=100,
-        validators=[UniqueValidator(queryset=User.objects.all())],
-        style={"placeholder": gettext_lazy(ENTER_EMAIL_LIKE)}, )
+        # validators=[UniqueValidator(queryset=User.objects.all())],
+        style={"placeholder": gettext_lazy(ENTER_EMAIL_LIKE_MSG)}, )
 
     username = serializers.CharField(
         max_length=30,
-        validators=[UniqueValidator(queryset=User.objects.all())],
-        style={"placeholder": gettext_lazy(ENTER_USERNAME)}, )
+        # validators=[UniqueValidator(queryset=User.objects.all())],
+        style={"placeholder": gettext_lazy(ENTER_USERNAME_MSG)}, )
 
     nickname = serializers.CharField(
         max_length=50,
-        validators=[UniqueValidator(queryset=User.objects.all())],
-        style={"placeholder": gettext_lazy(ENTER_NICKNAME)}, )
+        # validators=[UniqueValidator(queryset=User.objects.all())],
+        style={"placeholder": gettext_lazy(ENTER_NICKNAME_MSG)}, )
 
     password = serializers.CharField(
         min_length=4, max_length=30,
         write_only=True,
         style={"input_type": "password",
-               "placeholder": gettext_lazy(ENTER_PASSWORD)}, )
+               "placeholder": gettext_lazy(ENTER_PASSWORD_MSG)}, )
 
     password2 = serializers.CharField(
         min_length=4, max_length=30,
         write_only=True,
         style={"input_type": "password",
-               "placeholder": gettext_lazy(REPEAT_PASSWORD)}, )
+               "placeholder": gettext_lazy(REPEAT_PASSWORD_MSG)}, )
 
     class Meta:
         model = User

@@ -4,9 +4,12 @@ USER_CREATED_MSG= "User was created successfully"
 USER_NOT_CREATED_MSG="User was not created"
 
 
-ENTER_EMAIL_LIKE_MSG= "enter email like <any>@<any>"
-ENTER_EMAIL_MSG= "enter email"
-ENTER_USERNAME_MSG= "enter username"
-ENTER_NICKNAME_MSG= "enter nickname"
-ENTER_PASSWORD_MSG= "input password"
-REPEAT_PASSWORD_MSG= "repeat password"
+ENTER_EMAIL_LIKE_MSG= "enter email like <any>@<any.any> necessarily"
+ENTER_EMAIL_MSG= "enter email necessarily"
+ENTER_USERNAME_MSG= "enter username necessarily"
+ENTER_NICKNAME_MSG= "enter nickname necessarily"
+ENTER_FIRSTNAME_MSG= "enter nickname necessarily"
+
+ENTER_PASSWORD_MSG= "input password necessarily"
+
+REPEAT_PASSWORD_MSG= "repeat password necessarily"
