@@ -49,7 +49,7 @@ class User(AbstractBaseUser, PermissionsMixin):  # todo: Try later to rename Cus
 
     is_active = models.BooleanField(default=True)
 
-    data_joined = models.DateTimeField(auto_now_add=True)
+    date_joined = models.DateTimeField(auto_now_add=True)
     last_login = models.DateTimeField(auto_now=True)
     updated = models.DateTimeField(blank=True, null=True)
 
@@ -64,7 +64,7 @@ class User(AbstractBaseUser, PermissionsMixin):  # todo: Try later to rename Cus
     objects = UserManager()
 
     def __str__(self):
-        return f"{self.nickname}"
+        return f"User: {self.username} [ nickname: {self.nickname}, email: {self.email} ]"
 
 
     @property
