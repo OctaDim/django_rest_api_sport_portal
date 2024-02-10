@@ -67,6 +67,7 @@ class UserRegistrySerializer(serializers.Serializer):
 
     class Meta:
         model = User
+        abstract = True
         fields = ["email",
                   "username",
                   "nickname",
@@ -111,6 +112,8 @@ class UserRegistrySerializer(serializers.Serializer):
 
         # ##############################################################
         # ## OPTIONAL, IF NOT DEFINED UNIQUENESS IN SERIAL PARAMETERS ##
+        # ## SERIALIZERS PARAMETERS IS CHECKING FIRST, WHEN SERIALIZER
+        # ## OBJECT CREATED, VALIDATE METHOD IS EXECUTING LATER IN VIEWS
         # ##############################################################
         # email_to_check = attrs.get("email")
         # if User.objects.filter(email=email_to_check).exists():
