@@ -27,17 +27,17 @@ from apps.api.messages_errors import (PASSWORD_REQUIRED_MSG,
 class UserRegistrySerializer(serializers.Serializer):
     email = serializers.EmailField(
         max_length=100,
-        # validators=[UniqueValidator(queryset=User.objects.all())],
+        validators=[UniqueValidator(queryset=User.objects.all())],
         style={"placeholder": gettext_lazy(ENTER_EMAIL_LIKE_MSG)}, )
 
     username = serializers.CharField(
         max_length=30,
-        # validators=[UniqueValidator(queryset=User.objects.all())],
+        validators=[UniqueValidator(queryset=User.objects.all())],
         style={"placeholder": gettext_lazy(ENTER_USERNAME_MSG)}, )
 
     nickname = serializers.CharField(
         max_length=50,
-        # validators=[UniqueValidator(queryset=User.objects.all())],
+        validators=[UniqueValidator(queryset=User.objects.all())],
         style={"placeholder": gettext_lazy(ENTER_NICKNAME_MSG)}, )
 
     first_name = serializers.CharField(
@@ -112,23 +112,23 @@ class UserRegistrySerializer(serializers.Serializer):
         # ##############################################################
         # ## OPTIONAL, IF NOT DEFINED UNIQUENESS IN SERIAL PARAMETERS ##
         # ##############################################################
-        email_to_check = attrs.get("email")
-        if User.objects.filter(email=email_to_check).exists():
-            ERROR_MESSAGES.append(gettext_lazy(EMAIL_ALREADY_EXISTS))
-            # raise serializers.ValidationError(
-            #     gettext_lazy(EMAIL_ALREADY_EXISTS))
-
-        username_to_check = attrs.get("username")
-        if User.objects.filter(username=username_to_check).exists():
-            ERROR_MESSAGES.append(gettext_lazy(USERNAME_ALREADY_EXISTS))
-            # raise serializers.ValidationError(
-            #     gettext_lazy(USERNAME_ALREADY_EXISTS))
-
-        nickname_to_check=attrs.get("nickname")
-        if User.objects.filter(nickname=nickname_to_check).exists():
-            ERROR_MESSAGES.append(gettext_lazy(NICKNAME_ALREADY_EXISTS))
-            # raise serializers.ValidationError(
-            #     gettext_lazy(NICKNAME_ALREADY_EXISTS))
+        # email_to_check = attrs.get("email")
+        # if User.objects.filter(email=email_to_check).exists():
+        #     ERROR_MESSAGES.append(gettext_lazy(EMAIL_ALREADY_EXISTS))
+        #     # raise serializers.ValidationError(
+        #     #     gettext_lazy(EMAIL_ALREADY_EXISTS))
+        #
+        # username_to_check = attrs.get("username")
+        # if User.objects.filter(username=username_to_check).exists():
+        #     ERROR_MESSAGES.append(gettext_lazy(USERNAME_ALREADY_EXISTS))
+        #     # raise serializers.ValidationError(
+        #     #     gettext_lazy(USERNAME_ALREADY_EXISTS))
+        #
+        # nickname_to_check=attrs.get("nickname")
+        # if User.objects.filter(nickname=nickname_to_check).exists():
+        #     ERROR_MESSAGES.append(gettext_lazy(NICKNAME_ALREADY_EXISTS))
+        #     # raise serializers.ValidationError(
+        #     #     gettext_lazy(NICKNAME_ALREADY_EXISTS))
         # ##############################################################
         # ##############################################################
 
