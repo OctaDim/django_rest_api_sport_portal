@@ -18,7 +18,7 @@ from apps.api.messages_errors import (INVALID_EMAIL_ERROR,
 
 
 
-class UserManager(BaseUserManager):  # todo: Try later to rename CustomUserManager
+class UserManager(BaseUserManager):
 
     def email_validator(self, email):
         try:
