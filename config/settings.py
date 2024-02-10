@@ -81,6 +81,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'config.urls'
+AUTH_USER_MODEL = "user.User"  # IMPORTANT: NECESSARY FOR CUSTOM USER
 
 TEMPLATES = [
     {
