@@ -12,6 +12,7 @@ from apps.api.messages import (ENTER_EMAIL_LIKE_MSG,
                                ENTER_NICKNAME_MSG,
                                ENTER_PASSWORD_MSG,
                                REPEAT_PASSWORD_MSG,
+                               ENTER_FIRSTNAME_MSG,
                                )
 
 from apps.api.messages_errors import (PASSWORD_REQUIRED_MSG,
@@ -38,6 +39,19 @@ class UserRegistrySerializer(serializers.Serializer):
         max_length=50,
         # validators=[UniqueValidator(queryset=User.objects.all())],
         style={"placeholder": gettext_lazy(ENTER_NICKNAME_MSG)}, )
+
+    first_name = serializers.CharField(
+        max_length=30,
+        validators=[UniqueValidator(queryset=User.objects.all())],
+        style={"placeholder": gettext_lazy(ENTER_FIRSTNAME_MSG)}, )
+
+    last_name = serializers.CharField(
+        max_length=30,
+        required=False, )
+
+    phone = serializers.CharField(
+        max_length=100,
+        required=False, )
 
     password = serializers.CharField(
         min_length=4, max_length=30,
@@ -78,6 +92,7 @@ class UserRegistrySerializer(serializers.Serializer):
         password2 = attrs.get("password2")
 
         ERROR_MESSAGES = []
+
         if not password:
             ERROR_MESSAGES.append(gettext_lazy(PASSWORD_REQUIRED_MSG))
             # raise serializers.ValidationError(
