@@ -20,10 +20,13 @@ from apps.api.messages import (NO_USERS_MSG,
                                SUPERUSER_NOT_CREATED_MSG,
                                )
 
-from apps.api.messages_errors import NOT_SUPERUSER_FORBIDDEN
+from apps.api.messages_errors import (NOT_SUPERUSER_FORBIDDEN,
+                                      NOT_STAFF_USER_FORBIDDEN,
+                                      )
 
 from apps.api.user.serzer_user_reg import UserRegistrySerializer
 from apps.api.user.serzer_superuser_reg import SuperUserRegistrySerializer
+from apps.api.user.serzer_staff_user_reg import StaffUserRegistrySerializer
 
 from apps.api.user.serializers import AllUsersSerializer
 
@@ -93,4 +96,29 @@ class RegisterNewSuperUserGenericCreate(CreateAPIView):
         return Response(
                 status=status.HTTP_400_BAD_REQUEST,
                 data={"message":gettext_lazy(SUPERUSER_NOT_CREATED_MSG),
+                      "data":cerializer.errors})
+
+
+class RegisterNewStaffUserGenericCreate(CreateAPIView):
+    serializer_class = StaffUserRegistrySerializer
+
+    def post(self, request, *args, **kwargs):
+
+        # user_is_staff = request.user.is_staff  # Commented, because will be defined in Permissions
+        # if not user_is_staff:
+        #     return Response(
+        #         status=status.HTTP_403_FORBIDDEN,
+        #         data={"message":gettext_lazy(NOT_STAFF_USER_FORBIDDEN)})
+
+        cerializer = self.serializer_class(data=request.data)
+        if cerializer.is_valid():
+            cerializer.save()
+            return Response(
+                    status=status.HTTP_200_OK,
+                    data={"message":gettext_lazy(STAFF_USER_CREATED_MSG),
+                          "data":cerializer.data})
+
+        return Response(
+                status=status.HTTP_400_BAD_REQUEST,
+                data={"message":gettext_lazy(STAFF_USER_NOT_CREATED_MSG),
                       "data":cerializer.errors})
