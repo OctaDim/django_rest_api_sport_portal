@@ -1,0 +1,2 @@
+# todo: Make gettext_lazy for verbose_names, Meta, plural, plurals and so on
+# todo: Settle the question with creating non Django standard staff user
