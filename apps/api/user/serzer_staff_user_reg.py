@@ -11,7 +11,7 @@ class StaffUserRegistrySerializer(UserRegistrySerializer):  # Inherited from the
 
     def create(self, validated_data):
         validated_data.pop("password2")  # Refactored to avoid tedious getting values from validated_data via get()
-        user = User.objects.create_staff_user(  #todo: Method defined, but is not accessible via objects from serializer
+        user = User.objects.create_staff_user(
                         # email=validated_data.get("email"),
                         # username=validated_data.get("username"),
                         # nickname=validated_data.get("nickname"),
