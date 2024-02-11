@@ -149,7 +149,7 @@ class UserManager(BaseUserManager):
 
 
 
-    # def create_custom_staff_superuser(self,
+    # def create_custom_staff_superuser(self,  # todo: Make create_custom_staff_superuser method
     #                      email,  # Named parameters extracted to check them
     #                      username,  # others values are falling into **extra_fields
     #                      nickname,
