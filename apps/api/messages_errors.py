@@ -6,8 +6,8 @@ PASSWORD_REQUIRED_MSG = "Empty password. Password is required"
 PASSWORD2_REQUIRED_MSG = "Empty repeated password. Repeated password is required"
 
 
-EMAIL_OR_USERNAME_REQUIRED_MESSAGE = "Empty login name. Email or Username is required"
-EMAIL_OR_USERNAME_OR_NICKNAME_REQUIRED_MESSAGE = "Empty login name. Email, Username or Nickname is required"
+EMAIL_OR_USERNAME_REQUIRED_MSG = "Empty login name. Email or Username is required"
+EMAIL_OR_USERNAME_OR_NICKNAME_REQUIRED_MSG = "Empty login name. Email, Username or Nickname is required"
 
 USERNAME_REQUIRED_MESSAGE = "Empty username. Username is required"
 USERNAME_ALREADY_EXISTS = "Such username already exists. Try another username"
@@ -34,8 +34,8 @@ NOT_SUPERUSER_FORBIDDEN = "Forbidden. Only superuser can create other superusers
 NOT_STAFF_USER_FORBIDDEN = "Forbidden. Only staff user can create other staff users accounts"
 
 def USER_NOT_FOUND_MESSAGE(username_email_or_nickname: str) -> str:
-    return f"User ({username_email_or_nickname}) was not found"
+    return f"User [ {username_email_or_nickname} ] was not found"
 
 
 def INVALID_EMAIL_ERROR(email_validation_error: str) -> str:
-    return f"{email_validation_error}.\n Please, enter a valid email"
+    return f"{email_validation_error}. Please, enter a valid email"
