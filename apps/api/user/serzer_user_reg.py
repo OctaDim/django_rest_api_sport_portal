@@ -96,17 +96,17 @@ class UserRegistrySerializer(serializers.Serializer):
         ERROR_MESSAGES = []
 
         if not password:
-            ERROR_MESSAGES.append(gettext_lazy(PASSWORD_REQUIRED_MSG))
+            ERROR_MESSAGES.append(PASSWORD_REQUIRED_MSG)
             # raise serializers.ValidationError(
             #     gettext_lazy(PASSWORD_REQUIRED_MSG))
 
         if not password2:
-            ERROR_MESSAGES.append(gettext_lazy(PASSWORD2_REQUIRED_MSG))
+            ERROR_MESSAGES.append(PASSWORD2_REQUIRED_MSG)
             # raise serializers.ValidationError(
             #     gettext_lazy(PASSWORD2_REQUIRED_MSG))
 
         if password != password2:
-            ERROR_MESSAGES.append(gettext_lazy(PASSWORDS_NOT_MATCH_ERROR))
+            ERROR_MESSAGES.append(PASSWORDS_NOT_MATCH_ERROR)
             # raise serializers.ValidationError(
             #     gettext_lazy(PASSWORDS_NOT_MATCH_ERROR))
 
@@ -118,19 +118,19 @@ class UserRegistrySerializer(serializers.Serializer):
         # ##############################################################
         # email_to_check = attrs.get("email")
         # if User.objects.filter(email=email_to_check).exists():
-        #     ERROR_MESSAGES.append(gettext_lazy(EMAIL_ALREADY_EXISTS))
+        #     ERROR_MESSAGES.append(EMAIL_ALREADY_EXISTS)
         #     # raise serializers.ValidationError(
         #     #     gettext_lazy(EMAIL_ALREADY_EXISTS))
         #
         # username_to_check = attrs.get("username")
         # if User.objects.filter(username=username_to_check).exists():
-        #     ERROR_MESSAGES.append(gettext_lazy(USERNAME_ALREADY_EXISTS))
+        #     ERROR_MESSAGES.append(USERNAME_ALREADY_EXISTS)
         #     # raise serializers.ValidationError(
         #     #     gettext_lazy(USERNAME_ALREADY_EXISTS))
         #
         # nickname_to_check=attrs.get("nickname")
         # if User.objects.filter(nickname=nickname_to_check).exists():
-        #     ERROR_MESSAGES.append(gettext_lazy(NICKNAME_ALREADY_EXISTS))
+        #     ERROR_MESSAGES.append(NICKNAME_ALREADY_EXISTS)
         #     # raise serializers.ValidationError(
         #     #     gettext_lazy(NICKNAME_ALREADY_EXISTS))
         # ##############################################################
@@ -138,7 +138,8 @@ class UserRegistrySerializer(serializers.Serializer):
 
 
         if ERROR_MESSAGES:
-            raise serializers.ValidationError(ERROR_MESSAGES)  # todo: ValidationError writes non-field errors
+            ERROR_MESSAGES_STR = ", ".join(ERROR_MESSAGES)
+            raise serializers.ValidationError(gettext_lazy(ERROR_MESSAGES_STR))  # todo: ValidationError writes non-field errors
 
         return attrs
 
