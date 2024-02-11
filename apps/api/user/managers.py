@@ -41,26 +41,27 @@ class UserManager(BaseUserManager):
 
         ERROR_MESSAGES = []
         if not email:
-            ERROR_MESSAGES.append(gettext_lazy(EMAIL_REQUIRED_MESSAGE))
+            ERROR_MESSAGES.append(EMAIL_REQUIRED_MESSAGE)
             # raise ValueError(gettext_lazy(EMAIL_REQUIRED_MESSAGE))
         else:
             email = self.normalize_email(email=email)
             # self.email_validator(email=email)  # Temporally switched off
 
         if not username:
-            ERROR_MESSAGES.append(gettext_lazy(USERNAME_REQUIRED_MESSAGE))
+            ERROR_MESSAGES.append(USERNAME_REQUIRED_MESSAGE)
             # raise ValueError(gettext_lazy(USERNAME_REQUIRED_MESSAGE))
 
         if not nickname:
-            ERROR_MESSAGES.append(gettext_lazy(NICKNAME_REQUIRED_MESSAGE))
+            ERROR_MESSAGES.append(NICKNAME_REQUIRED_MESSAGE)
             # raise ValueError(gettext_lazy(USERNAME_REQUIRED_MESSAGE))
 
         if not first_name:
-            ERROR_MESSAGES.append(gettext_lazy(FIRST_NAME_REQUIRED_MESSAGE))
+            ERROR_MESSAGES.append(FIRST_NAME_REQUIRED_MESSAGE)
             # raise ValueError(gettext_lazy(FIRST_NAME_REQUIRED_MESSAGE))
 
         if ERROR_MESSAGES:
-            raise ValueError(", ".join(ERROR_MESSAGES))  # todo: Why ValueError interrupting execution (ValidationError)
+            ERRORS_MESSAGES_STR = ", ".join(ERROR_MESSAGES)
+            raise ValueError(gettext_lazy(ERRORS_MESSAGES_STR))  # todo: Why ValueError interrupting execution (but ValidationError not)
 
         user = self.model(
                           # email=email,  # Refactored. Extracted named params, unusefull because values in extra_fields
@@ -97,35 +98,42 @@ class UserManager(BaseUserManager):
 
 
         ERROR_MESSAGES = []
-        # if not extra_fields.get("is_staff"):  # uncomment, if not set by default for the superuser above
-        #     ERROR_MESSAGES.append(gettext_lazy(NOT_IS_STAFF_ERROR))
+
+        # ##############################################################
+        # ## uncomment, if not set by default for the superuser above ##
+        # ##############################################################
+        # if not extra_fields.get("is_staff"):
+        #     ERROR_MESSAGES.append(NOT_IS_STAFF_ERROR)
         #     # raise ValueError(gettext_lazy(NOT_IS_STAFF_ERROR))
         #
         # if not extra_fields.get("is_superuser"):  # uncomment, if not set by default for the superuser above
-        #     ERROR_MESSAGES.append(gettext_lazy(NOT_IS_SUPERUSER_ERROR))
+        #     ERROR_MESSAGES.append(NOT_IS_SUPERUSER_ERROR)
         #     # raise ValueError(gettext_lazy(NOT_IS_SUPERUSER_ERROR))
         #
         # if not extra_fields.get("is_verified"):  # uncomment, if not set by default for the superuser above
-        #     ERROR_MESSAGES.append(gettext_lazy(NOT_IS_SUPERUSER_ERROR))
+        #     ERROR_MESSAGES.append(NOT_IS_SUPERUSER_ERROR)
         #     # raise ValueError(gettext_lazy(NOT_IS_SUPERUSER_ERROR))
+        # ##############################################################
+        # ##############################################################
+
 
         if not email:
-            ERROR_MESSAGES.append(gettext_lazy(EMAIL_REQUIRED_MESSAGE))
+            ERROR_MESSAGES.append(EMAIL_REQUIRED_MESSAGE)
             # raise ValueError(gettext_lazy(EMAIL_REQUIRED_MESSAGE))
         else:
             email = self.normalize_email(email=email)
             # self.email_validator(email=email)  # Temporally switched off
 
         if not username:
-            ERROR_MESSAGES.append(gettext_lazy(USERNAME_REQUIRED_MESSAGE))
+            ERROR_MESSAGES.append(USERNAME_REQUIRED_MESSAGE)
             # raise ValueError(gettext_lazy(USERNAME_REQUIRED_MESSAGE))
 
         if not nickname:
-            ERROR_MESSAGES.append(gettext_lazy(NICKNAME_REQUIRED_MESSAGE))
+            ERROR_MESSAGES.append(NICKNAME_REQUIRED_MESSAGE)
             # raise ValueError(gettext_lazy(USERNAME_REQUIRED_MESSAGE))
 
         if not first_name:
-            ERROR_MESSAGES.append(gettext_lazy(FIRST_NAME_REQUIRED_MESSAGE))
+            ERROR_MESSAGES.append(FIRST_NAME_REQUIRED_MESSAGE)
             # raise ValueError(gettext_lazy(FIRST_NAME_REQUIRED_MESSAGE))
 
         if ERROR_MESSAGES:
@@ -167,38 +175,39 @@ class UserManager(BaseUserManager):
     #
     #     ERROR_MESSAGES = []
     #     # if not extra_fields.get("is_staff"):  # uncomment, if not set by default for the superuser above
-    #     #     ERROR_MESSAGES.append(gettext_lazy(NOT_IS_STAFF_ERROR))
+    #     #     ERROR_MESSAGES.append(NOT_IS_STAFF_ERROR)
     #     #     # raise ValueError(gettext_lazy(NOT_IS_STAFF_ERROR))
     #     #
     #     # if not extra_fields.get("is_superuser"):  # uncomment, if not set by default for the superuser above
-    #     #     ERROR_MESSAGES.append(gettext_lazy(NOT_IS_SUPERUSER_ERROR))
+    #     #     ERROR_MESSAGES.append(NOT_IS_SUPERUSER_ERROR)
     #     #     # raise ValueError(gettext_lazy(NOT_IS_SUPERUSER_ERROR))
     #     #
     #     # if not extra_fields.get("is_verified"):  # uncomment, if not set by default for the superuser above
-    #     #     ERROR_MESSAGES.append(gettext_lazy(NOT_IS_SUPERUSER_ERROR))
+    #     #     ERROR_MESSAGES.append(NOT_IS_SUPERUSER_ERROR)
     #     #     # raise ValueError(gettext_lazy(NOT_IS_SUPERUSER_ERROR))
     #
     #     if not email:
-    #         ERROR_MESSAGES.append(gettext_lazy(EMAIL_REQUIRED_MESSAGE))
+    #         ERROR_MESSAGES.append(EMAIL_REQUIRED_MESSAGE)
     #         # raise ValueError(gettext_lazy(EMAIL_REQUIRED_MESSAGE))
     #     else:
     #         email = self.normalize_email(email=email)
     #         # self.email_validator(email=email)  # Temporally switched off
     #
     #     if not username:
-    #         ERROR_MESSAGES.append(gettext_lazy(USERNAME_REQUIRED_MESSAGE))
+    #         ERROR_MESSAGES.append(USERNAME_REQUIRED_MESSAGE)
     #         # raise ValueError(gettext_lazy(USERNAME_REQUIRED_MESSAGE))
     #
     #     if not nickname:
-    #         ERROR_MESSAGES.append(gettext_lazy(NICKNAME_REQUIRED_MESSAGE))
+    #         ERROR_MESSAGES.append(NICKNAME_REQUIRED_MESSAGE)
     #         # raise ValueError(gettext_lazy(USERNAME_REQUIRED_MESSAGE))
     #
     #     if not first_name:
-    #         ERROR_MESSAGES.append(gettext_lazy(FIRST_NAME_REQUIRED_MESSAGE))
+    #         ERROR_MESSAGES.append(FIRST_NAME_REQUIRED_MESSAGE)
     #         # raise ValueError(gettext_lazy(FIRST_NAME_REQUIRED_MESSAGE))
     #
-    #     if ERROR_MESSAGES:
-    #         raise ValueError(ERROR_MESSAGES)
+        # if ERROR_MESSAGES:
+        #     ERROR_MESSAGES_STR = ", ".join(ERROR_MESSAGES)
+        #     raise ValueError(gettext_lazy(ERROR_MESSAGES_STR))
     #
     #     user = self.model(
     #         # email=email,  # Refactored. Extracted named params, unusefull because values in extra_fields
