@@ -143,13 +143,15 @@ class UserRegistrySerializer(serializers.Serializer):
         return attrs
 
     def create(self, validated_data):
+        validated_data.pop("password2")  # Refactored to avoid tedious getting values from validated_data via get()
         user = User.objects.create_user(
-                            email=validated_data.get("email"),
-                            username=validated_data.get("username"),
-                            nickname=validated_data.get("nickname"),
-                            first_name=validated_data.get("first_name"),
-                            last_name=validated_data.get("last_name"),
-                            phone=validated_data.get("phone"),
-                            password=validated_data.get("password"),
+                            # email=validated_data.get("email"),  # Refactored to avoid tedious getting values from validated_data via get()
+                            # username=validated_data.get("username"),
+                            # nickname=validated_data.get("nickname"),
+                            # first_name=validated_data.get("first_name"),
+                            # last_name=validated_data.get("last_name"),
+                            # phone=validated_data.get("phone"),
+                            # password=validated_data.get("password"),
+                            **validated_data
                             )
         return user
