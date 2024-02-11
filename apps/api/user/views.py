@@ -18,6 +18,8 @@ from apps.api.messages import (NO_USERS_MSG,
                                USER_NOT_CREATED_MSG,
                                SUPERUSER_CREATED_MSG,
                                SUPERUSER_NOT_CREATED_MSG,
+                               STAFF_USER_CREATED_MSG,
+                               STAFF_USER_NOT_CREATED_MSG
                                )
 
 from apps.api.messages_errors import (NOT_SUPERUSER_FORBIDDEN,
@@ -104,7 +106,7 @@ class RegisterNewStaffUserGenericCreate(CreateAPIView):
 
     def post(self, request, *args, **kwargs):
 
-        # user_is_staff = request.user.is_staff  # Commented, because will be defined in Permissions
+        # user_is_staff = request.user.is_staff  # Commented, because will be defined by Permissions classes
         # if not user_is_staff:
         #     return Response(
         #         status=status.HTTP_403_FORBIDDEN,
