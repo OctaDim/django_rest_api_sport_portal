@@ -179,5 +179,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 ################## AUTHENTICATION BY USERNAME|EMAIL ####################
 AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",  # Standard AUTH.MODELS django auth by username, if not -> next Backend
-    # "apps.user.authentications.CustomAuthByEmailBackend",  # Custom auth by email (IN PROGRESS)
-    ]
+    "apps.api.user.authentications.CustomAuthByEmailBackend",  # Custom auth by email
+    "apps.api.user.authentications.CustomAuthByNickNameBackend",  # Custom auth by nickname
+]
