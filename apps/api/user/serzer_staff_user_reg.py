@@ -10,10 +10,10 @@ from apps.api.user.models import User  # Custom user
 class StaffUserRegistrySerializer(UserRegistrySerializer):  # Inherited from the ordinal user serializer
 
     def create(self, validated_data):
-        validated_data.pop("password2")  # Refactored to avoid tedious getting values from validated_data via get()
+        validated_data.pop("password2")
         user = User.objects.create_staff_user(
-                        # email=validated_data.get("email"),
-                        # username=validated_data.get("username"),
+                        # email=validated_data.get("email"),  # Refactored. Passing as **validated_data dictionary,
+                        # username=validated_data.get("username"),  # instead of huge quantity of the named parameters
                         # nickname=validated_data.get("nickname"),
                         # first_name=validated_data.get("first_name"),
                         # last_name=validated_data.get("last_name"),
