@@ -5,7 +5,10 @@ from django.contrib.auth.models import (AbstractBaseUser,
                                         PermissionsMixin,
                                         AbstractUser)
 
-from django.contrib.auth.models import UserManager
+# ##################################################################
+# from django.contrib.auth.models import UserManager  # Django default UserManager
+from apps.api.user.managers import UserManager  # Custom user manager
+# ##################################################################
 
 from django.utils.translation import gettext_lazy
 
