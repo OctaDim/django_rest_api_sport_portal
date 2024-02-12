@@ -12,8 +12,8 @@ class SuperUserRegistrySerializer(UserRegistrySerializer):  # Inherited from the
     def create(self, validated_data):
         validated_data.pop("password2")  # Refactored to avoid tedious getting values from validated_data via get()
         user = User.objects.create_superuser(
-                        # email=validated_data.get("email"),
-                        # username=validated_data.get("username"),
+                        # email=validated_data.get("email"),  # Refactored. Passing as **validated_data dictionary,
+                        # username=validated_data.get("username"),  # instead of huge quantity of the named parameters
                         # nickname=validated_data.get("nickname"),
                         # first_name=validated_data.get("first_name"),
                         # last_name=validated_data.get("last_name"),
