@@ -31,12 +31,15 @@ class UserManager(BaseUserManager):
 
 
     def create_user(self,
-                    email,     # Named parameters extracted to check them
-                    username,  # other values are falling into **extra_fields
-                    nickname,
+                    email,     # Data incoming as dictionary (validated_data from Serializer method 'create_user')
+                    username,  # Necessary parameters fall in named parameters to call on them and to check easy
+                    nickname,  # other parameters fall in **extra_fields (kwargs)
                     first_name,
                     # last_name,
                     # phone,
+                    # is_staff,
+                    # is_superuser,
+                    # is_verified,
                     password,
                     **extra_fields):
 
@@ -65,14 +68,14 @@ class UserManager(BaseUserManager):
             raise ValueError(gettext_lazy(ERRORS_MESSAGES_STR))  # todo: Why ValueError interrupting execution (but ValidationError not)
 
         user = self.model(
-                          # email=email,  # Refactored. Extracted named params, unusefull because values in extra_fields
-                          # username=username,
-                          # nickname=nickname,
-                          # first_name=first_name,
+                          email=email,          # All named parameters should specify explicitly, because they
+                          username=username,    # were extracted from **extra_fields getting from the dictionary
+                          nickname=nickname,    # (incoming validated_data from the Serializer method 'create_user')
+                          first_name=first_name,
                           # last_name=last_name,
                           # phone=phone,
-                          # password=password,
-                          **extra_fields  # All kwarg fields (except password 2) from the serializer validated_data
+                          password=password,
+                          **extra_fields  # Other parameters (except password 2) that didn't fall into the named params
                           )
 
         user.set_password(password)
@@ -82,11 +85,11 @@ class UserManager(BaseUserManager):
 
 
 
-    def create_superuser(self,
-    # IMPORTANT: NOT TO RENAME FOR DJANGO CREATE SUPERUSER CONSOLE COMMAND WORKING GOOD
-                         email,     # Named parameters extracted to check them
-                         username,  # others values are falling into **extra_fields
-                         nickname,
+    def create_superuser(self,  # IMPORTANT: NOT TO RENAME FOR DJANGO CREATE SUPERUSER CONSOLE COMMAND WORKING GOOD
+
+                         email,     # All named parameters should specify explicitly, because they
+                         username,  # were extracted from **extra_fields getting from the dictionary
+                         nickname,  # (incoming validated_data from the Serializer method 'create_user')
                          first_name,
                          # last_name,
                          # phone,
@@ -100,18 +103,17 @@ class UserManager(BaseUserManager):
 
 
         # ##############################################################
-        # ## uncomment, if not set by default for the superuser above ##
+        # ### may comment, if set by default for the superuser above ###
         # ##############################################################
-        # if not extra_fields.get("is_staff"):
-        #     ERROR_MESSAGES.append(SUPERUSER_NOT_IS_STAFF_ERROR)
-        #     # raise ValueError(gettext_lazy(SUPERUSER_NOT_IS_STAFF_ERROR))
-        #
-        # if not extra_fields.get("is_superuser"):  # uncomment, if not set by default for the superuser above
-        #     ERROR_MESSAGES.append(SUPERUSER_NOT_IS_SUPERUSER_ERROR)
-        #     # raise ValueError(gettext_lazy(SUPERUSER_NOT_IS_SUPERUSER_ERROR))
-        # ##############################################################
-        # ##############################################################
+        if not extra_fields.get("is_staff"):
+            ERROR_MESSAGES.append(SUPERUSER_NOT_IS_STAFF_ERROR)
+            # raise ValueError(gettext_lazy(SUPERUSER_NOT_IS_STAFF_ERROR))
 
+        if not extra_fields.get("is_superuser"):  # uncomment, if not set by default for the superuser above
+            ERROR_MESSAGES.append(SUPERUSER_NOT_IS_SUPERUSER_ERROR)
+            # raise ValueError(gettext_lazy(SUPERUSER_NOT_IS_SUPERUSER_ERROR))
+        # ##############################################################
+        # ##############################################################
 
         if not email:
             ERROR_MESSAGES.append(EMAIL_REQUIRED_MESSAGE)
@@ -137,13 +139,13 @@ class UserManager(BaseUserManager):
             raise ValueError(gettext_lazy(ERROR_MESSAGES_STR))
 
         user = self.model(
-                          # email=email,  # Refactored. Extracted named params, unusefull because values in extra_fields
-                          # username=username,
-                          # nickname=nickname,
-                          # first_name=first_name,
+                          email=email,  # Refactored. Extracted named params, unusefull because values in extra_fields
+                          username=username,
+                          nickname=nickname,
+                          first_name=first_name,
                           # last_name=last_name,
                           # phone=phone,
-                          # password=password,
+                          password=password,
                           **extra_fields,  # All kwarg fields (except password 2) from the serializer validated_data
                           )
 
@@ -154,9 +156,9 @@ class UserManager(BaseUserManager):
 
 
     def create_staff_user(self,
-                         email,     # Named parameters extracted to check them
-                         username,  # others values are falling into **extra_fields
-                         nickname,
+                         email,     # All named parameters should specify explicitly, because they
+                         username,  # were extracted from **extra_fields getting from the dictionary
+                         nickname,  # (incoming validated_data from the Serializer method 'create_user')
                          first_name,
                          # last_name,
                          # phone,
@@ -168,11 +170,11 @@ class UserManager(BaseUserManager):
         ERROR_MESSAGES = []
 
         # ##############################################################
-        # #### uncomment, if not set by default for the staff above ####
+        # ### may comment, if set by default for the staff user above ##
         # ##############################################################
-        # if not extra_fields.get("is_staff"):
-        #     ERROR_MESSAGES.append(STAFF_NOT_IS_STAFF_ERROR)
-        #     # raise ValueError(gettext_lazy(STAFF_NOT_IS_STAFF_ERROR))
+        if not extra_fields.get("is_staff"):
+            ERROR_MESSAGES.append(STAFF_NOT_IS_STAFF_ERROR)
+            # raise ValueError(gettext_lazy(STAFF_NOT_IS_STAFF_ERROR))
         # ##############################################################
         # ##############################################################
 
@@ -201,13 +203,13 @@ class UserManager(BaseUserManager):
             raise ValueError(gettext_lazy(ERROR_MESSAGES_STR))
 
         user = self.model(
-                          # email=email,  # Refactored. Extracted named params, unusefull because values in extra_fields
-                          # username=username,
-                          # nickname=nickname,
-                          # first_name=first_name,
+                          email=email,  # Refactored. Extracted named params, unusefull because values in extra_fields
+                          username=username,
+                          nickname=nickname,
+                          first_name=first_name,
                           # last_name=last_name,
                           # phone=phone,
-                          # password=password,
+                          password=password,
                           **extra_fields,  # All kwarg fields (except password 2) from the serializer validated_data
                           )
 
