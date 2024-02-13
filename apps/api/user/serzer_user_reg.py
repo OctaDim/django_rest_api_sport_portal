@@ -66,6 +66,10 @@ class UserRegistrySerializer(serializers.Serializer):
         style={"input_type": "password",
                "placeholder": gettext_lazy(REPEAT_PASSWORD_MSG)}, )
 
+    is_staff = serializers.BooleanField(read_only=True)
+    is_superuser = serializers.BooleanField(read_only=True)
+    is_verified = serializers.BooleanField(read_only=True)
+
     class Meta:
         model = User
         abstract = True
@@ -77,16 +81,9 @@ class UserRegistrySerializer(serializers.Serializer):
                   "phone",
                   "password",
                   "password2",
+                  "is_staff"
+                  "is_superuser"
                   ]
-
-    def _validate_email_uniqueness(self, email_to_check:str, **attrs): # todo: transfer validation from validate method
-        pass
-
-    def _validate_username_uniqueness(self, username_to_check:str, **attrs):  # todo: transfer validation from validate method
-        pass
-
-    def _validate_nickname_uniqueness(self, nickname_to_check:str, **attrs):  # todo: transfer validation from validate method
-        pass
 
 
     def validate(self, attrs):
