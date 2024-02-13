@@ -29,6 +29,7 @@ from apps.api.messages_errors import (NOT_SUPERUSER_FORBIDDEN,
 from apps.api.user.serzer_user_reg import UserRegistrySerializer
 from apps.api.user.serzer_superuser_reg import SuperUserRegistrySerializer
 from apps.api.user.serzer_staff_user_reg import StaffUserRegistrySerializer
+from apps.api.user.serzer_differ_type_user_reg import _Test_DifferentTypeUserRegistrySerializer
 
 from apps.api.user.serializers import AllUsersSerializer
 
@@ -124,3 +125,92 @@ class RegisterNewStaffUserGenericCreate(CreateAPIView):
                 status=status.HTTP_400_BAD_REQUEST,
                 data={"message":gettext_lazy(STAFF_USER_NOT_CREATED_MSG),
                       "data":cerializer.errors})
+
+
+
+
+
+# ######################################################################
+# ########################## TRIAL CODE ################################
+# ######################################################################
+
+class __TEST_RegisterNewUserGenericCreate(CreateAPIView):
+    serializer_class = _Test_DifferentTypeUserRegistrySerializer
+
+    def post(self, request: Request, *args, **kwargs):
+        req_data = dict(request.data)
+        req_data_dict = {fld: val[0] for fld, val in req_data.items() if val[0] != ""}
+
+        _Test_DifferentTypeUserRegistrySerializer.Meta.fields.append("is_staff")
+        _Test_DifferentTypeUserRegistrySerializer.Meta.fields.append("is_superuser")
+
+        req_data_dict["is_staff"] = False
+        req_data_dict["is_superuser"] = False
+
+        serializer = self.serializer_class(data=req_data_dict)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(status=status.HTTP_200_OK,
+                            data={"message":gettext_lazy(USER_CREATED_MSG),
+                                  "data":serializer.data})
+
+        return Response(status=status.HTTP_400_BAD_REQUEST,
+                        data={"message":gettext_lazy(USER_NOT_CREATED_MSG),
+                              "data":serializer.errors})
+
+
+class __TEST_RegisterNewSuperUserGenericCreate(CreateAPIView):
+    serializer_class = _Test_DifferentTypeUserRegistrySerializer
+
+    def post(self, request: Request, *args, **kwargs):
+        req_data = dict(request.data)
+        req_data_dict = {fld: val[0] for fld, val in req_data.items() if val[0] != ""}
+
+        _Test_DifferentTypeUserRegistrySerializer.Meta.fields.append("is_staff")
+        _Test_DifferentTypeUserRegistrySerializer.Meta.fields.append("is_superuser")
+
+        req_data_dict["is_staff"] = True
+        req_data_dict["is_superuser"] = True
+
+        serializer = self.serializer_class(data=req_data_dict)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(status=status.HTTP_200_OK,
+                            data={"message":gettext_lazy(USER_CREATED_MSG),
+                                  "data":serializer.data})
+
+        return Response(status=status.HTTP_400_BAD_REQUEST,
+                        data={"message":gettext_lazy(USER_NOT_CREATED_MSG),
+                              "data":serializer.errors})
+
+
+class __TEST_RegisterNewStaffUserGenericCreate(CreateAPIView):
+    serializer_class = _Test_DifferentTypeUserRegistrySerializer
+
+    def post(self, request: Request, *args, **kwargs):
+        req_data = dict(request.data)
+        req_data_dict = {fld: val[0] for fld, val in req_data.items() if val[0] != ""}
+
+        _Test_DifferentTypeUserRegistrySerializer.Meta.fields.append("is_staff")
+        _Test_DifferentTypeUserRegistrySerializer.Meta.fields.append("is_superuser")
+
+        req_data_dict["is_staff"] = "True"
+        req_data_dict["is_superuser"] = "False"
+
+        serializer = self.serializer_class(data=req_data_dict)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(status=status.HTTP_200_OK,
+                            data={"message":gettext_lazy(USER_CREATED_MSG),
+                                  "data":serializer.data})
+
+        return Response(status=status.HTTP_400_BAD_REQUEST,
+                        data={"message":gettext_lazy(USER_NOT_CREATED_MSG),
+                              "data":serializer.errors})
+
+# ######################################################################
+# ######################################################################
+# ######################################################################
