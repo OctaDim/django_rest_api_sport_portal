@@ -48,8 +48,9 @@ class UserManager(BaseUserManager):
             ERROR_MESSAGES.append(EMAIL_REQUIRED_MESSAGE)
             # raise ValueError(gettext_lazy(EMAIL_REQUIRED_MESSAGE))
         else:
-            email = self.normalize_email(email=email)
+            # email = self.normalize_email(email=email)  # Switched off for better usability
             # self.email_validator(email=email)  # Temporally switched off
+            pass
 
         if not username:
             ERROR_MESSAGES.append(USERNAME_REQUIRED_MESSAGE)
@@ -119,8 +120,9 @@ class UserManager(BaseUserManager):
             ERROR_MESSAGES.append(EMAIL_REQUIRED_MESSAGE)
             # raise ValueError(gettext_lazy(EMAIL_REQUIRED_MESSAGE))
         else:
-            email = self.normalize_email(email=email)
+            # email = self.normalize_email(email=email)  # Switched off for better usability
             # self.email_validator(email=email)  # Temporally switched off
+            pass
 
         if not username:
             ERROR_MESSAGES.append(USERNAME_REQUIRED_MESSAGE)
@@ -183,8 +185,9 @@ class UserManager(BaseUserManager):
             ERROR_MESSAGES.append(EMAIL_REQUIRED_MESSAGE)
             # raise ValueError(gettext_lazy(EMAIL_REQUIRED_MESSAGE))
         else:
-            email = self.normalize_email(email=email)
+            # email = self.normalize_email(email=email)  # Switched off for better usability
             # self.email_validator(email=email)  # Temporally switched off
+            pass
 
         if not username:
             ERROR_MESSAGES.append(USERNAME_REQUIRED_MESSAGE)
@@ -221,70 +224,69 @@ class UserManager(BaseUserManager):
 
 
 
-    # def create_custom_staff_superuser(self,
-    #                      email,  # Named parameters extracted to check them
-    #                      username,  # others values are falling into **extra_fields
-    #                      nickname,
-    #                      first_name,
-    #                      # last_name,
-    #                      # phone,
-    #                      password,
-    #                      # is_staff,        # Will be set True by default for superuser, see below
-    #                      # is_superuser,    # Will be set True by default for superuser, see below
-    #                      # is_verified,     # Will be set True by default for superuser, see below
-    #                      **extra_fields):
-    #
-    #     extra_fields.setdefault("is_staff", True)
-    #     extra_fields.setdefault("is_superuser", True)
-    #
-    #     ERROR_MESSAGES = []
-    #     # if not extra_fields.get("is_staff"):  # uncomment, if not set by default for the superuser above
-    #     #     ERROR_MESSAGES.append(SUPERUSER_NOT_IS_STAFF_ERROR)
-    #     #     # raise ValueError(gettext_lazy(SUPERUSER_NOT_IS_STAFF_ERROR))
-    #     #
-    #     # if not extra_fields.get("is_superuser"):  # uncomment, if not set by default for the superuser above
-    #     #     ERROR_MESSAGES.append(SUPERUSER_NOT_IS_SUPERUSER_ERROR)
-    #     #     # raise ValueError(gettext_lazy(SUPERUSER_NOT_IS_SUPERUSER_ERROR))
-    #     #
-    #     # if not extra_fields.get("is_verified"):  # uncomment, if not set by default for the superuser above
-    #     #     ERROR_MESSAGES.append(SUPERUSER_NOT_IS_SUPERUSER_ERROR)
-    #     #     # raise ValueError(gettext_lazy(SUPERUSER_NOT_IS_SUPERUSER_ERROR))
-    #
-    #     if not email:
-    #         ERROR_MESSAGES.append(EMAIL_REQUIRED_MESSAGE)
-    #         # raise ValueError(gettext_lazy(EMAIL_REQUIRED_MESSAGE))
-    #     else:
-    #         email = self.normalize_email(email=email)
-    #         # self.email_validator(email=email)  # Temporally switched off
-    #
-    #     if not username:
-    #         ERROR_MESSAGES.append(USERNAME_REQUIRED_MESSAGE)
-    #         # raise ValueError(gettext_lazy(USERNAME_REQUIRED_MESSAGE))
-    #
-    #     if not nickname:
-    #         ERROR_MESSAGES.append(NICKNAME_REQUIRED_MESSAGE)
-    #         # raise ValueError(gettext_lazy(USERNAME_REQUIRED_MESSAGE))
-    #
-    #     if not first_name:
-    #         ERROR_MESSAGES.append(FIRST_NAME_REQUIRED_MESSAGE)
-    #         # raise ValueError(gettext_lazy(FIRST_NAME_REQUIRED_MESSAGE))
-    #
-        # if ERROR_MESSAGES:
-        #     ERROR_MESSAGES_STR = ", ".join(ERROR_MESSAGES)
-        #     raise ValueError(gettext_lazy(ERROR_MESSAGES_STR))
-    #
-    #     user = self.model(
-    #         # email=email,  # Refactored. Extracted named params, unusefull because values in extra_fields
-    #         # username=username,
-    #         # nickname=nickname,
-    #         # first_name=first_name,
-    #         # last_name=last_name,
-    #         # phone=phone,
-    #         # password=password,
-    #         **extra_fields,  # All kwarg fields (except password 2) from the serializer validated_data
-    #     )
-    #
-    #     user.set_password(password)
-    #     user.save(using=self._db)
-    #
-    #     return user
+
+    # ##################################################################
+    # ### TRIAL: CUSTOM METHOD CREATING USER, SUPERUSER, STAFF USER ####
+    # ## USERS TYPE DEFINED IN VIEWS VIA DATA PASSING INTO SERIALIZER ##
+    # ##################################################################
+    def __TEST_create_different_type_user(self,
+                                          # email,     # Refactored:
+                                          # username,  # All parameters passing into **extra_fields getting from the incoming dictionary
+                                          # nickname,  # (incoming validated_data from the Serializer method 'create_user')
+                                          # first_name,
+                                          # last_name,
+                                          # phone,
+                                          # password,
+                                          **extra_fields):
+
+        # extra_fields.setdefault("is_staff", True)  # Refactored. Defined in views as request.data changed
+        # extra_fields.setdefault("is_superuser", True)  # Refactored. Defined in views as request.data changed
+
+        ERROR_MESSAGES = []
+
+        email = extra_fields.get("email")
+
+        if not email:
+            ERROR_MESSAGES.append(EMAIL_REQUIRED_MESSAGE)
+            # raise ValueError(gettext_lazy(EMAIL_REQUIRED_MESSAGE))
+        else:
+            # email = self.normalize_email(email=email)  # Switched off for better usability
+            # self.email_validator(email=email)  # Temporally switched off
+            extra_fields["email"] = email
+
+        if not extra_fields.get("username"):
+            ERROR_MESSAGES.append(USERNAME_REQUIRED_MESSAGE)
+            # raise ValueError(gettext_lazy(USERNAME_REQUIRED_MESSAGE))
+
+        if not extra_fields.get("nickname"):
+            ERROR_MESSAGES.append(NICKNAME_REQUIRED_MESSAGE)
+            # raise ValueError(gettext_lazy(USERNAME_REQUIRED_MESSAGE))
+
+        if not extra_fields.get("first_name"):
+            ERROR_MESSAGES.append(FIRST_NAME_REQUIRED_MESSAGE)
+            # raise ValueError(gettext_lazy(FIRST_NAME_REQUIRED_MESSAGE))
+
+        if ERROR_MESSAGES:
+            ERROR_MESSAGES_STR = ", ".join(ERROR_MESSAGES)
+            raise ValueError(gettext_lazy(ERROR_MESSAGES_STR))
+
+        user = self.model(
+                          # email=email,        # Refactored:
+                          # username=username,  # All params passing into **extra_fields getting from incoming dictionary
+                          # nickname=nickname,  # (incoming validated_data from the Serializer method 'create_user')
+                          # first_name=first_name,
+                          # last_name=last_name,
+                          # phone=phone,
+                          # password=password,
+                          **extra_fields,  # All kwarg fields (except password 2) from the serializer validated_data
+                          )
+
+        password = extra_fields.get("password")
+        user.set_password(password)
+        user.save(using=self._db)
+
+        return user
+
+    # ##################################################################
+    # ##################################################################
+    # ##################################################################
