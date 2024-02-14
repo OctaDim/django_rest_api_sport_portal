@@ -223,29 +223,16 @@ class UserManager(BaseUserManager):
 
 
 
-
-
     # ##################################################################
     # ### TRIAL: CUSTOM METHOD CREATING USER, SUPERUSER, STAFF USER ####
-    # ## USERS TYPE DEFINED IN VIEWS VIA DATA PASSING INTO SERIALIZER ##
+    # ### USER TYPE DEFINED IN SERIALIZER VALIDATE() METHOD OR USER  ###
+    # # TYPE CAN BE PASSED AS ARGUMENTS WITH VALUE IN CREATE METHOd() ##
     # ##################################################################
-    def __TEST_create_different_type_user(self,
-                                          # email,     # Refactored:
-                                          # username,  # All parameters passing into **extra_fields getting from the incoming dictionary
-                                          # nickname,  # (incoming validated_data from the Serializer method 'create_user')
-                                          # first_name,
-                                          # last_name,
-                                          # phone,
-                                          # password,
-                                          **extra_fields):
-
-        # extra_fields.setdefault("is_staff", True)  # Refactored. Defined in views as request.data changed
-        # extra_fields.setdefault("is_superuser", True)  # Refactored. Defined in views as request.data changed
+    def _test_create_any_type_user(self, **extra_fields):
 
         ERROR_MESSAGES = []
 
         email = extra_fields.get("email")
-
         if not email:
             ERROR_MESSAGES.append(EMAIL_REQUIRED_MESSAGE)
             # raise ValueError(gettext_lazy(EMAIL_REQUIRED_MESSAGE))
@@ -270,21 +257,12 @@ class UserManager(BaseUserManager):
             ERROR_MESSAGES_STR = ", ".join(ERROR_MESSAGES)
             raise ValueError(gettext_lazy(ERROR_MESSAGES_STR))
 
-        user = self.model(
-                          # email=email,        # Refactored:
-                          # username=username,  # All params passing into **extra_fields getting from incoming dictionary
-                          # nickname=nickname,  # (incoming validated_data from the Serializer method 'create_user')
-                          # first_name=first_name,
-                          # last_name=last_name,
-                          # phone=phone,
-                          # password=password,
-                          **extra_fields,  # All kwarg fields (except password 2) from the serializer validated_data
-                          )
+        user = self.model(**extra_fields)  # All kwarg fields (except password 2) from the serializer validated_data
 
         password = extra_fields.get("password")
         user.set_password(password)
-        user.save(using=self._db)
 
+        user.save(using=self._db)
         return user
 
     # ##################################################################
