@@ -30,37 +30,39 @@ class UserManager(BaseUserManager):
                 gettext_lazy(INVALID_EMAIL_ERROR(error.message)))
 
 
-    def create_user(self,
-                    email,     # Data incoming as dictionary (validated_data from Serializer method 'create_user')
-                    username,  # Necessary parameters fall in named parameters to call on them and to check easy
-                    nickname,  # other parameters fall in **extra_fields (kwargs)
-                    first_name,
-                    # last_name,
-                    # phone,
-                    # is_staff,
-                    # is_superuser,
-                    # is_verified,
-                    password,
+    def create_user(self,  # Refactored
+                    # email,     # Data incoming as dictionary (validated_data from Serializer method 'create_user')
+                    # username,  # Necessary parameters fall in named parameters to call on them and to check easy
+                    # nickname,  # other parameters fall in **extra_fields (kwargs)
+                    # first_name,
+                    # # last_name,
+                    # # phone,
+                    # # is_staff,
+                    # # is_superuser,
+                    # # is_verified,
+                    # password,
                     **extra_fields):
 
         ERROR_MESSAGES = []
+
+        email = extra_fields.get("email")
         if not email:
             ERROR_MESSAGES.append(EMAIL_REQUIRED_MESSAGE)
             # raise ValueError(gettext_lazy(EMAIL_REQUIRED_MESSAGE))
         else:
             # email = self.normalize_email(email=email)  # Switched off for better usability
             # self.email_validator(email=email)  # Temporally switched off
-            pass
+            extra_fields["email"] = email
 
-        if not username:
+        if not extra_fields.get("username"):
             ERROR_MESSAGES.append(USERNAME_REQUIRED_MESSAGE)
             # raise ValueError(gettext_lazy(USERNAME_REQUIRED_MESSAGE))
 
-        if not nickname:
+        if not extra_fields.get("nickname"):
             ERROR_MESSAGES.append(NICKNAME_REQUIRED_MESSAGE)
             # raise ValueError(gettext_lazy(USERNAME_REQUIRED_MESSAGE))
 
-        if not first_name:
+        if not extra_fields.get("first_name"):
             ERROR_MESSAGES.append(FIRST_NAME_REQUIRED_MESSAGE)
             # raise ValueError(gettext_lazy(FIRST_NAME_REQUIRED_MESSAGE))
 
@@ -69,39 +71,39 @@ class UserManager(BaseUserManager):
             raise ValueError(gettext_lazy(ERRORS_MESSAGES_STR))  # todo: Why ValueError interrupting execution (but ValidationError not)
 
         user = self.model(
-                          email=email,          # All named parameters should specify explicitly, because they
-                          username=username,    # were extracted from **extra_fields getting from the dictionary
-                          nickname=nickname,    # (incoming validated_data from the Serializer method 'create_user')
-                          first_name=first_name,
-                          # last_name=last_name,
-                          # phone=phone,
-                          password=password,
+                          # email=email,          # All named parameters should specify explicitly, because they
+                          # username=username,    # were extracted from **extra_fields getting from the dictionary
+                          # nickname=nickname,    # (incoming validated_data from the Serializer method 'create_user')
+                          # first_name=first_name,
+                          # # last_name=last_name,
+                          # # phone=phone,
+                          # password=password,
                           **extra_fields  # Other parameters (except password 2) that didn't fall into the named params
                           )
 
+        password = extra_fields.get("password")
         user.set_password(password)
-        user.save(using=self._db)
 
+        user.save(using=self._db)
         return user
 
 
 
     def create_superuser(self,  # IMPORTANT: NOT TO RENAME FOR DJANGO CREATE SUPERUSER CONSOLE COMMAND WORKING GOOD
 
-                         email,     # All named parameters should specify explicitly, because they
-                         username,  # were extracted from **extra_fields getting from the dictionary
-                         nickname,  # (incoming validated_data from the Serializer method 'create_user')
-                         first_name,
-                         # last_name,
-                         # phone,
-                         password,
+                         # email,     # All named parameters should specify explicitly, because they
+                         # username,  # were extracted from **extra_fields getting from the dictionary
+                         # nickname,  # (incoming validated_data from the Serializer method 'create_user')
+                         # first_name,
+                         # # last_name,
+                         # # phone,
+                         # password,
                          **extra_fields):
 
         extra_fields.setdefault("is_staff", True)
         extra_fields.setdefault("is_superuser", True)
 
         ERROR_MESSAGES = []
-
 
         # ##############################################################
         # ### may comment, if set by default for the superuser above ###
@@ -116,7 +118,7 @@ class UserManager(BaseUserManager):
         # ##############################################################
         # ##############################################################
 
-        if not email:
+        if not extra_fields.get("email"):
             ERROR_MESSAGES.append(EMAIL_REQUIRED_MESSAGE)
             # raise ValueError(gettext_lazy(EMAIL_REQUIRED_MESSAGE))
         else:
@@ -124,15 +126,15 @@ class UserManager(BaseUserManager):
             # self.email_validator(email=email)  # Temporally switched off
             pass
 
-        if not username:
+        if not extra_fields.get("username"):
             ERROR_MESSAGES.append(USERNAME_REQUIRED_MESSAGE)
             # raise ValueError(gettext_lazy(USERNAME_REQUIRED_MESSAGE))
 
-        if not nickname:
+        if not extra_fields.get("nickname"):
             ERROR_MESSAGES.append(NICKNAME_REQUIRED_MESSAGE)
             # raise ValueError(gettext_lazy(USERNAME_REQUIRED_MESSAGE))
 
-        if not first_name:
+        if not extra_fields.get("first_name"):
             ERROR_MESSAGES.append(FIRST_NAME_REQUIRED_MESSAGE)
             # raise ValueError(gettext_lazy(FIRST_NAME_REQUIRED_MESSAGE))
 
@@ -141,33 +143,35 @@ class UserManager(BaseUserManager):
             raise ValueError(gettext_lazy(ERROR_MESSAGES_STR))
 
         user = self.model(
-                          email=email,  # Refactored. Extracted named params, unusefull because values in extra_fields
-                          username=username,
-                          nickname=nickname,
-                          first_name=first_name,
-                          # last_name=last_name,
-                          # phone=phone,
-                          password=password,
+                          # email=email,  # Refactored. Extracted named params, unusefull because values in extra_fields
+                          # username=username,
+                          # nickname=nickname,
+                          # first_name=first_name,
+                          # # last_name=last_name,
+                          # # phone=phone,
+                          # password=password,
                           **extra_fields,  # All kwarg fields (except password 2) from the serializer validated_data
                           )
 
+        password = extra_fields.get("password")
         user.set_password(password)
-        user.save(using=self._db)
 
+        user.save(using=self._db)
         return user
 
 
     def create_staff_user(self,
-                         email,     # All named parameters should specify explicitly, because they
-                         username,  # were extracted from **extra_fields getting from the dictionary
-                         nickname,  # (incoming validated_data from the Serializer method 'create_user')
-                         first_name,
-                         # last_name,
-                         # phone,
-                         password,
+                         # email,     # All named parameters should specify explicitly, because they
+                         # username,  # were extracted from **extra_fields getting from the dictionary
+                         # nickname,  # (incoming validated_data from the Serializer method 'create_user')
+                         # first_name,
+                         # # last_name,
+                         # # phone,
+                         # password,
                          **extra_fields):
 
         extra_fields.setdefault("is_staff", True)
+        extra_fields.setdefault("is_superuser", False)
 
         ERROR_MESSAGES = []
 
@@ -181,7 +185,7 @@ class UserManager(BaseUserManager):
         # ##############################################################
 
 
-        if not email:
+        if not extra_fields.get("email"):
             ERROR_MESSAGES.append(EMAIL_REQUIRED_MESSAGE)
             # raise ValueError(gettext_lazy(EMAIL_REQUIRED_MESSAGE))
         else:
@@ -189,15 +193,15 @@ class UserManager(BaseUserManager):
             # self.email_validator(email=email)  # Temporally switched off
             pass
 
-        if not username:
+        if not extra_fields.get("username"):
             ERROR_MESSAGES.append(USERNAME_REQUIRED_MESSAGE)
             # raise ValueError(gettext_lazy(USERNAME_REQUIRED_MESSAGE))
 
-        if not nickname:
+        if not extra_fields.get("nickname"):
             ERROR_MESSAGES.append(NICKNAME_REQUIRED_MESSAGE)
             # raise ValueError(gettext_lazy(USERNAME_REQUIRED_MESSAGE))
 
-        if not first_name:
+        if not extra_fields.get("first_name"):
             ERROR_MESSAGES.append(FIRST_NAME_REQUIRED_MESSAGE)
             # raise ValueError(gettext_lazy(FIRST_NAME_REQUIRED_MESSAGE))
 
@@ -206,19 +210,20 @@ class UserManager(BaseUserManager):
             raise ValueError(gettext_lazy(ERROR_MESSAGES_STR))
 
         user = self.model(
-                          email=email,  # Refactored. Extracted named params, unusefull because values in extra_fields
-                          username=username,
-                          nickname=nickname,
-                          first_name=first_name,
-                          # last_name=last_name,
-                          # phone=phone,
-                          password=password,
+                          # email=email,  # Refactored. Extracted named params, unusefull because values in extra_fields
+                          # username=username,
+                          # nickname=nickname,
+                          # first_name=first_name,
+                          # # last_name=last_name,
+                          # # phone=phone,
+                          # password=password,
                           **extra_fields,  # All kwarg fields (except password 2) from the serializer validated_data
                           )
 
+        password = extra_fields.get("password")
         user.set_password(password)
-        user.save(using=self._db)
 
+        user.save(using=self._db)
         return user
 
 
