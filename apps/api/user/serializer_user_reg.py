@@ -83,6 +83,7 @@ class UserRegistrySerializer(serializers.Serializer):
                   "password2",
                   "is_staff"
                   "is_superuser"
+                  "is_verified"
                   ]
 
 
