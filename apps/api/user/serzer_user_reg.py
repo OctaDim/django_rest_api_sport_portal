@@ -25,8 +25,8 @@ from apps.api.messages_errors import (PASSWORD_REQUIRED_MSG,
 
 
 class UserRegistrySerializer(serializers.Serializer):
-    email = serializers.CharField(  # Temporally switched odd email validation by defining field type
-    # email = serializers.EmailField(
+    # email = serializers.EmailField(  # Temporally switched off email validation by defining field type
+    email = serializers.CharField(
         max_length=100,
         validators=[UniqueValidator(queryset=User.objects.all())],
         style={"placeholder": gettext_lazy(ENTER_EMAIL_LIKE_MSG)}, )
@@ -66,13 +66,13 @@ class UserRegistrySerializer(serializers.Serializer):
         style={"input_type": "password",
                "placeholder": gettext_lazy(REPEAT_PASSWORD_MSG)}, )
 
-    is_staff = serializers.BooleanField(read_only=True)
-    is_superuser = serializers.BooleanField(read_only=True)
-    is_verified = serializers.BooleanField(read_only=True)
+    is_staff = serializers.BooleanField(read_only=True)  # To see in Response and for my custom trial creating users
+    is_superuser = serializers.BooleanField(read_only=True)  # To see in Response and for my custom trial creating users
+    is_verified = serializers.BooleanField(read_only=True)  # To see in Response and for my custom trial creating users
 
     class Meta:
         model = User
-        abstract = True
+        # abstract = True  # If True, model will not create db table, only for inheritance
         fields = ["email",
                   "username",
                   "nickname",
