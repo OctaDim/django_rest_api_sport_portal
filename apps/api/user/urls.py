@@ -3,9 +3,9 @@ from apps.api.user.views import (ListAllUsersGenericList,
                                  RegisterNewUserGenericCreate,
                                  RegisterNewSuperUserGenericCreate,
                                  RegisterNewStaffUserGenericCreate,
-                                 __TEST_RegisterNewUserGenericCreate,
-                                 __TEST_RegisterNewSuperUserGenericCreate,
-                                 __TEST_RegisterNewStaffUserGenericCreate,
+                                 _Test_RegisterNewUserGenericCreate,
+                                 _Test_RegisterNewSuperUserGenericCreate,
+                                 _Test_RegisterNewStaffUserGenericCreate,
                                  )
 
 app_name = "user"
@@ -22,9 +22,9 @@ urlpatterns = [
     path("register_new_superuser/", RegisterNewSuperUserGenericCreate.as_view(), name="register-new-superuser"),
 
     # ################### MY TRIAL CODE ################################
-    path("__TEST_register_new_user_v2/", __TEST_RegisterNewUserGenericCreate.as_view(), name="TEST-register-new-user-v2"),
-    path("__TEST_register_new_superuser_v2/", __TEST_RegisterNewSuperUserGenericCreate.as_view(), name="TEST-register-new-superuser-v2"),
-    path("__TEST_register_new_staff_user_v2/", __TEST_RegisterNewStaffUserGenericCreate.as_view(), name="TEST-register-new-staff-user-2"),
+    path("_test_register_new_user_v2/", _Test_RegisterNewUserGenericCreate.as_view(), name="test-register-new-user-v2"),
+    path("_test_register_new_superuser_v2/", _Test_RegisterNewSuperUserGenericCreate.as_view(), name="test-register-new-superuser-v2"),
+    path("_test_register_new_staff_user_v2/", _Test_RegisterNewStaffUserGenericCreate.as_view(), name="test-register-new-staff-user-2"),
     # ##################################################################
 
 ]
