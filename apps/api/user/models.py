@@ -66,6 +66,12 @@ class User(AbstractBaseUser, PermissionsMixin):  # todo: Try later to rename Cus
 
     objects = UserManager()
 
+    class Meta:
+        verbose_name = "User"
+        verbose_name_plural = "Users"
+        ordering = ["email", "username", "nickname"]
+
+
     def __str__(self):
         return f"User: {self.username} [ nickname: {self.nickname}, email: {self.email} ]"
 
