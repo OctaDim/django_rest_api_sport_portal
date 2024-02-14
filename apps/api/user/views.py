@@ -26,10 +26,19 @@ from apps.api.messages_errors import (NOT_SUPERUSER_FORBIDDEN,
                                       NOT_STAFF_USER_FORBIDDEN,
                                       )
 
-from apps.api.user.serzer_user_reg import UserRegistrySerializer
-from apps.api.user.serzer_superuser_reg import SuperUserRegistrySerializer
-from apps.api.user.serzer_staff_user_reg import StaffUserRegistrySerializer
-from apps.api.user.serzer_differ_type_user_reg import _Test_DifferentTypeUserRegistrySerializer
+# ##################### TRIAL CODE #####################################
+from apps.api.user.serializers_test_any_user_reg import (
+                                      _Test_UserRegistrySerializer,
+                                      _Test_SuperUserRegistrySerializer,
+                                      _Test_StaffUserRegistrySerializer)
+# ######################################################################
+
+from apps.api.user.serializer_user_reg import UserRegistrySerializer
+from apps.api.user.serializer_superuser_reg import SuperUserRegistrySerializer
+from apps.api.user.serializer_staff_user_reg import StaffUserRegistrySerializer
+
+
+
 
 from apps.api.user.serializers import AllUsersSerializer
 
@@ -134,20 +143,19 @@ class RegisterNewStaffUserGenericCreate(CreateAPIView):
 # ########################## TRIAL CODE ################################
 # ######################################################################
 
-class __TEST_RegisterNewUserGenericCreate(CreateAPIView):
-    serializer_class = _Test_DifferentTypeUserRegistrySerializer
+class _Test_RegisterNewUserGenericCreate(CreateAPIView):
+    serializer_class = _Test_UserRegistrySerializer
 
     def post(self, request: Request, *args, **kwargs):
-        req_data = dict(request.data)
-        req_data_dict = {fld: val[0] for fld, val in req_data.items() if val[0] != ""}
+        # req_data = dict(request.data)  # Option 3: Not recommended, better in serializer. Not for custom manager
+        # req_data_dict = {fld: val[0] for fld, val in req_data.items() if val[0] != ""}
+        # _Test_UserRegistrySerializer.Meta.fields.append("is_staff")
+        # _Test_UserRegistrySerializer.Meta.fields.append("is_superuser")
+        # req_data_dict["is_staff"] = "False"
+        # req_data_dict["is_superuser"] = "False"
+        # serializer = self.serializer_class(data=req_data_dict)
 
-        _Test_DifferentTypeUserRegistrySerializer.Meta.fields.append("is_staff")
-        _Test_DifferentTypeUserRegistrySerializer.Meta.fields.append("is_superuser")
-
-        req_data_dict["is_staff"] = False
-        req_data_dict["is_superuser"] = False
-
-        serializer = self.serializer_class(data=req_data_dict)
+        serializer = self.serializer_class(data=request.data)
 
         if serializer.is_valid():
             serializer.save()
@@ -160,20 +168,19 @@ class __TEST_RegisterNewUserGenericCreate(CreateAPIView):
                               "data":serializer.errors})
 
 
-class __TEST_RegisterNewSuperUserGenericCreate(CreateAPIView):
-    serializer_class = _Test_DifferentTypeUserRegistrySerializer
+class _Test_RegisterNewSuperUserGenericCreate(CreateAPIView):
+    serializer_class = _Test_SuperUserRegistrySerializer
 
     def post(self, request: Request, *args, **kwargs):
-        req_data = dict(request.data)
-        req_data_dict = {fld: val[0] for fld, val in req_data.items() if val[0] != ""}
+        # req_data = dict(request.data)  # Option 3: Not recommended, better in serializer. Not for custom manager
+        # req_data_dict = {fld: val[0] for fld, val in req_data.items() if val[0] != ""}
+        # _Test_SuperUserRegistrySerializer.Meta.fields.append("is_staff")
+        # _Test_SuperUserRegistrySerializer.Meta.fields.append("is_superuser")
+        # req_data_dict["is_staff"] = "True"
+        # req_data_dict["is_superuser"] = "True"
+        # serializer = self.serializer_class(data=req_data_dict)
 
-        _Test_DifferentTypeUserRegistrySerializer.Meta.fields.append("is_staff")
-        _Test_DifferentTypeUserRegistrySerializer.Meta.fields.append("is_superuser")
-
-        req_data_dict["is_staff"] = True
-        req_data_dict["is_superuser"] = True
-
-        serializer = self.serializer_class(data=req_data_dict)
+        serializer = self.serializer_class(data=request.data)
 
         if serializer.is_valid():
             serializer.save()
@@ -186,20 +193,19 @@ class __TEST_RegisterNewSuperUserGenericCreate(CreateAPIView):
                               "data":serializer.errors})
 
 
-class __TEST_RegisterNewStaffUserGenericCreate(CreateAPIView):
-    serializer_class = _Test_DifferentTypeUserRegistrySerializer
+class _Test_RegisterNewStaffUserGenericCreate(CreateAPIView):
+    serializer_class = _Test_StaffUserRegistrySerializer
 
     def post(self, request: Request, *args, **kwargs):
-        req_data = dict(request.data)
-        req_data_dict = {fld: val[0] for fld, val in req_data.items() if val[0] != ""}
+        # req_data = dict(request.data)  # Option 3: Not recommended, better in serializer. Not for custom manager
+        # req_data_dict = {fld: val[0] for fld, val in req_data.items() if val[0] != ""}
+        # _Test_StaffUserRegistrySerializer.Meta.fields.append("is_staff")
+        # _Test_StaffUserRegistrySerializer.Meta.fields.append("is_superuser")
+        # req_data_dict["is_staff"] = "True"
+        # req_data_dict["is_superuser"] = "False"
+        # serializer = self.serializer_class(data=req_data_dict)
 
-        _Test_DifferentTypeUserRegistrySerializer.Meta.fields.append("is_staff")
-        _Test_DifferentTypeUserRegistrySerializer.Meta.fields.append("is_superuser")
-
-        req_data_dict["is_staff"] = "True"
-        req_data_dict["is_superuser"] = "False"
-
-        serializer = self.serializer_class(data=req_data_dict)
+        serializer = self.serializer_class(data=request.data)
 
         if serializer.is_valid():
             serializer.save()
