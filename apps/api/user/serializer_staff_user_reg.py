@@ -1,4 +1,4 @@
-from apps.api.user.serzer_user_reg import UserRegistrySerializer
+from apps.api.user.serializer_user_reg import UserRegistrySerializer
 
 # ##################################################################
 # from django.contrib.auth.models import User  # Django default user
