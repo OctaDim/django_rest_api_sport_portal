@@ -15,6 +15,7 @@ from apps.api.messages_errors import (INVALID_EMAIL_ERROR,
                                       SUPERUSER_NOT_IS_STAFF_ERROR,
                                       SUPERUSER_NOT_IS_SUPERUSER_ERROR,
                                       STAFF_NOT_IS_STAFF_ERROR,
+                                      TRAINER_NOT_IS_TRAINER_ERROR,
                                       )
 
 
@@ -219,6 +220,76 @@ class UserManager(BaseUserManager):
                           # password=password,
                           **extra_fields,  # All kwarg fields (except password 2) from the serializer validated_data
                           )
+
+        password = extra_fields.get("password")
+        user.set_password(password)
+
+        user.save(using=self._db)
+        return user
+
+
+    def create_trainer_user(self,
+                            # email,     # All named parameters should specify explicitly, because they
+                            # username,  # were extracted from **extra_fields getting from the dictionary
+                            # nickname,  # (incoming validated_data from the Serializer method 'create_user')
+                            # first_name,
+                            # # last_name,
+                            # # phone,
+                            # password,
+                            **extra_fields):
+
+        extra_fields.setdefault("is_staff", True)
+        extra_fields.setdefault("is_trainer", True)
+
+        ERROR_MESSAGES = []
+
+        # ##############################################################
+        # ### may comment, if set by default for the staff user above ##
+        # ##############################################################
+        if not extra_fields.get("is_trainer"):
+            ERROR_MESSAGES.append(TRAINER_NOT_IS_TRAINER_ERROR)
+            # raise ValueError(gettext_lazy(STAFF_NOT_IS_STAFF_ERROR))
+
+        if not extra_fields.get("is_staff"):
+            ERROR_MESSAGES.append(STAFF_NOT_IS_STAFF_ERROR)
+            # raise ValueError(gettext_lazy(STAFF_NOT_IS_STAFF_ERROR))
+        # ##############################################################
+        # ##############################################################
+
+        if not extra_fields.get("email"):
+            ERROR_MESSAGES.append(EMAIL_REQUIRED_MESSAGE)
+            # raise ValueError(gettext_lazy(EMAIL_REQUIRED_MESSAGE))
+        else:
+            # email = self.normalize_email(email=email)  # Switched off for better usability
+            # self.email_validator(email=email)  # Temporally switched off
+            pass
+
+        if not extra_fields.get("username"):
+            ERROR_MESSAGES.append(USERNAME_REQUIRED_MESSAGE)
+            # raise ValueError(gettext_lazy(USERNAME_REQUIRED_MESSAGE))
+
+        if not extra_fields.get("nickname"):
+            ERROR_MESSAGES.append(NICKNAME_REQUIRED_MESSAGE)
+            # raise ValueError(gettext_lazy(USERNAME_REQUIRED_MESSAGE))
+
+        if not extra_fields.get("first_name"):
+            ERROR_MESSAGES.append(FIRST_NAME_REQUIRED_MESSAGE)
+            # raise ValueError(gettext_lazy(FIRST_NAME_REQUIRED_MESSAGE))
+
+        if ERROR_MESSAGES:
+            ERROR_MESSAGES_STR = ", ".join(ERROR_MESSAGES)
+            raise ValueError(gettext_lazy(ERROR_MESSAGES_STR))
+
+        user = self.model(
+            # email=email,  # Refactored. Extracted named params, unusefull because values in extra_fields
+            # username=username,
+            # nickname=nickname,
+            # first_name=first_name,
+            # # last_name=last_name,
+            # # phone=phone,
+            # password=password,
+            **extra_fields,  # All kwarg fields (except password 2) from the serializer validated_data
+        )
 
         password = extra_fields.get("password")
         user.set_password(password)
