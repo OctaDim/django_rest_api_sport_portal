@@ -156,7 +156,6 @@ class _Test_RegisterNewUserGenericCreate(CreateAPIView):
         # serializer = self.serializer_class(data=req_data_dict)
 
         serializer = self.serializer_class(data=request.data)
-
         if serializer.is_valid():
             serializer.save()
             return Response(status=status.HTTP_200_OK,
@@ -172,6 +171,13 @@ class _Test_RegisterNewSuperUserGenericCreate(CreateAPIView):
     serializer_class = _Test_SuperUserRegistrySerializer
 
     def post(self, request: Request, *args, **kwargs):
+
+        user_is_superuser = request.user.is_superuser
+        if not user_is_superuser:
+            return Response(
+                status=status.HTTP_403_FORBIDDEN,
+                data={"message": gettext_lazy(NOT_SUPERUSER_FORBIDDEN)})
+
         # req_data = dict(request.data)  # Option 3: Not recommended, better in serializer. Not for custom manager
         # req_data_dict = {fld: val[0] for fld, val in req_data.items() if val[0] != ""}
         # _Test_SuperUserRegistrySerializer.Meta.fields.append("is_staff")
@@ -181,7 +187,6 @@ class _Test_RegisterNewSuperUserGenericCreate(CreateAPIView):
         # serializer = self.serializer_class(data=req_data_dict)
 
         serializer = self.serializer_class(data=request.data)
-
         if serializer.is_valid():
             serializer.save()
             return Response(status=status.HTTP_200_OK,
@@ -206,7 +211,6 @@ class _Test_RegisterNewStaffUserGenericCreate(CreateAPIView):
         # serializer = self.serializer_class(data=req_data_dict)
 
         serializer = self.serializer_class(data=request.data)
-
         if serializer.is_valid():
             serializer.save()
             return Response(status=status.HTTP_200_OK,
