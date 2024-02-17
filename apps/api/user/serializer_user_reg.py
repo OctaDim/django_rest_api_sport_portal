@@ -67,6 +67,7 @@ class UserRegistrySerializer(serializers.Serializer):
                "placeholder": gettext_lazy(REPEAT_PASSWORD_MSG)}, )
 
     is_staff = serializers.BooleanField(read_only=True)  # To see in Response and for my custom trial creating users
+    is_trainer = serializers.BooleanField(read_only=True)  # To see in Response and for my custom trial creating users
     is_superuser = serializers.BooleanField(read_only=True)  # To see in Response and for my custom trial creating users
     is_verified = serializers.BooleanField(read_only=True)  # To see in Response and for my custom trial creating users
 
@@ -81,9 +82,10 @@ class UserRegistrySerializer(serializers.Serializer):
                   "phone",
                   "password",
                   "password2",
-                  "is_staff"
-                  "is_superuser"
-                  "is_verified"
+                  "is_staff",
+                  "is_trainer",
+                  "is_superuser",
+                  "is_verified",
                   ]
 
 
