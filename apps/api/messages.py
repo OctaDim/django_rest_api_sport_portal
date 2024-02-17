@@ -10,6 +10,9 @@ SUPERUSER_NOT_CREATED_MSG= "Superuser was not created"
 STAFF_USER_CREATED_MSG= "Staff user was created successfully"
 STAFF_USER_NOT_CREATED_MSG= "Staff user was not created"
 
+TRAINER_USER_CREATED_MSG= "Trainer user was created successfully"
+TRAINER_USER_NOT_CREATED_MSG= "Trainer user was not created"
+
 ENTER_EMAIL_LIKE_MSG= "enter email like <any>@<any.any> necessarily"
 ENTER_EMAIL_MSG= "enter email necessarily"
 ENTER_USERNAME_MSG= "enter username necessarily"

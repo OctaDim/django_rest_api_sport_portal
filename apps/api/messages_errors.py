@@ -28,7 +28,9 @@ PHONE_REQUIRED_MESSAGE = "Empty phone number. Phone number is required"
 SUPERUSER_NOT_IS_STAFF_ERROR = "Superuser must be staff"
 SUPERUSER_NOT_IS_SUPERUSER_ERROR = "Superuser must be superuser"
 
-STAFF_NOT_IS_STAFF_ERROR = "Superuser must be staff"
+STAFF_NOT_IS_STAFF_ERROR = "Staff must be staff"
+
+TRAINER_NOT_IS_TRAINER_ERROR = "Trainer must be trainer"
 
 NOT_SUPERUSER_FORBIDDEN = "Forbidden. Only superuser can create other superusers accounts"
 NOT_STAFF_USER_FORBIDDEN = "Forbidden. Only staff user can create other staff users accounts"
