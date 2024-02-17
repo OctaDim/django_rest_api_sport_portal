@@ -19,3 +19,18 @@ class AllUsersSerializer(serializers.ModelSerializer):
                   "last_login",
                   "is_verified",
                   )
+
+
+class UserInfoByIdAllFieldsSerializer(serializers.ModelSerializer):
+    # updated = serializers.ReadOnlyField()
+    # is_verified = serializers.ReadOnlyField()
+
+    class Meta:
+        model = User
+        # fields = "__all__"  # Not used, if exclude is used (exclude= all-exclude)
+        exclude = ["password",
+                   "is_verified",
+                   "date_joined",
+                   "last_login",
+                   "updated",
+                   ]
