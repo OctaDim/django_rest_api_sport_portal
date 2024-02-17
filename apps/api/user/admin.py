@@ -18,6 +18,7 @@ class CustomUserCustomAdminPanel(admin.ModelAdmin):
                     "last_name",
                     "phone",
                     "is_staff",
+                    "is_trainer",
                     "is_superuser",
                     "is_verified",
                     "is_active",
@@ -27,6 +28,7 @@ class CustomUserCustomAdminPanel(admin.ModelAdmin):
                     ]
 
     list_filter = ["is_staff",
+                   "is_trainer",
                    "is_superuser",
                    "is_verified",
                    "is_active",
@@ -43,6 +45,7 @@ class CustomUserCustomAdminPanel(admin.ModelAdmin):
                     "last_name",
                     "phone",
                     "is_staff",
+                    "is_trainer",
                     "is_superuser",
                     "is_verified",
                     "is_active",
