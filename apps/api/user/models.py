@@ -47,6 +47,7 @@ class User(AbstractBaseUser, PermissionsMixin):  # todo: Try later to rename Cus
                              verbose_name=gettext_lazy(PHONE))
 
     is_staff = models.BooleanField(default=False)
+    is_trainer = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
     is_verified = models.BooleanField(default=False)
 
