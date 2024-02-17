@@ -3,6 +3,10 @@ ALL_USERS_MSG= "All users list:"
 
 USER_CREATED_MSG= "User was created successfully"
 USER_NOT_CREATED_MSG= "User was not created"
+USER_UPDATED_MSG = "User was updated successfully"
+USER_NOT_UPDATED_MSG = "User was not updated"
+USER_DELETED_MSG = "User was deleted successfully"
+USER_DETAILS = "User details:"
 
 SUPERUSER_CREATED_MSG= "Superuser was created successfully"
 SUPERUSER_NOT_CREATED_MSG= "Superuser was not created"
