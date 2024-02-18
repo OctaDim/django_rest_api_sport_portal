@@ -55,7 +55,7 @@ class User(AbstractBaseUser, PermissionsMixin):  # todo: Try later to rename Cus
 
     date_joined = models.DateTimeField(auto_now_add=True)
     last_login = models.DateTimeField(auto_now=True)
-    updated = models.DateTimeField(blank=True, null=True)
+    updated = models.DateTimeField(auto_now=True)
 
     USERNAME_FIELD = "username"
     REQUIRED_FIELDS = ["email",
