@@ -282,8 +282,6 @@ class _Test_RegisterNewTrainerUserGenericCreate(CreateAPIView):
 
 
 class UserInfoByIdGenericRetrieveUpdDestroy(RetrieveUpdateDestroyAPIView):
-    user_is_superuser = request.user.is_superuser
-
     serializer_class = UserInfoByIdAllFieldsSerializer
 
     def get_object(self):
