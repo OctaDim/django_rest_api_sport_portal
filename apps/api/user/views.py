@@ -3,6 +3,7 @@ from django.shortcuts import render
 
 from rest_framework.request import Request
 from rest_framework.response import Response
+from rest_framework.generics import get_object_or_404
 from rest_framework import status
 
 from django.utils.translation import gettext_lazy
@@ -21,7 +22,10 @@ from apps.api.messages import (NO_USERS_MSG,
                                STAFF_USER_CREATED_MSG,
                                STAFF_USER_NOT_CREATED_MSG,
                                TRAINER_USER_CREATED_MSG,
-                               TRAINER_USER_NOT_CREATED_MSG
+                               TRAINER_USER_NOT_CREATED_MSG,
+                               USER_DETAILS, USER_UPDATED_MSG,
+                               USER_NOT_UPDATED_MSG,
+                               USER_DELETED_MSG
                                )
 
 from apps.api.messages_errors import (NOT_SUPERUSER_FORBIDDEN,
@@ -41,10 +45,13 @@ from apps.api.user.serializer_superuser_reg import SuperUserRegistrySerializer
 from apps.api.user.serializer_staff_user_reg import StaffUserRegistrySerializer
 from apps.api.user.serializer_trainer_user_reg import TrainerUserRegistrySerializer
 
-from apps.api.user.serializers import AllUsersSerializer
+from apps.api.user.serializers import (AllUsersSerializer,
+                                       UserInfoByIdAllFieldsSerializer,
+                                       )
 
 from rest_framework.generics import (ListAPIView,
                                      CreateAPIView,
+                                     RetrieveUpdateDestroyAPIView,
                                      )
 
 class ListAllUsersGenericList(ListAPIView):
@@ -272,3 +279,98 @@ class _Test_RegisterNewTrainerUserGenericCreate(CreateAPIView):
 # ######################################################################
 # ######################################################################
 # ######################################################################
+
+
+class UserInfoByIdGenericRetrieveUpdDestroy(RetrieveUpdateDestroyAPIView):
+    user_is_superuser = request.user.is_superuser
+
+    serializer_class = UserInfoByIdAllFieldsSerializer
+
+    def get_object(self):
+
+        user_id = self.kwargs.get("user_id")  # User id from the request additional parameter
+        # user_id = self.request.user.id  # Current user id from the request body
+
+        user_object = get_object_or_404(User, id=user_id)  # As one dictionary object, with exception
+        # user_object = User.objects.filter(id=user_id).first()  # As one dictionary object, exception should be handled
+        # user_object = User.objects.filter(id=user_id)  # As list with a dictionary element, exception should be handled
+
+        return user_object
+
+
+    def get(self, request, *args, **kwargs):
+
+        user_is_superuser = request.user.is_superuser
+        if not user_is_superuser:
+            return Response(
+                status=status.HTTP_403_FORBIDDEN,
+                data={"message": gettext_lazy(NOT_SUPERUSER_FORBIDDEN)})
+
+        user = self.get_object()
+
+        serializer=self.serializer_class(instance=user)  # If one dictionary object, got with get_or_404()
+        # serializer=self.serializer_class(instance=user, many=True)  # If list with one dictionary element, got with filter()
+
+        return Response(status=status.HTTP_200_OK,
+                        data={"message":gettext_lazy(USER_DETAILS),
+                              "data": serializer.data} )
+
+
+    def patch(self, request, *args, **kwargs):
+
+        user_is_superuser = request.user.is_superuser
+        if not user_is_superuser:
+            return Response(
+                status=status.HTTP_403_FORBIDDEN,
+                data={"message": gettext_lazy(NOT_SUPERUSER_FORBIDDEN)})
+
+        user = self.get_object()
+
+        serializer = self.serializer_class(instance=user,
+                                           data=request.data,
+                                           partial=True)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(status=status.HTTP_200_OK,
+                            data={"message":gettext_lazy(USER_UPDATED_MSG),
+                                  "data":serializer.data})
+
+        return Response(status=status.HTTP_400_BAD_REQUEST,
+                        data={"message":gettext_lazy(USER_NOT_UPDATED_MSG),
+                              "data": serializer.errors})
+
+
+    # def patch(self, request, *args, **kwargs):
+    #     user = self.get_object()
+    #
+    #     serializer = self.serializer_class(instance=user,
+    #                                        data=request.data,
+    #                                        partial=True)
+    #
+    #     if serializer.is_valid():
+    #         serializer.save()
+    #         return Response(status=status.HTTP_200_OK,
+    #                         data={"message":gettext_lazy(USER_UPDATED_MSG),
+    #                               "data":serializer.data})
+    #
+    #     return Response(status=status.HTTP_400_BAD_REQUEST,
+    #                     data={"message":gettext_lazy(USER_NOT_UPDATED_MSG),
+    #                           "data": serializer.errors})
+
+
+    def delete(self, request, *args, **kwargs):
+
+        user_is_superuser = request.user.is_superuser
+        if not user_is_superuser:
+            return Response(
+                status=status.HTTP_403_FORBIDDEN,
+                data={"message": gettext_lazy(NOT_SUPERUSER_FORBIDDEN)})
+
+        user = self.get_object()
+
+        user.delete()
+
+        return Response(status=status.HTTP_200_OK,
+                        data={"message":gettext_lazy(USER_DELETED_MSG),
+                              "data": []})
