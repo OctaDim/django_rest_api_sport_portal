@@ -25,11 +25,14 @@ from apps.api.messages import (NO_USERS_MSG,
                                TRAINER_USER_NOT_CREATED_MSG,
                                USER_DETAILS, USER_UPDATED_MSG,
                                USER_NOT_UPDATED_MSG,
-                               USER_DELETED_MSG
+                               USER_DELETED_MSG,
+                               NO_USER_WITH_ID_MSG
                                )
 
 from apps.api.messages_errors import (NOT_SUPERUSER_FORBIDDEN,
                                       NOT_STAFF_USER_FORBIDDEN,
+                                      DELETE_YOURSELF_FORBIDDEN,
+                                      INACTIVE_YOURSELF_FORBIDDEN,
                                       )
 
 # ##################### TRIAL CODE #####################################
@@ -45,13 +48,16 @@ from apps.api.user.serializer_superuser_reg import SuperUserRegistrySerializer
 from apps.api.user.serializer_staff_user_reg import StaffUserRegistrySerializer
 from apps.api.user.serializer_trainer_user_reg import TrainerUserRegistrySerializer
 
-from apps.api.user.serializers import (AllUsersSerializer,
+from apps.api.user.serializers import (UsersSerializerAllFields,
+                                       UsersSerializerLimitFields,
                                        UserInfoByIdAllFieldsSerializer,
+                                       UserInfoByIdLimitedFieldsSerializer,
                                        )
 
 from rest_framework.generics import (ListAPIView,
                                      CreateAPIView,
                                      RetrieveUpdateDestroyAPIView,
+                                     RetrieveUpdateAPIView,
                                      )
 
 
@@ -60,14 +66,45 @@ class AllUsersGenericListForSuperuser(ListAPIView):
     serializer_class = UsersSerializerAllFields
 
     def get_queryset(self):
-        users = User.objects.all()
+        users = User.objects.all()  # Superuser can see all users including himself
+        # users = User.objects.exclude(id=self.request.user.id)  # Superuser can see all users excluding himself
+        return users
+
+    def get(self, request: Request, *args, **kwargs):
+
+        user_is_superuser = request.user.is_superuser
+        if not user_is_superuser:
+            return Response(
+                status=status.HTTP_403_FORBIDDEN,
+                data={"message":gettext_lazy(NOT_SUPERUSER_FORBIDDEN)})
+
+        users = self.get_queryset()
+
+        if not users:
+            return Response(status=status.HTTP_204_NO_CONTENT,
+                            data={"message": gettext_lazy(NO_USERS_MSG),
+                                  "data": []}
+                            )
+
+        serializer = self.serializer_class(instance=users, many=True)  # IMPORTANT: DON'T FORGET many=True
+        return Response(status=status.HTTP_200_OK,
+                        data={"message": gettext_lazy(ALL_USERS_MSG),
+                              "data": serializer.data}
+                        )
+
+
+class AllUsersGenericListForStaff(ListAPIView):
+    serializer_class = UsersSerializerLimitFields
+
+    def get_queryset(self):
+        users = User.objects.filter(is_superuser=False)  # Staff can see all users except superusers
         return users
 
     def get(self, request: Request, *args, **kwargs):
         users = self.get_queryset()
 
         if not users:
-            return Response(status=status.HTTP_404_NOT_FOUND,
+            return Response(status=status.HTTP_204_NO_CONTENT,
                             data={"message": gettext_lazy(NO_USERS_MSG),
                                   "data": []}
                             )
@@ -289,11 +326,16 @@ class UserInfoByIdGenericRetrieveUpdDestroy(RetrieveUpdateDestroyAPIView):
     def get_object(self):
 
         user_id = self.kwargs.get("user_id")  # User id from the request additional parameter
-        # user_id = self.request.user.id  # Current user id from the request body
 
         user_object = get_object_or_404(User, id=user_id)  # As one dictionary object, with exception
         # user_object = User.objects.filter(id=user_id).first()  # As one dictionary object, exception should be handled
         # user_object = User.objects.filter(id=user_id)  # As list with a dictionary element, exception should be handled
+        #
+        # if not user_object:
+        #     return Response(status=status.HTTP_404_NOT_FOUND,
+        #                     data={"message": gettext_lazy(NO_USER_WITH_ID_MSG),
+        #                           "data": {}
+        #                           })
 
         return user_object
 
@@ -316,7 +358,11 @@ class UserInfoByIdGenericRetrieveUpdDestroy(RetrieveUpdateDestroyAPIView):
                               "data": serializer.data} )
 
 
-    def patch(self, request, *args, **kwargs):
+    # def put(self, request, *args, **kwargs):
+    #     return self.patch(request, *args, **kwargs)
+
+
+    def patch(self, request, *args, **kwargs):  # IMPORTANT: Only if PATCH, entered values stay after validation
 
         user_is_superuser = request.user.is_superuser
         if not user_is_superuser:
@@ -341,24 +387,6 @@ class UserInfoByIdGenericRetrieveUpdDestroy(RetrieveUpdateDestroyAPIView):
                               "data": serializer.errors})
 
 
-    # def patch(self, request, *args, **kwargs):
-    #     user = self.get_object()
-    #
-    #     serializer = self.serializer_class(instance=user,
-    #                                        data=request.data,
-    #                                        partial=True)
-    #
-    #     if serializer.is_valid():
-    #         serializer.save()
-    #         return Response(status=status.HTTP_200_OK,
-    #                         data={"message":gettext_lazy(USER_UPDATED_MSG),
-    #                               "data":serializer.data})
-    #
-    #     return Response(status=status.HTTP_400_BAD_REQUEST,
-    #                     data={"message":gettext_lazy(USER_NOT_UPDATED_MSG),
-    #                           "data": serializer.errors})
-
-
     def delete(self, request, *args, **kwargs):
 
         user_is_superuser = request.user.is_superuser
@@ -369,8 +397,80 @@ class UserInfoByIdGenericRetrieveUpdDestroy(RetrieveUpdateDestroyAPIView):
 
         user = self.get_object()
 
+        current_user_id = self.request.user.id  # Current user id from the request body
+        if  current_user_id == user.id:  # If current user is user to delete
+            return Response(
+                status=status.HTTP_403_FORBIDDEN,
+                data={"message": gettext_lazy(DELETE_YOURSELF_FORBIDDEN)})
+
         user.delete()
 
         return Response(status=status.HTTP_200_OK,
                         data={"message":gettext_lazy(USER_DELETED_MSG),
-                              "data": []})
+                              "data": {}
+                              })
+
+
+class UserInfoByIdGenericRetrieveUpdate(RetrieveUpdateAPIView):
+    serializer_class = UserInfoByIdLimitedFieldsSerializer
+
+    def get_object(self):
+        user_id = self.kwargs.get("user_id")  # User id from the request additional parameter
+        # user_id = self.request.user.id  # Current user id from the request body
+
+        user_object = get_object_or_404(User, id=user_id)  # As one dictionary object, with exception
+
+        # user_object = User.objects.filter(id=user_id).first()  # As one dictionary object, exception should be handled
+        # user_object = User.objects.filter(id=user_id)  # As list with a dictionary element, exception should be handled
+        #
+        # if not user_object:
+        #     return Response(status=status.HTTP_404_NOT_FOUND,
+        #                     data={"message": gettext_lazy(NO_USER_WITH_ID_MSG),
+        #                           "data": {}
+        #                           })
+
+        return user_object
+
+
+    def get(self, request, *args, **kwargs):
+        user = self.get_object()
+
+        serializer=self.serializer_class(instance=user)  # If one dictionary object, got with get_or_404()
+        # serializer=self.serializer_class(instance=user, many=True)  # If list with one dictionary element, got with filter()
+
+        return Response(status=status.HTTP_200_OK,
+                        data={"message":gettext_lazy(USER_DETAILS),
+                              "data": serializer.data} )
+
+
+    # def put(self, request, *args, **kwargs):
+    #     return self.patch(request, *args, **kwargs)
+
+
+    def patch(self, request, *args, **kwargs):  # IMPORTANT: Only if PATCH, entered values stay after validation
+
+        req_data = dict(request.data)  # Getting request data
+        req_data_dict = {field: value[0] for field, value in req_data.items()}  # Transforming request data into dict
+        is_active_value = req_data_dict.get("is_active")
+
+        user = self.get_object()
+
+        current_user_id = self.request.user.id  # Current user id from the request body
+        if not is_active_value and current_user_id == user.id:  # If curr user = user to make inactive and not is_active
+            return Response(
+                status=status.HTTP_403_FORBIDDEN,
+                data={"message": gettext_lazy(INACTIVE_YOURSELF_FORBIDDEN)})
+
+        serializer = self.serializer_class(instance=user,
+                                           data=request.data,
+                                           partial=True)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(status=status.HTTP_200_OK,
+                            data={"message":gettext_lazy(USER_UPDATED_MSG),
+                                  "data":serializer.data})
+
+        return Response(status=status.HTTP_400_BAD_REQUEST,
+                        data={"message":gettext_lazy(USER_NOT_UPDATED_MSG),
+                              "data": serializer.errors})
