@@ -238,8 +238,8 @@ class UserManager(BaseUserManager):
                             # password,
                             **extra_fields):
 
-        extra_fields.setdefault("is_staff", True)
         extra_fields.setdefault("is_trainer", True)
+        extra_fields.setdefault("is_staff", False)
 
         ERROR_MESSAGES = []
 
@@ -250,9 +250,9 @@ class UserManager(BaseUserManager):
             ERROR_MESSAGES.append(TRAINER_NOT_IS_TRAINER_ERROR)
             # raise ValueError(gettext_lazy(STAFF_NOT_IS_STAFF_ERROR))
 
-        if not extra_fields.get("is_staff"):
-            ERROR_MESSAGES.append(STAFF_NOT_IS_STAFF_ERROR)
-            # raise ValueError(gettext_lazy(STAFF_NOT_IS_STAFF_ERROR))
+        # if not extra_fields.get("is_staff"):
+        #     ERROR_MESSAGES.append(STAFF_NOT_IS_STAFF_ERROR)
+        #     # raise ValueError(gettext_lazy(STAFF_NOT_IS_STAFF_ERROR))
         # ##############################################################
         # ##############################################################
 
