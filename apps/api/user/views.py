@@ -54,8 +54,10 @@ from rest_framework.generics import (ListAPIView,
                                      RetrieveUpdateDestroyAPIView,
                                      )
 
-class ListAllUsersGenericList(ListAPIView):
-    serializer_class = AllUsersSerializer
+
+
+class AllUsersGenericListForSuperuser(ListAPIView):
+    serializer_class = UsersSerializerAllFields
 
     def get_queryset(self):
         users = User.objects.all()
@@ -230,7 +232,7 @@ class _Test_RegisterNewSuperUserGenericCreate(CreateAPIView):
 
 
 class _Test_RegisterNewStaffUserGenericCreate(CreateAPIView):
-    serializer_class = _Test_TrainerUserRegistrySerializer
+    serializer_class = _Test_StaffUserRegistrySerializer
 
     def post(self, request: Request, *args, **kwargs):
         # req_data = dict(request.data)  # Option 3: Not recommended, better in serializer. Not for custom manager
