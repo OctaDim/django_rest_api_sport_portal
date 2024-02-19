@@ -1,12 +1,18 @@
+YES_FIELD_CHOICE = "Yes"
+NO_FIELD_CHOICE = "No"
+
 NO_USERS_MSG= "Users were not found. No user exists"
 ALL_USERS_MSG= "All users list:"
+
+NO_USER_WITH_ID_MSG= "User was not found"
+USER_DETAILS = "User details:"
 
 USER_CREATED_MSG= "User was created successfully"
 USER_NOT_CREATED_MSG= "User was not created"
 USER_UPDATED_MSG = "User was updated successfully"
 USER_NOT_UPDATED_MSG = "User was not updated"
 USER_DELETED_MSG = "User was deleted successfully"
-USER_DETAILS = "User details:"
+
 
 SUPERUSER_CREATED_MSG= "Superuser was created successfully"
 SUPERUSER_NOT_CREATED_MSG= "Superuser was not created"

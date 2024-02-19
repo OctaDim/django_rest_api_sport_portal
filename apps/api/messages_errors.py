@@ -35,6 +35,10 @@ TRAINER_NOT_IS_TRAINER_ERROR = "Trainer must be trainer"
 NOT_SUPERUSER_FORBIDDEN = "Forbidden. Only superuser can create other superusers accounts"
 NOT_STAFF_USER_FORBIDDEN = "Forbidden. Only staff user can create other staff users accounts"
 
+DELETE_YOURSELF_FORBIDDEN = "Forbidden. As Superuser, you cannot delete yourself"
+INACTIVE_YOURSELF_FORBIDDEN = "Forbidden. As Staff, you cannot make yourself inactive"
+
+
 def USER_NOT_FOUND_MESSAGE(username_email_or_nickname: str) -> str:
     return f"User [ {username_email_or_nickname} ] was not found"
 
