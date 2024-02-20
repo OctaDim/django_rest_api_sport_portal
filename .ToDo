@@ -1,8 +1,16 @@
-# todo: Make gettext_lazy for verbose_names, Meta, plural, plurals and so on
+todo: Make gettext_lazy for verbose_names, Meta, plural, plurals and so on
 
-# todo: Move outside all CRUD superuser methods to outer method or function
+todo: Move outside all CRUD superuser methods to outer method or function
 user_is_superuser = request.user.is_superuser
         if not user_is_superuser:
             return Response(
                 status=status.HTTP_403_FORBIDDEN,
                 data={"message": gettext_lazy(NOT_SUPERUSER_FORBIDDEN)})
+
+todo: Make creator field in User model
+creator = models.ForeignKey(Creator, on_delete=models.PROTECT,
+                            verbose_name=gettext_lazy(CREATOR))
+
+todo: Add auto fields (email, username, nickname) in Creator model
+
+todo: Add fields to admin panel
