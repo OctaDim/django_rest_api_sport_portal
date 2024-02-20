@@ -31,7 +31,8 @@ class UsersSerializerLimitFields(serializers.ModelSerializer):
                   "is_active",
                   "date_joined",
                   "last_login",
-                  "updated",
+                  "updated_at",
+                  # "creator"
                   )
 
 
@@ -44,7 +45,8 @@ class UserInfoByIdAllFieldsSerializer(serializers.ModelSerializer):
                    "is_verified",
                    "date_joined",
                    "last_login",
-                   "updated",
+                   "updated_at",
+                   # "creator"
                    ]
 
 
@@ -72,7 +74,8 @@ class UserInfoByIdLimitedFieldsSerializer(serializers.ModelSerializer):
                   "is_verified",
                   "date_joined",
                   "last_login",
-                  "updated",
+                  "updated_at",
+                  # "creator"
                   )
 
 
