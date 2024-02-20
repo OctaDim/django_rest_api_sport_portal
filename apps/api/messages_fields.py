@@ -23,3 +23,8 @@ CLIENT_STATUSES = "client statuses"
 
 GENDER = "client gender"
 GENDERS = "client genders"
+
+COACH_SPECIALITY = "coach speciality"
+COACH_SPECIALITIES = "coach specialities"
+
+DESCRIPTION = "description"
