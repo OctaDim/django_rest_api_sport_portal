@@ -58,7 +58,7 @@ INSTALLED_APPS = [
 
 
     ##### local apps #####
-    "apps.api.client.apps.ClientConfig",
+    "apps.api.client_status.apps.ClientStatusConfig",
     "apps.api.coach.apps.CoachConfig",
     "apps.api.coach_speciality.apps.CoachSpecialityConfig",
     "apps.api.company.apps.CompanyConfig",

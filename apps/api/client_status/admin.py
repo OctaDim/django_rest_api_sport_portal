@@ -1,10 +1,10 @@
 from django.contrib import admin
 # Register your models here.
 
-from apps.api.client.models import ClientStatus
+from apps.api.client_status.models import ClientStatus
 
 @admin.register(ClientStatus)  # Option 1
-# admin.site.register(User)  # Option 2
+# admin.site.register(ClientStatus)  # Option 2
 class ClientStatusAdmin(admin.ModelAdmin):
     list_display = ["id",
                     "name",
