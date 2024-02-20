@@ -28,3 +28,7 @@ COACH_SPECIALITY = "coach speciality"
 COACH_SPECIALITIES = "coach specialities"
 
 DESCRIPTION = "description"
+
+COUNTRY_FROM = "from country"
+COUNTRY = "country"
+COUNTRIES = "countries"
