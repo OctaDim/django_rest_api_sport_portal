@@ -68,6 +68,7 @@ INSTALLED_APPS = [
     "apps.api.mood_level.apps.MoodLevelConfig",
     "apps.api.status_level.apps.StatusLevelConfig",
     "apps.api.user.apps.UserConfig",
+    "apps.api.gender.apps.GenderConfig"
     ]
 
 MIDDLEWARE = [
