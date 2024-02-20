@@ -24,3 +24,6 @@ git branch -d my_branch rem Deleting feat branch
 pip install djangorestframework-simplejwt
 
 pip install django-annoying
+
+cd apps/api
+python.exe ../../manage.py startapp gender
