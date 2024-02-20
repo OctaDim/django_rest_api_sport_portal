@@ -16,6 +16,7 @@ from apps.api.user.models import User
 
 class Country(models.Model):
     name = models.CharField(max_length=100,
+                            unique=True,
                             verbose_name=gettext_lazy(COUNTRY_FROM))
 
     description = models.TextField(max_length=500,

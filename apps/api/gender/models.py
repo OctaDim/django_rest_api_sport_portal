@@ -14,6 +14,7 @@ from apps.api.user.models import User
 
 class Gender(models.Model):
     name = models.CharField(max_length=30,
+                            unique=True,
                             verbose_name=gettext_lazy(GENDER))
 
     created_at = models.DateTimeField(auto_now_add=True,

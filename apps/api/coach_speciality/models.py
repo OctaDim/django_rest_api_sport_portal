@@ -15,6 +15,7 @@ from apps.api.user.models import User
 
 class CoachSpeciality(models.Model):
     name = models.CharField(max_length=100,
+                            unique=True,
                             verbose_name=gettext_lazy(COACH_SPECIALITY))
 
     description = models.TextField(max_length=500,

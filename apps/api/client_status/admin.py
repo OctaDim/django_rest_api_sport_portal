@@ -8,6 +8,7 @@ from apps.api.client_status.models import ClientStatus
 class ClientStatusAdmin(admin.ModelAdmin):
     list_display = ["id",
                     "name",
+                    "description"
                     "created_at",
                     "updated_at",
                     "creator"
@@ -15,6 +16,7 @@ class ClientStatusAdmin(admin.ModelAdmin):
 
     list_filter = ["id",
                    "name",
+                   "description"
                    "created_at",
                     "updated_at",
                     "creator"
@@ -22,6 +24,7 @@ class ClientStatusAdmin(admin.ModelAdmin):
 
     search_fields = ["id",
                      "name",
+                     "description"
                      "created_at",
                      "updated_at",
                      "creator"
