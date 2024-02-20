@@ -20,3 +20,6 @@ UPDATED_AT = "updated date"
 
 CLIENT_STATUS = "client status"
 CLIENT_STATUSES = "client statuses"
+
+GENDER = "client gender"
+GENDERS = "client genders"
