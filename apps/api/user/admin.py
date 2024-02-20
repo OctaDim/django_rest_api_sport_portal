@@ -6,9 +6,10 @@ from django.contrib import admin
 from apps.api.user.models import User  # Custom user
 # ##################################################################
 
+from apps.api.user.support_models import Creator
 
-@admin.register(User)
-# admin.site.register(User)
+@admin.register(User)  # Option 1
+# admin.site.register(User)  # Option 2
 class CustomUserCustomAdminPanel(admin.ModelAdmin):
     list_display = ["id",
                     "email",
@@ -24,7 +25,8 @@ class CustomUserCustomAdminPanel(admin.ModelAdmin):
                     "is_active",
                     "date_joined",
                     "last_login",
-                    "updated"
+                    "updated_at",
+                    # "creator"
                     ]
 
     list_filter = ["is_staff",
@@ -34,7 +36,8 @@ class CustomUserCustomAdminPanel(admin.ModelAdmin):
                    "is_active",
                    "date_joined",
                    "last_login",
-                   "updated"
+                   "updated_at",
+                   # "creator"
                    ]
 
     search_fields = ["id",
@@ -51,8 +54,33 @@ class CustomUserCustomAdminPanel(admin.ModelAdmin):
                     "is_active",
                     "date_joined",
                     "last_login",
-                    "updated"
+                    "updated_at",
+                     # "creator"
                     ]
+
+
+@admin.register(Creator)  # Option 1
+# admin.site.register(Creator)  # Option 2
+class CreatorAdmin(admin.ModelAdmin):
+    list_display = ["id",
+                    # "email",
+                    # "username",
+                    # "nickname"
+                    ]
+
+    list_filter = ["id",
+                   # "email",
+                   # "username",
+                   # "nickname"
+                   ]
+
+    search_fields = ["id",
+                     # "email",
+                     # "username",
+                     # "nickname"
+                     ]
+
+
 
     ###### POSSIBLE OPTIONS #####
     # list_display = ("__str__",)
