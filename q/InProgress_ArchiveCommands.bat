@@ -22,3 +22,5 @@ git merge my_branch —no-ff rem (no fast forward merge) rem To merge with my_br
 git branch -d my_branch rem Deleting feat branch
 
 pip install djangorestframework-simplejwt
+
+pip install django-annoying
