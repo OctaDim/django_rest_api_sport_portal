@@ -11,7 +11,7 @@ class CoachSpecialityAdmin(admin.ModelAdmin):
                     "description",
                     "created_at",
                     "updated_at",
-                    "creator"
+                    "creator",
                     ]
 
     list_filter = ["id",
@@ -19,7 +19,7 @@ class CoachSpecialityAdmin(admin.ModelAdmin):
                    "description",
                    "created_at",
                     "updated_at",
-                    "creator"
+                    "creator",
                    ]
 
     search_fields = ["id",
@@ -27,7 +27,7 @@ class CoachSpecialityAdmin(admin.ModelAdmin):
                      "description",
                      "created_at",
                      "updated_at",
-                     "creator"
+                     "creator",
                     ]
 
 

@@ -12,7 +12,7 @@ class CompanyAdmin(admin.ModelAdmin):
                     "is_active",
                     "created_at",
                     "updated_at",
-                    "creator"
+                    "creator",
                     ]
 
     list_filter = ["id",
@@ -21,7 +21,7 @@ class CompanyAdmin(admin.ModelAdmin):
                    "is_active",
                    "created_at",
                     "updated_at",
-                    "creator"
+                    "creator",
                    ]
 
     search_fields = ["id",
@@ -30,7 +30,7 @@ class CompanyAdmin(admin.ModelAdmin):
                      "is_active",
                      "created_at",
                      "updated_at",
-                     "creator"
+                     "creator",
                     ]
 
 

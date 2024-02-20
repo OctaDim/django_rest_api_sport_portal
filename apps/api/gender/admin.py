@@ -10,21 +10,21 @@ class GenderAdmin(admin.ModelAdmin):
                     "name",
                     "created_at",
                     "updated_at",
-                    "creator"
+                    "creator",
                     ]
 
     list_filter = ["id",
                    "name",
                    "created_at",
                     "updated_at",
-                    "creator"
+                    "creator",
                    ]
 
     search_fields = ["id",
                      "name",
                      "created_at",
                      "updated_at",
-                     "creator"
+                     "creator",
                     ]
 
     ###### POSSIBLE OPTIONS #####
