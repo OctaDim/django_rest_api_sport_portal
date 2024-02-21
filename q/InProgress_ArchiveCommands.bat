@@ -27,3 +27,6 @@ pip install django-annoying
 
 cd apps/api
 python.exe ../../manage.py startapp gender
+cd ../../
+
+pip install Pillow
