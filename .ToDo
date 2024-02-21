@@ -14,3 +14,7 @@ creator = models.ForeignKey(Creator, on_delete=models.PROTECT,
 todo: Add auto fields (email, username, nickname) in Creator model
 
 todo: Add fields to admin panel
+
+todo: Note: You are 3 hours ahead of server time.
+Date:  Today |
+Time:  Now |
