@@ -70,6 +70,7 @@ INSTALLED_APPS = [
     "apps.api.user.apps.UserConfig",
     "apps.api.gender.apps.GenderConfig",
     "apps.api.country.apps.CountryConfig",
+    "apps.api.department.apps.DepartmentConfig",
 ]
 
 MIDDLEWARE = [
