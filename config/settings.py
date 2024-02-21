@@ -71,6 +71,7 @@ INSTALLED_APPS = [
     "apps.api.gender.apps.GenderConfig",
     "apps.api.country.apps.CountryConfig",
     "apps.api.department.apps.DepartmentConfig",
+    "apps.api.training_year.apps.TrainingYearConfig",
 ]
 
 MIDDLEWARE = [
