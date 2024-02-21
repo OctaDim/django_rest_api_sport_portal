@@ -55,3 +55,9 @@ NOTE = "note"
 
 START_DATE = "start date"
 FINISH_DATE = "finish date"
+
+SATISFACTION_LEVEL = "self satisfaction level"
+SATISFACTION_LEVELS = "self satisfaction levels"
+SATISFACTION_LEVEL_NAME = "self satisfaction level name"
+SATISFACTION_LEVEL_VALUE = "self satisfaction level value"
+SATISFACTION_LEVEL_ICON = "self satisfaction level icon"
