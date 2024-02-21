@@ -72,6 +72,7 @@ INSTALLED_APPS = [
     "apps.api.country.apps.CountryConfig",
     "apps.api.department.apps.DepartmentConfig",
     "apps.api.training_year.apps.TrainingYearConfig",
+    "apps.api.self_satisfaction_level.apps.SelfSatisfactionLevelConfig"
 ]
 
 MIDDLEWARE = [
