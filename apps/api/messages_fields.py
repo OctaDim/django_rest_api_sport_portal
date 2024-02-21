@@ -44,7 +44,14 @@ DEPARTMENTS = "departments"
 DEPARTMENT_ADMINISTRATOR = "department administrator"
 DEPARTMENT_COMPANY = "department company"
 
-
-
 ADMINISTRATOR = "administrator"
 ADMINISTRATORS = "administrators"
+
+TRAINING_YEAR = "training year/period"
+TRAINING_YEARS = "training years/periods"
+TRAINING_YEAR_NAME = "training year number/name"
+
+NOTE = "note"
+
+START_DATE = "start date"
+FINISH_DATE = "finish date"
