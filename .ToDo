@@ -18,3 +18,16 @@ todo: Add fields to admin panel
 todo: Note: You are 3 hours ahead of server time.
 Date:  Today |
 Time:  Now |
+
+todo: Settle the showing image path in admin panel, field is not callable,
+todo: but record can be edited and saved without problems
+class SelfSatisfactionLevelAdmin(admin.ModelAdmin):
+    list_display = ["id",
+                    # "icon",
+                    "value",
+                    "name",
+                    "description",
+                    "created_at",
+                    "updated_at",
+                    "creator",
+                    ]
