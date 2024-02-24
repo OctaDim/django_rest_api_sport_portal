@@ -7,30 +7,30 @@ from apps.api.self_satisfaction_level.models import SelfSatisfactionLevel
 # admin.site.register(SelfSatisfactionLevel)  # Option 2
 class SelfSatisfactionLevelAdmin(admin.ModelAdmin):
     list_display = ["id",
-                    # "icon_link",
                     "value",
                     "name",
                     "description",
+                    "icon_link",
                     "created_at",
                     "updated_at",
                     "creator",
                     ]
 
     list_filter = ["id",
-                   # "icon_link",
                    "value",
                    "name",
                    "description",
+                   "icon_link",
                    "created_at",
                    "updated_at",
                    "creator",
                    ]
 
     search_fields = ["id",
-                     # "icon_link",
                      "value",
                      "name",
                      "description",
+                     "icon_link",
                      "created_at",
                      "updated_at",
                      "creator",
