@@ -15,24 +15,8 @@ from apps.api.messages_fields import (SATISFACTION_LEVEL,
 from apps.api.user.models import User
 
 from django_resized import ResizedImageField
-import os
-from time import strftime  # Optional, if necessary
-from PIL import Image  # Optional, if necessary
 
-
-
-def get_image_file_name(instance, filename):  # Option 1, more simple: instead of PIL (pillow) lib (see bellow)
-    path, ext = os.path.splitext(filename)
-    level_value = f"{instance.value :04d}"
-    # add_date = strftime("%Y_%m_%d")  # Optional, if necessary
-
-    file_name = f"self_satisfaction_level_{level_value}_icon{ext}"
-    full_path_file_name = os.path.join("api",
-                                       "self_satisfaction_level",
-                                       "img",
-                                       "icon",
-                                       file_name)
-    return full_path_file_name
+from apps.api.self_satisfaction_level.functions import get_image_file_name
 
 
 
