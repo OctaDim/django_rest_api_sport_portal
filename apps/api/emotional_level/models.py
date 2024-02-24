@@ -16,7 +16,7 @@ from apps.api.user.models import User
 
 from django_resized import ResizedImageField
 
-from apps.api.emotional_level.functions import get_image_file_name
+from apps.api.emotional_level.utils import get_image_file_name
 
 
 
