@@ -35,3 +35,7 @@ class SelfSatisfactionLevelAdmin(admin.ModelAdmin):
 todo: Review: Remove all unnecessary comments in final variant
 todo: Review: Remove id fields from admin models and serializers
 todo: Review: Remove commented possible options from all admin panel models
+
+todo: Limit images type for saving in projects (jpeg, png, jpg)
+
+todo: Make User.last_login saving data, if not auto
