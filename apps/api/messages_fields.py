@@ -1,3 +1,5 @@
+USER = "user"
+USER_ID = "user id"
 CREATOR = "creator"
 
 EMAIL = "email"
@@ -10,7 +12,10 @@ PHONE = "phone"
 ADDRESS = "Address"
 ADDRESSES = "Addresses"
 
+AVATAR_THUMBNAIL_LINK = "Avatar thumbnail link"
+
 IS_STAFF = "is staff"
+IS_ADMINISTRATOR = "is administrator"
 IS_SUPERUSER = "is superuser"
 IS_TRAINER = "is trainer"
 IS_VERIFIED = "is verified"
@@ -52,6 +57,7 @@ TRAINING_YEARS = "training years/periods"
 TRAINING_YEAR_NAME = "training year number/name"
 
 NOTE = "note"
+BIBLIOGRAPHY = "bibliography"
 
 START_DATE = "start date"
 FINISH_DATE = "finish date"
