@@ -8,8 +8,8 @@ from apps.api.department.models import Department
 class DepartmentAdmin(admin.ModelAdmin):
     list_display = ["id",
                     "name",
-                    "company_id",
-                    # "administrator_id",  # todo: Uncommit, when Administrator model will be created
+                    "company",
+                    "administrator",
                     "address",
                     "description",
                     "is_active",
@@ -18,12 +18,8 @@ class DepartmentAdmin(admin.ModelAdmin):
                     "creator",
                     ]
 
-    list_filter = ["id",
-                   "name",
-                   "company_id",
-                   # "administrator_id",  # todo: Uncommit, when Administrator model will be created
-                   "address",
-                   "description",
+    list_filter = ["company",
+                   "administrator",
                    "is_active",
                    "created_at",
                    "updated_at",
@@ -32,8 +28,8 @@ class DepartmentAdmin(admin.ModelAdmin):
 
     search_fields = ["id",
                      "name",
-                     "company_id",
-                     # "administrator_id",  # todo: Uncommit, when Administrator model will be created
+                     "company",
+                     "administrator",
                      "address",
                      "description",
                      "is_active",
