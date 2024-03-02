@@ -28,10 +28,10 @@ class EmotionalLevel(models.Model):
                         blank=True, null=True,
                         verbose_name=gettext_lazy(EMOTIONAL_LEVEL_ICON_LINK))
 
-    # test_pillow_icon_link = models.ImageField(  # Option 2, more advanced: to resize image via PIL (pillow) lib
-    #                         upload_to="pillow_library_test/",
+    # icon_link = models.ImageField(  # Option 2, more advanced: to resize image via PIL (pillow) lib
+    #                         upload_to=get_image_file_name,
     #                         blank=True, null=True,
-    #                         verbose_name=gettext_lazy("Test Pillow Library"))
+    #                         verbose_name=gettext_lazy("AVATAR_THUMBNAIL_LINK"))
 
     value = models.SmallIntegerField(
                             unique=True,
@@ -68,7 +68,6 @@ class EmotionalLevel(models.Model):
 
     # def save(self, *args, **kwargs):  # Option 2, more advanced: to resize image via PIL (pillow) lib
     #     super().save(*args, **kwargs)
-    #     with Image.open(self.test_pillow_icon_link.path) as img:  # PIL.Image.open()
-    #         target_width, target_height = 300, 150  # Setting new image dimensions
-    #         img = img.resize((target_width, target_height))
-    #         img.save(self.test_pillow_icon_link.path, quality=100)
+    #     with Image.open(self.icon_link.path) as img:  # PIL.Image.open()
+    #         img = img.resize((150, 150))
+    #         img.save(self.icon_link.path, quality=100)
