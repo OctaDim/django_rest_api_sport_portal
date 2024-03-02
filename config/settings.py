@@ -55,7 +55,13 @@ INSTALLED_APPS = [
 
     ##### 3-rd parties apps
     "rest_framework",  # Added for DjangoRestFramework
+    "PIL",
 
+    ##### Additional apps
+    "django.core.files.storage",
+    "django_resized",
+    "django.db.models.signals",
+    "django.utils.translation",
 
     ##### local apps #####
     "apps.api.client_status.apps.ClientStatusConfig",
