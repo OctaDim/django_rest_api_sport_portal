@@ -38,10 +38,11 @@ NOT_STAFF_USER_FORBIDDEN = "Forbidden. Only staff user can create other staff us
 DELETE_YOURSELF_FORBIDDEN = "Forbidden. As Superuser, you cannot delete yourself"
 INACTIVE_YOURSELF_FORBIDDEN = "Forbidden. As Staff, you cannot make yourself inactive"
 
+NOT_AUTHENTICATED_USER_FORBIDDEN = "Forbidden. You are not authenticated"
 
 def USER_NOT_FOUND_MESSAGE(username_email_or_nickname: str) -> str:
     return f"User [ {username_email_or_nickname} ] was not found"
 
 
 def INVALID_EMAIL_ERROR(email_validation_error: str) -> str:
-    return f"{email_validation_error}. Please, enter a valid email"
+    return f"Email [{email_validation_error}] validation error. Please, enter a valid email"
