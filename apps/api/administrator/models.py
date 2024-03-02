@@ -10,8 +10,6 @@ from apps.api.messages_fields import (ADMINISTRATOR,
                                       UPDATED_AT,
                                       CREATOR)
 
-from apps.api.messages_errors import ERROR
-
 from apps.api.user.models import User
 from apps.api.user.models_secondary import Creator
 
@@ -66,10 +64,10 @@ class Administrator(models.Model):
 
 
     def save(self, *args, **kwargs):
-        # IMPORTANT: Before super() executes pre_save signal (apps.api.administrator.signals)
+        # SIGNAL EXECUTING HERE: Before super() pre_save signal executes (apps.api.administrator.signals)
         super().save(*args, **kwargs)  # Origin method creating and saving new object record
-        # IMPORTANT: After super() executes post_save signal (apps.api.administrator.signals)
+        # SIGNAL EXECUTING HERE: After super() post_save signal executes (apps.api.administrator.signals)
 
     def delete(self, *args, **kwargs):
         super().delete(*args, **kwargs)
-        # IMPORTANT: After super() executes post_delete signal (apps.api.administrator.signals)
+        # SIGNAL EXECUTING HERE: After super() post_delete signal executes (apps.api.administrator.signals)
