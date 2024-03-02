@@ -11,8 +11,7 @@ from apps.api.messages_fields import (DEPARTMENT,
                                       IS_ACTIVE,
                                       CREATED_AT,
                                       UPDATED_AT,
-                                      CREATOR,
-                                      )
+                                      CREATOR)
 
 from apps.api.user.models import User
 from apps.api.company.models import Company
@@ -55,9 +54,13 @@ class Department(models.Model):
 
     creator = models.ForeignKey(User,
                                 on_delete=models.PROTECT,
+                                related_name="department",
                                 verbose_name=gettext_lazy(CREATOR))
 
     class Meta:
         verbose_name = gettext_lazy(DEPARTMENT)
         verbose_name_plural = gettext_lazy(DEPARTMENTS)
         ordering = ["name", "is_active"]
+
+    def __str__(self):
+        return f"{self.name}"

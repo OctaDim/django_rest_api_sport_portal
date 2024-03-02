@@ -30,9 +30,13 @@ class ClientStatus(models.Model):
 
     creator = models.ForeignKey(User,
                                 on_delete=models.PROTECT,
+                                related_name='client_status',
                                 verbose_name=gettext_lazy(CREATOR))
 
     class Meta:
         verbose_name = gettext_lazy(CLIENT_STATUS)
         verbose_name_plural = gettext_lazy(CLIENT_STATUSES)
         ordering = ["name"]
+
+    def __str__(self):
+        return f"{self.name}"

@@ -30,9 +30,13 @@ class CoachSpeciality(models.Model):
 
     creator = models.ForeignKey(User,
                                 on_delete=models.PROTECT,
+                                related_name="coach_speciality",
                                 verbose_name=gettext_lazy(CREATOR))
 
     class Meta:
         verbose_name = gettext_lazy(COACH_SPECIALITY)
         verbose_name_plural = gettext_lazy(COACH_SPECIALITIES)
         ordering = ["name"]
+
+    def __str__(self):
+        return f"{self.name}"

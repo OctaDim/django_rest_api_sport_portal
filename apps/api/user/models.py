@@ -97,7 +97,7 @@ class User(AbstractBaseUser, PermissionsMixin):  # todo: Try later to rename Cus
 
 
     def __str__(self):
-        return f"Username: {self.username} [ nickname: {self.nickname}, email: {self.email} ]"
+        return f"{self.nickname} [{self.email}]"
 
 
     @property

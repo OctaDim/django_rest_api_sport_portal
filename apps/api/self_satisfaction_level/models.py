@@ -53,6 +53,7 @@ class SelfSatisfactionLevel(models.Model):
 
     creator = models.ForeignKey(User,
                                 on_delete=models.PROTECT,
+                                related_name="self_satisfaction_level",
                                 verbose_name=gettext_lazy(CREATOR))
 
     class Meta:
@@ -62,7 +63,7 @@ class SelfSatisfactionLevel(models.Model):
 
 
     def __str__(self):
-        return f"{self.name} (id={self.pk})"
+        return f"{self.name}"
 
 
     # def save(self, *args, **kwargs):  # Option 2, more advanced: to resize image via PIL (pillow) lib

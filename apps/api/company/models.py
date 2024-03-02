@@ -34,9 +34,13 @@ class Company(models.Model):
 
     creator = models.ForeignKey(User,
                                 on_delete=models.PROTECT,
+                                related_name="company",
                                 verbose_name=gettext_lazy(CREATOR))
 
     class Meta:
         verbose_name = gettext_lazy(COMPANY)
         verbose_name_plural = gettext_lazy(COMPANIES)
         ordering = ["name", "is_active"]
+
+    def __str__(self):
+        return f"{self.name}"
