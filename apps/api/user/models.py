@@ -17,10 +17,10 @@ from apps.api.messages_fields import (EMAIL, USERNAME, NICKNAME,
                                       IS_STAFF, IS_TRAINER, IS_SUPERUSER,
                                       IS_VERIFIED, IS_ACTIVE,
                                       DATE_JOINED, LAST_LOGIN, UPDATED_AT,
-                                      CREATOR,
+                                      USER_CREATOR,
                                       )
 
-# from apps.api.user.support_models import Creator
+# from apps.api.user.models_secondary import Creator
 
 
 
@@ -77,8 +77,11 @@ class User(AbstractBaseUser, PermissionsMixin):  # todo: Try later to rename Cus
     updated_at = models.DateTimeField(auto_now=True,
                                       verbose_name=gettext_lazy(UPDATED_AT))
 
-    # creator = models.ForeignKey(Creator, on_delete=models.PROTECT,
-    #                             verbose_name=gettext_lazy(CREATOR))
+    user_creator = models.ForeignKey("self",
+                                on_delete=models.PROTECT,
+                                blank=True, null=True,
+                                related_name="user",
+                                verbose_name=gettext_lazy(USER_CREATOR))
 
     USERNAME_FIELD = "username"
     REQUIRED_FIELDS = ["email",
@@ -103,3 +106,15 @@ class User(AbstractBaseUser, PermissionsMixin):  # todo: Try later to rename Cus
     @property
     def full_name(self):
         return f"{self.first_name} {self.last_name}"
+
+
+
+    ##################### FOR THE FUTURE ###############################
+    # def save(self, *args, **kwargs):
+    #     if self.pk is None:
+    #         self.set_password(self.password)
+    #     else:
+    #         user = User.objects.get(pk=self.pk)
+    #         if user.password != self.password:
+    #             self.set_password(self.password)
+    #     super().save(*args, **kwargs)
