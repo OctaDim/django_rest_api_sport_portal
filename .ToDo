@@ -7,9 +7,12 @@ user_is_superuser = request.user.is_superuser
                 status=status.HTTP_403_FORBIDDEN,
                 data={"message": gettext_lazy(NOT_SUPERUSER_FORBIDDEN)})
 
-todo: Make creator field in User model
-creator = models.ForeignKey(Creator, on_delete=models.PROTECT,
+todo: Make creator field in User model basing on User.id, settle cycle error
+creator = models.ForeignKey(User, on_delete=models.PROTECT,
                             verbose_name=gettext_lazy(CREATOR))
+
+todo: Settle the question of the cycle error in the field Creator (referring to
+todo: User model) in models User, Administrator, Coach, Client
 
 todo: Add auto fields (email, username, nickname) in Creator model
 
@@ -39,3 +42,51 @@ todo: Review: Remove commented possible options from all admin panel models
 todo: Limit images type for saving in projects (jpeg, png, jpg)
 
 todo: Make User.last_login saving data, if not auto
+todo: Add VerboseNames to User
+
+todo: Settle the question with proxy or auto-generated class doubling User,
+todo: to define Creator without cycling error
+
+todo:
+class Creator(User):
+    class Meta:
+        proxy=True
+
+    def __str__(self):
+        return f"{self.nickname} [{self.email}]"
+
+@receiver(post_save, sender=User)
+def post_(sender, instance, **kwargs):
+    """
+    Specific operations after User post save
+    """
+    if instance.pk:
+        administrator = Administrator.objects.create(id=instance.pk)
+        administrator.save()
+
+todo: Make auto-creation Creator instance when User created, and deleting
+todo: in reverse order (probably via signals)
+
+todo: Create checking the size of the image file before saving in db to protect
+todo: overloading the server space
+
+todo: EmotionalLevel: Fix image auto renaming with hash, fix replacing the
+todo: image without hash, add deleting img by model signal
+
+todo: SelfSatisfactionLevel: Fix image auto renaming with hash, fix replacing the
+todo: image without hash, add deleting img by model signal
+
+DONE: todo: Fix choice of the user field when creating Administrator. Only user with
+DONE: todo: is_staff=True can be choiced
+
+DONE: todo: Fix creator is current user only in AdministratorAdmin
+
+DONE: todo: Fix deleting file when deleting via update with flag (change)
+
+todo: Logging utils and saving logging info in db and JSON
+
+todo: Rename ERROR_MESSAGES => error_messaes
+todo: Change to error_messages_str = " /// ".join(error_messages)
+
+DONE: Fix new user creation, password validation and password hashing via
+custom admin panel and form
