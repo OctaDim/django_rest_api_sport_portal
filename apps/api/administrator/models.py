@@ -8,13 +8,14 @@ from apps.api.messages_fields import (ADMINISTRATOR,
                                       AVATAR_THUMBNAIL_LINK,
                                       CREATED_AT,
                                       UPDATED_AT,
-                                      CREATOR)
+                                      ADMINISTRATOR_CREATOR)
 
 from apps.api.user.models import User
-from apps.api.user.models_secondary import Creator
 
 from django_resized import ResizedImageField
+
 from apps.api.administrator.utils import get_image_file_name
+from apps.api.administrator.validators import validate_image_size
 
 
 
@@ -33,6 +34,7 @@ class Administrator(models.Model):
     thumbnail_link = models.ImageField(  # Option 2, more advanced: to resize image via PIL (pillow) lib
                             upload_to=get_image_file_name,
                             blank=True, null=True,
+                            validators=[validate_image_size],
                             verbose_name=gettext_lazy(AVATAR_THUMBNAIL_LINK))
 
     bibliography = models.TextField(max_length=500,
@@ -49,10 +51,11 @@ class Administrator(models.Model):
     updated_at = models.DateTimeField(auto_now=True,
                                       verbose_name=gettext_lazy(UPDATED_AT))
 
-    creator = models.ForeignKey(Creator,
-                                on_delete=models.PROTECT,
-                                related_name="administrator",
-                                verbose_name=gettext_lazy(CREATOR))
+    administrator_creator = models.ForeignKey(
+                            User,
+                            on_delete=models.PROTECT,
+                            related_name="administrators",
+                            verbose_name=gettext_lazy(ADMINISTRATOR_CREATOR))
 
     class Meta:
         verbose_name = gettext_lazy(ADMINISTRATOR)
