@@ -12,10 +12,19 @@ from PIL import Image, UnidentifiedImageError
 
 from apps.api.administrator.utils import (get_image_file_name,
                                           delete_file_default_storage,
-                                          delete_file_os_remove)
+                                          delete_file_os_remove
+                                          )
 
 from django.utils.translation import gettext_lazy
-from apps.api.messages_technical import EXCEPTION_INFO
+
+from apps.api.messages_non_front import EXCEPTION_INFO
+
+from apps.api.administrator.settings import (AVATAR_WIDTH,
+                                             AVATAR_HEIGHT,
+                                             IMAGE_QUALITY
+                                             )
+
+from apps.api.administrator.utils import number_or_str_to_int
 
 
 
@@ -41,15 +50,14 @@ def delete_old_avatar_before_administrator_saved(sender, instance, **kwargs):
 
     if instance.pk and not instance.thumbnail_link:  # Delete img file, if img link was deleted in the model via front
         try:
-            sender_object_by_id = sender.objects.get(pk=instance.id)
-            img_filename_pre_deletion_link = (sender_object_by_id.thumbnail_link.name)
+            sender_obj_by_id = sender.objects.get(pk=instance.id)
+            img_filename_pre_deletion_link = sender_obj_by_id.thumbnail_link.name
 
             delete_file_default_storage(img_filename_pre_deletion_link)  # for cloud default_storage
             # delete_file_os_remove(img_filename_pre_deletion_link)  # only for local storage
 
         except sender.DoesNotExist as error:
             print(gettext_lazy(EXCEPTION_INFO(error)))
-
 
 
 @receiver(post_save, sender=Administrator)
@@ -64,7 +72,8 @@ def open_resize_save_new_avatar_after_administrator_saved(sender, instance, **kw
                                             instance=instance,
                                             filename=base_old_filename)
 
-            proj_path_new_filename_with_id = (proj_path_new_filename_with_id.replace("\\", "/"))
+            proj_path_new_filename_with_id = (
+                proj_path_new_filename_with_id.replace("\\", "/"))
 
             full_path_new_filename_with_id = os.path.join(
                                         settings.MEDIA_ROOT,
@@ -73,9 +82,16 @@ def open_resize_save_new_avatar_after_administrator_saved(sender, instance, **kw
             normalised_new_filename_with_id = os.path.normpath(
                                         full_path_new_filename_with_id)
 
-            with Image.open(instance.thumbnail_link.path) as img:  # PIL.Image.open()
-                img = img.resize(size=(150, 150), resample=Image.BICUBIC)
-                img.save(normalised_new_filename_with_id, quality=100)
+            with Image.open(instance.thumbnail_link.path) as img:  # PIL.Image.open(): Resizing image
+                img_width = number_or_str_to_int(AVATAR_WIDTH)
+                img_height = number_or_str_to_int(AVATAR_HEIGHT)
+                resample_quality = number_or_str_to_int(IMAGE_QUALITY)
+
+                img = img.resize(size=(img_width, img_height),
+                                 resample=Image.BICUBIC)
+
+                img.save(normalised_new_filename_with_id,
+                         quality=resample_quality)
 
             sender_queryset_by_id = sender.objects.filter(pk=instance.pk)
             sender_queryset_by_id.update(thumbnail_link = proj_path_new_filename_with_id)  # Not save(), cycling signals occurs
