@@ -1,6 +1,19 @@
+YES_FIELD_CHOICE = "Yes"
+NO_FIELD_CHOICE = "No"
+
+PASSWORD_NEW = "New password"
+NEW_PASSWORD_REPEATED = "New password (repeat)"
+
+PASSWORD_EXISTING = "Existing password"
+PASSWORD_EXISTING_REPEATED = "Existing password (repeat)"
+
 USER = "user"
 USER_ID = "user id"
 CREATOR = "creator"
+USER_CREATOR = "user creator"
+ADMINISTRATOR_CREATOR = "administrator creator"
+COACH_CREATOR = "coach creator"
+CLIENT_CREATOR = "client creator"
 
 EMAIL = "email"
 USERNAME = "username"
@@ -9,10 +22,10 @@ FIRST_NAME = "first name"
 LAST_NAME = "last name"
 PHONE = "phone"
 
-ADDRESS = "Address"
-ADDRESSES = "Addresses"
+ADDRESS = "address"
+ADDRESSES = "addresses"
 
-AVATAR_THUMBNAIL_LINK = "Avatar thumbnail link"
+AVATAR_THUMBNAIL_LINK = "avatar thumbnail link"
 
 IS_STAFF = "is staff"
 IS_ADMINISTRATOR = "is administrator"

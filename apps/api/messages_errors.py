@@ -1,10 +1,11 @@
 STATUS_NAME_LEN_ERROR_MESSAGE = "The Status name length should be between 3-30"
 CATEGORY_NAME_LEN_ERROR_MESSAGE = "The Category name length should be between 4-25"
 
-PASSWORDS_NOT_MATCH_ERROR = "Passwords do not match. Please, try again"
 PASSWORD_REQUIRED_MSG = "Empty password. Password is required"
 PASSWORD2_REQUIRED_MSG = "Empty repeated password. Repeated password is required"
+PASSWORDS_NOT_MATCH_ERROR = "The two password fields did not match. Please, try again"
 
+USER_CREATOR_REQUIRED = "User creator is required. Select user creator"
 
 EMAIL_OR_USERNAME_REQUIRED_MSG = "Empty login name. Email or Username is required"
 EMAIL_OR_USERNAME_OR_NICKNAME_REQUIRED_MSG = "Empty login name. Email, Username or Nickname is required"
@@ -46,3 +47,6 @@ def USER_NOT_FOUND_MESSAGE(username_email_or_nickname: str) -> str:
 
 def INVALID_EMAIL_ERROR(email_validation_error: str) -> str:
     return f"Email [{email_validation_error}] validation error. Please, enter a valid email"
+
+def MAXIMUM_FILE_SIZE(max_file_size_limit: float) -> str:
+    return f"File size error. Maximum file size is {max_file_size_limit} Megabyte"
