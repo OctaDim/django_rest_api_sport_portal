@@ -20,8 +20,6 @@ from apps.api.messages_fields import (EMAIL, USERNAME, NICKNAME,
                                       USER_CREATOR,
                                       )
 
-# from apps.api.user.models_secondary import Creator
-
 
 
 class User(AbstractBaseUser, PermissionsMixin):  # todo: Try later to rename CustomUser
@@ -41,6 +39,7 @@ class User(AbstractBaseUser, PermissionsMixin):  # todo: Try later to rename Cus
                                 )
 
     first_name = models.CharField(max_length=30,
+                                  blank=True, null=True,
                                   verbose_name=gettext_lazy(FIRST_NAME),
                                   )
 
@@ -86,7 +85,7 @@ class User(AbstractBaseUser, PermissionsMixin):  # todo: Try later to rename Cus
     USERNAME_FIELD = "username"
     REQUIRED_FIELDS = ["email",
                        "nickname",
-                       "first_name",
+                       # "first_name",
                        # "last_name",
                        # "phone"
                        ]
