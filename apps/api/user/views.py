@@ -13,21 +13,21 @@ from django.utils.translation import gettext_lazy
 from apps.api.user.models import User  # Custom user
 # ##################################################################
 
-from apps.api.messages import (NO_USERS_MSG,
-                               ALL_USERS_MSG,
-                               USER_CREATED_MSG,
-                               USER_NOT_CREATED_MSG,
-                               SUPERUSER_CREATED_MSG,
-                               SUPERUSER_NOT_CREATED_MSG,
-                               STAFF_USER_CREATED_MSG,
-                               STAFF_USER_NOT_CREATED_MSG,
-                               TRAINER_USER_CREATED_MSG,
-                               TRAINER_USER_NOT_CREATED_MSG,
-                               USER_DETAILS, USER_UPDATED_MSG,
-                               USER_NOT_UPDATED_MSG,
-                               USER_DELETED_MSG,
-                               NO_USER_WITH_ID_MSG
-                               )
+from apps.api.messages_actions import (NO_USERS_MSG,
+                                       ALL_USERS_MSG,
+                                       USER_CREATED_MSG,
+                                       USER_NOT_CREATED_MSG,
+                                       SUPERUSER_CREATED_MSG,
+                                       SUPERUSER_NOT_CREATED_MSG,
+                                       STAFF_USER_CREATED_MSG,
+                                       STAFF_USER_NOT_CREATED_MSG,
+                                       TRAINER_USER_CREATED_MSG,
+                                       TRAINER_USER_NOT_CREATED_MSG,
+                                       USER_DETAILS, USER_UPDATED_MSG,
+                                       USER_NOT_UPDATED_MSG,
+                                       USER_DELETED_MSG,
+                                       NO_USER_WITH_ID_MSG
+                                       )
 
 from apps.api.messages_errors import (NOT_SUPERUSER_FORBIDDEN,
                                       NOT_STAFF_USER_FORBIDDEN,
@@ -36,17 +36,17 @@ from apps.api.messages_errors import (NOT_SUPERUSER_FORBIDDEN,
                                       )
 
 # ##################### TRIAL CODE #####################################
-from apps.api.user.serializers_test_any_user_reg import (
+from apps.api.user.serializers_advanced_any_user_reg import (
                                     _Test_UserRegistrySerializer,
                                     _Test_SuperUserRegistrySerializer,
                                     _Test_StaffUserRegistrySerializer,
                                     _Test_TrainerUserRegistrySerializer)
 # ######################################################################
 
-from apps.api.user.serializer_user_reg import UserRegistrySerializer
-from apps.api.user.serializer_superuser_reg import SuperUserRegistrySerializer
-from apps.api.user.serializer_staff_user_reg import StaffUserRegistrySerializer
-from apps.api.user.serializer_trainer_user_reg import TrainerUserRegistrySerializer
+from apps.api.user.serializer_reg_user import UserRegistrySerializer
+from apps.api.user.serializer_reg_superuser import SuperUserRegistrySerializer
+from apps.api.user.serializer_reg_staff_user import StaffUserRegistrySerializer
+from apps.api.user.serializer_reg_trainer_user import TrainerUserRegistrySerializer
 
 from apps.api.user.serializers import (UsersSerializerAllFields,
                                        UsersSerializerLimitFields,
