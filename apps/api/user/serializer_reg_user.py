@@ -7,13 +7,13 @@ from django.utils.translation import gettext_lazy
 from apps.api.user.models import User  # Custom user
 # ##################################################################
 
-from apps.api.messages import (ENTER_EMAIL_LIKE_MSG,
-                               ENTER_USERNAME_MSG,
-                               ENTER_NICKNAME_MSG,
-                               ENTER_PASSWORD_MSG,
-                               REPEAT_PASSWORD_MSG,
-                               ENTER_FIRSTNAME_MSG,
-                               )
+from apps.api.messages_actions import (ENTER_EMAIL_LIKE_MSG,
+                                       ENTER_USERNAME_MSG,
+                                       ENTER_NICKNAME_MSG,
+                                       ENTER_PASSWORD_MSG,
+                                       REPEAT_PASSWORD_MSG,
+                                       ENTER_FIRSTNAME_MSG,
+                                       )
 
 from apps.api.messages_errors import (PASSWORD_REQUIRED_MSG,
                                       PASSWORD2_REQUIRED_MSG,

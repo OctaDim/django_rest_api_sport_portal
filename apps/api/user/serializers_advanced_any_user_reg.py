@@ -1,4 +1,4 @@
-from apps.api.user.serializer_user_reg import UserRegistrySerializer
+from apps.api.user.serializer_reg_user import UserRegistrySerializer
 
 # ##################################################################
 # from django.contrib.auth.models import User  # Django default user
@@ -86,7 +86,7 @@ class _Test_TrainerUserRegistrySerializer(UserRegistrySerializer):  # Inherited 
     def validate(self, attrs):  # Option 1: To assign value into the fields set default in the Model
         super().validate(attrs)  # Completion of all checks defined in custom UserRegistrySerializer (can be abstract)
 
-        attrs["is_staff"] = "False"  # Redefined default value (if determined in the model fields parameters)
+        attrs["is_staff"] = "True"  # Redefined default value (if determined in the model fields parameters)
         attrs["is_superuser"] = "False"  # Redefined default value (if determined in the model fields parameters)
         attrs["is_trainer"] = "True"  # Redefined default value (if determined in the model fields parameters)
         # attrs["is_verified"] = "False"  # Redefined default value (if determined in the model fields parameters)

@@ -1,4 +1,4 @@
-from apps.api.user.serializer_user_reg import UserRegistrySerializer
+from apps.api.user.serializer_reg_user import UserRegistrySerializer
 
 # ##################################################################
 # from django.contrib.auth.models import User  # Django default user
@@ -7,11 +7,11 @@ from apps.api.user.models import User  # Custom user
 
 
 
-class StaffUserRegistrySerializer(UserRegistrySerializer):  # Inherited from the ordinal user serializer
+class TrainerUserRegistrySerializer(UserRegistrySerializer):  # Inherited from the ordinal user serializer
 
     def create(self, validated_data):
         validated_data.pop("password2")
-        user = User.objects.create_staff_user(
+        user = User.objects.create_trainer_user(
                         # email=validated_data.get("email"),  # Refactored. Passing as **validated_data dictionary,
                         # username=validated_data.get("username"),  # instead of huge quantity of the named parameters
                         # nickname=validated_data.get("nickname"),
