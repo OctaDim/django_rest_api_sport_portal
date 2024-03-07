@@ -66,6 +66,9 @@ DEPARTMENT_COMPANY = "department company"
 ADMINISTRATOR = "administrator"
 ADMINISTRATORS = "administrators"
 
+COACH = "coach"
+COACHES = "coaches"
+
 CLIENT = "client"
 CLIENTS = "clients"
 
