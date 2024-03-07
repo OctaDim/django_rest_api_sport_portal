@@ -81,6 +81,7 @@ INSTALLED_APPS = [
     "apps.api.self_satisfaction_level.apps.SelfSatisfactionLevelConfig",
     "apps.api.administrator.apps.AdministratorConfig",
     "apps.api.client.apps.ClientConfig",
+    "apps.api.group_client.apps.GroupClientConfig",
 
 ]
 
