@@ -1,13 +1,13 @@
-from apps.api.messages_fields import (PASSWORD_NEW,
-                                      NEW_PASSWORD_REPEATED)
+from apps.api.messages_api.messages_fields import (PASSWORD_NEW,
+                                                   NEW_PASSWORD_REPEATED)
 
-from apps.api.messages_actions import (ENTER_NEW_PASSWORD,
-                                       REPEAT_NEW_PASSWORD)
+from apps.api.messages_api.messages_actions import (ENTER_NEW_PASSWORD,
+                                                    REPEAT_NEW_PASSWORD)
 
-from apps.api.messages_errors import (PASSWORD_REQUIRED_MSG,
-                                      PASSWORD2_REQUIRED_MSG,
-                                      PASSWORDS_NOT_MATCH_ERROR,
-                                      USER_CREATOR_REQUIRED)
+from apps.api.messages_api.messages_errors import (PASSWORD_REQUIRED_MSG,
+                                                   PASSWORD2_REQUIRED_MSG,
+                                                   PASSWORDS_NOT_MATCH_ERROR,
+                                                   USER_CREATOR_REQUIRED)
 
 from django import forms
 

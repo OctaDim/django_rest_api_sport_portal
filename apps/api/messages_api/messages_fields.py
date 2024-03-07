@@ -43,8 +43,8 @@ UPDATED_AT = "updated date"
 CLIENT_STATUS = "client status"
 CLIENT_STATUSES = "client statuses"
 
-GENDER = "client gender"
-GENDERS = "client genders"
+GENDER = "Gender"
+GENDERS = "Genders"
 
 COACH_SPECIALITY = "coach speciality"
 COACH_SPECIALITIES = "coach specialities"

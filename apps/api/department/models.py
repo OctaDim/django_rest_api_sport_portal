@@ -1,17 +1,16 @@
 from django.db import models
 from django.utils.translation import gettext_lazy
 
-from apps.api.messages_fields import (DEPARTMENT,
-                                      DEPARTMENTS,
-                                      DEPARTMENT_COMPANY,
-                                      DEPARTMENT_ADMINISTRATOR,
-                                      COMPANY,
-                                      ADDRESS,
-                                      DESCRIPTION,
-                                      IS_ACTIVE,
-                                      CREATED_AT,
-                                      UPDATED_AT,
-                                      CREATOR)
+from apps.api.messages_api.messages_fields import (DEPARTMENT,
+                                                   DEPARTMENTS,
+                                                   DEPARTMENT_COMPANY,
+                                                   DEPARTMENT_ADMINISTRATOR,
+                                                   ADDRESS,
+                                                   DESCRIPTION,
+                                                   IS_ACTIVE,
+                                                   CREATED_AT,
+                                                   UPDATED_AT,
+                                                   CREATOR)
 
 from apps.api.user.models import User
 from apps.api.company.models import Company

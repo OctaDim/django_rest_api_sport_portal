@@ -2,8 +2,8 @@ from enumchoicefield import ChoiceEnum
 from rest_framework.serializers import BooleanField
 
 from django.utils.translation import gettext_lazy
-from apps.api.messages_fields import (YES_FIELD_CHOICE,
-                                      NO_FIELD_CHOICE)
+from apps.api.messages_api.messages_fields import (YES_FIELD_CHOICE,
+                                                   NO_FIELD_CHOICE)
 
 
 

@@ -5,18 +5,16 @@ from django.core.exceptions import ValidationError
 
 from django.utils.translation import gettext_lazy
 
-from apps.api.messages_errors import (INVALID_EMAIL_ERROR,
-                                      EMAIL_REQUIRED_MESSAGE,
-                                      USERNAME_REQUIRED_MESSAGE,
-                                      NICKNAME_REQUIRED_MESSAGE,
-                                      FIRST_NAME_REQUIRED_MESSAGE,
-                                      LAST_NAME_REQUIRED_MESSAGE,
-                                      PHONE_REQUIRED_MESSAGE,
-                                      SUPERUSER_NOT_IS_STAFF_ERROR,
-                                      SUPERUSER_NOT_IS_SUPERUSER_ERROR,
-                                      STAFF_NOT_IS_STAFF_ERROR,
-                                      TRAINER_NOT_IS_TRAINER_ERROR,
-                                      )
+from apps.api.messages_api.messages_errors import (INVALID_EMAIL_ERROR,
+                                                   EMAIL_REQUIRED_MESSAGE,
+                                                   USERNAME_REQUIRED_MESSAGE,
+                                                   NICKNAME_REQUIRED_MESSAGE,
+                                                   FIRST_NAME_REQUIRED_MESSAGE,
+                                                   SUPERUSER_NOT_IS_STAFF_ERROR,
+                                                   SUPERUSER_NOT_IS_SUPERUSER_ERROR,
+                                                   STAFF_NOT_IS_STAFF_ERROR,
+                                                   TRAINER_NOT_IS_TRAINER_ERROR,
+                                                   )
 
 
 

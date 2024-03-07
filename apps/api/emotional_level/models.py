@@ -1,16 +1,16 @@
 from django.db import models
 from django.utils.translation import gettext_lazy
 
-from apps.api.messages_fields import (EMOTIONAL_LEVEL,
-                                      EMOTIONAL_LEVELS,
-                                      EMOTIONAL_LEVEL_NAME,
-                                      EMOTIONAL_LEVEL_VALUE,
-                                      EMOTIONAL_LEVEL_ICON_LINK,
-                                      DESCRIPTION,
-                                      CREATED_AT,
-                                      UPDATED_AT,
-                                      CREATOR,
-                                      )
+from apps.api.messages_api.messages_fields import (EMOTIONAL_LEVEL,
+                                                   EMOTIONAL_LEVELS,
+                                                   EMOTIONAL_LEVEL_NAME,
+                                                   EMOTIONAL_LEVEL_VALUE,
+                                                   EMOTIONAL_LEVEL_ICON_LINK,
+                                                   DESCRIPTION,
+                                                   CREATED_AT,
+                                                   UPDATED_AT,
+                                                   CREATOR,
+                                                   )
 
 from apps.api.user.models import User
 

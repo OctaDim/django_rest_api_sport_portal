@@ -37,5 +37,6 @@ REPEAT_EXISTING_PASSWORD = "Repeat existing password (literal)"
 PASSWORD_SET_MSG = "New user password was set successfully"
 PASSWORD_UPDATED_MSG = "Password was updated successfully"
 
+ADMINISTRATOR_CREATOR_IS_CURRENT_USER = "Current user was set as administrator creator"
 USER_CREATOR_IS_CURRENT_USER = "Current user was set as user creator"
-ADMINISTRATOR_IS_CURRENT_USER = "Current user was set as administrator creator"
+CLIENT_CREATOR_IS_CURRENT_USER = "Current user was set as client creator"

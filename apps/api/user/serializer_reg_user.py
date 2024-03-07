@@ -7,21 +7,18 @@ from django.utils.translation import gettext_lazy
 from apps.api.user.models import User  # Custom user
 # ##################################################################
 
-from apps.api.messages_actions import (ENTER_EMAIL_LIKE_MSG,
-                                       ENTER_USERNAME_MSG,
-                                       ENTER_NICKNAME_MSG,
-                                       ENTER_PASSWORD_MSG,
-                                       REPEAT_PASSWORD_MSG,
-                                       ENTER_FIRSTNAME_MSG,
-                                       )
+from apps.api.messages_api.messages_actions import (ENTER_EMAIL_LIKE_MSG,
+                                                    ENTER_USERNAME_MSG,
+                                                    ENTER_NICKNAME_MSG,
+                                                    ENTER_PASSWORD_MSG,
+                                                    REPEAT_PASSWORD_MSG,
+                                                    ENTER_FIRSTNAME_MSG,
+                                                    )
 
-from apps.api.messages_errors import (PASSWORD_REQUIRED_MSG,
-                                      PASSWORD2_REQUIRED_MSG,
-                                      PASSWORDS_NOT_MATCH_ERROR,
-                                      EMAIL_ALREADY_EXISTS,
-                                      USERNAME_ALREADY_EXISTS,
-                                      NICKNAME_ALREADY_EXISTS,
-                                      )
+from apps.api.messages_api.messages_errors import (PASSWORD_REQUIRED_MSG,
+                                                   PASSWORD2_REQUIRED_MSG,
+                                                   PASSWORDS_NOT_MATCH_ERROR,
+                                                   )
 
 
 class UserRegistrySerializer(serializers.Serializer):

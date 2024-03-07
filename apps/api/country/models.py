@@ -1,13 +1,13 @@
 from django.db import models
 from django.utils.translation import gettext_lazy
 
-from apps.api.messages_fields import (COUNTRY,
-                                      COUNTRIES,
-                                      DESCRIPTION,
-                                      CREATED_AT,
-                                      UPDATED_AT,
-                                      CREATOR,
-                                      )
+from apps.api.messages_api.messages_fields import (COUNTRY,
+                                                   COUNTRIES,
+                                                   DESCRIPTION,
+                                                   CREATED_AT,
+                                                   UPDATED_AT,
+                                                   CREATOR,
+                                                   )
 
 from apps.api.user.models import User
 

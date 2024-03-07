@@ -1,4 +1,3 @@
-from django.shortcuts import render
 # Create your views here.
 
 from rest_framework.request import Request
@@ -13,27 +12,25 @@ from django.utils.translation import gettext_lazy
 from apps.api.user.models import User  # Custom user
 # ##################################################################
 
-from apps.api.messages_actions import (NO_USERS_MSG,
-                                       ALL_USERS_MSG,
-                                       USER_CREATED_MSG,
-                                       USER_NOT_CREATED_MSG,
-                                       SUPERUSER_CREATED_MSG,
-                                       SUPERUSER_NOT_CREATED_MSG,
-                                       STAFF_USER_CREATED_MSG,
-                                       STAFF_USER_NOT_CREATED_MSG,
-                                       TRAINER_USER_CREATED_MSG,
-                                       TRAINER_USER_NOT_CREATED_MSG,
-                                       USER_DETAILS, USER_UPDATED_MSG,
-                                       USER_NOT_UPDATED_MSG,
-                                       USER_DELETED_MSG,
-                                       NO_USER_WITH_ID_MSG
-                                       )
+from apps.api.messages_api.messages_actions import (NO_USERS_MSG,
+                                                    ALL_USERS_MSG,
+                                                    USER_CREATED_MSG,
+                                                    USER_NOT_CREATED_MSG,
+                                                    SUPERUSER_CREATED_MSG,
+                                                    SUPERUSER_NOT_CREATED_MSG,
+                                                    STAFF_USER_CREATED_MSG,
+                                                    STAFF_USER_NOT_CREATED_MSG,
+                                                    TRAINER_USER_CREATED_MSG,
+                                                    TRAINER_USER_NOT_CREATED_MSG,
+                                                    USER_DETAILS, USER_UPDATED_MSG,
+                                                    USER_NOT_UPDATED_MSG,
+                                                    USER_DELETED_MSG
+                                                    )
 
-from apps.api.messages_errors import (NOT_SUPERUSER_FORBIDDEN,
-                                      NOT_STAFF_USER_FORBIDDEN,
-                                      DELETE_YOURSELF_FORBIDDEN,
-                                      INACTIVE_YOURSELF_FORBIDDEN,
-                                      )
+from apps.api.messages_api.messages_errors import (NOT_SUPERUSER_FORBIDDEN,
+                                                   DELETE_YOURSELF_FORBIDDEN,
+                                                   INACTIVE_YOURSELF_FORBIDDEN,
+                                                   )
 
 # ##################### TRIAL CODE #####################################
 from apps.api.user.serializers_advanced_any_user_reg import (
