@@ -84,6 +84,7 @@ INSTALLED_APPS = [
     "apps.api.group_client.apps.GroupClientConfig",
     "apps.api.group_coach.apps.GroupCoachConfig",
     "apps.api.group_client_payment.apps.GroupClientPaymentConfig",
+    "apps.api.group_client_start_data.apps.GroupClientStartDataConfig",
 
 ]
 
