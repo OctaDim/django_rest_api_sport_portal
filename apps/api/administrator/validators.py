@@ -1,9 +1,9 @@
 from django.utils.translation import gettext_lazy
 from django.core.exceptions import ValidationError
-from apps.api.administrator.utils import number_or_str_to_float
+from apps.api.utils.utils import number_or_str_to_float
 
 from apps.api.administrator.settings import MAX_IMAGE_FILE_SIZE_IN_MB
-from apps.api.messages_errors import MAXIMUM_FILE_SIZE
+from apps.api.messages_api.messages_errors import MAXIMUM_FILE_SIZE
 
 
 def validate_image_size(image):

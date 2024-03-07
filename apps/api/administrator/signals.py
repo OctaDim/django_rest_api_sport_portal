@@ -10,26 +10,24 @@ from apps.api.administrator.models import Administrator
 from django.conf import settings
 from PIL import Image, UnidentifiedImageError
 
-from apps.api.administrator.utils import (get_image_file_name,
-                                          delete_file_default_storage,
-                                          delete_file_os_remove
-                                          )
+from apps.api.administrator.utils import get_image_file_name
+from apps.api.utils.utils import (delete_file_default_storage,
+                                  number_or_str_to_int
+                                  )
 
 from django.utils.translation import gettext_lazy
 
-from apps.api.messages_non_front import EXCEPTION_INFO
+from apps.api.messages_api.messages_non_front import EXCEPTION_INFO
 
 from apps.api.administrator.settings import (AVATAR_WIDTH,
                                              AVATAR_HEIGHT,
                                              IMAGE_QUALITY
                                              )
 
-from apps.api.administrator.utils import number_or_str_to_int
-
 
 
 @receiver(pre_save, sender=Administrator)
-def delete_old_avatar_before_administrator_saved(sender, instance, **kwargs):
+def delete_old_avatar_before_administrator_save(sender, instance, **kwargs):
 
     if instance.pk and instance.thumbnail_link:  # Deleting old image file, so super() doesn't add hash to new file name
         try:
@@ -109,7 +107,7 @@ def open_resize_save_new_avatar_after_administrator_saved(sender, instance, **kw
 
 
 @receiver(pre_delete, sender=Administrator)
-def pre_delete_image_after_administrator_delete(sender, instance, **kwargs):
+def pre_delete_image_before_administrator_delete(sender, instance, **kwargs):
     pass  # for the future purposes
 
 

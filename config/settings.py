@@ -55,15 +55,12 @@ INSTALLED_APPS = [
 
     ##### 3-rd parties apps
     "rest_framework",  # Added for DjangoRestFramework
-    "PIL",
-
-    ##### Additional apps
-    "django.core.files.storage",
     "django_resized",
-    "django.db.models.signals",
-    "django.utils.translation",
+    # "PIL",
 
     ##### local apps #####
+    "apps.api.utils.apps.UtilsConfig",
+    "apps.api.messages_api.apps.MessagesApiConfig",
     "apps.api.client_status.apps.ClientStatusConfig",
     "apps.api.coach.apps.CoachConfig",
     "apps.api.coach_speciality.apps.CoachSpecialityConfig",
@@ -86,7 +83,6 @@ INSTALLED_APPS = [
     "apps.api.group_client_payment.apps.GroupClientPaymentConfig",
     "apps.api.group_client_start_data.apps.GroupClientStartDataConfig",
     "apps.api.group_client_progress_data.apps.GroupClientProgressDataConfig",
-
 ]
 
 MIDDLEWARE = [
