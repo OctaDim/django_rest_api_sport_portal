@@ -80,6 +80,8 @@ INSTALLED_APPS = [
     "apps.api.training_year.apps.TrainingYearConfig",
     "apps.api.self_satisfaction_level.apps.SelfSatisfactionLevelConfig",
     "apps.api.administrator.apps.AdministratorConfig",
+    "apps.api.client.apps.ClientConfig",
+
 ]
 
 MIDDLEWARE = [
