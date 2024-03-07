@@ -15,13 +15,16 @@ from apps.api.messages_api.messages_fields import (CLIENT,
                                                    LAST_NAME,
                                                    PHONE,
                                                    IS_STAFF,
+                                                   IS_SUPERUSER,
+                                                   IS_TRAINER,
                                                    IS_VERIFIED,
                                                    IS_ACTIVE,
                                                    DATE_JOINED,
                                                    LAST_LOGIN,
                                                    CREATED_AT,
                                                    UPDATED_AT,
-                                                   CLIENT_CREATOR, IS_TRAINER, IS_SUPERUSER)
+                                                   CLIENT_CREATOR,
+                                                   )
 
 from apps.api.client.models import Client
 from apps.api.user.models import User

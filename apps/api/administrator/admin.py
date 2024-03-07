@@ -14,13 +14,16 @@ from apps.api.messages_api.messages_fields import (USER,
                                                    LAST_NAME,
                                                    PHONE,
                                                    IS_STAFF,
+                                                   IS_SUPERUSER,
+                                                   IS_TRAINER,
                                                    IS_VERIFIED,
                                                    IS_ACTIVE,
                                                    DATE_JOINED,
                                                    LAST_LOGIN,
                                                    CREATED_AT,
                                                    UPDATED_AT,
-                                                   ADMINISTRATOR_CREATOR, IS_SUPERUSER, IS_TRAINER)
+                                                   ADMINISTRATOR_CREATOR,
+                                                   )
 
 from apps.api.administrator.models import Administrator
 from apps.api.user.models import User
