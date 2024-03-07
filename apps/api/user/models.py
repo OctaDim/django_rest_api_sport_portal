@@ -12,7 +12,7 @@ from apps.api.user.managers import UserManager  # Custom user manager
 
 from django.utils.translation import gettext_lazy
 
-from apps.api.messages_fields import (EMAIL, USERNAME, NICKNAME,
+from apps.api.messages_fields import (USER, USERS, EMAIL, USERNAME, NICKNAME,
                                       FIRST_NAME, LAST_NAME, PHONE,
                                       IS_STAFF, IS_TRAINER, IS_SUPERUSER,
                                       IS_VERIFIED, IS_ACTIVE,
@@ -93,8 +93,8 @@ class User(AbstractBaseUser, PermissionsMixin):  # todo: Try later to rename Cus
     objects = UserManager()
 
     class Meta:
-        verbose_name = "User"
-        verbose_name_plural = "Users"
+        verbose_name = gettext_lazy(USER)
+        verbose_name_plural = gettext_lazy(USERS)
         ordering = ["email", "username", "nickname"]
 
 

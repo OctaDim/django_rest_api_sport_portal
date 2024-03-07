@@ -1,7 +1,8 @@
 from django.db import models
 from django.utils.translation import gettext_lazy
 
-from apps.api.messages_fields import (ADMINISTRATOR,
+from apps.api.messages_fields import (USER,
+                                      ADMINISTRATOR,
                                       ADMINISTRATORS,
                                       BIBLIOGRAPHY,
                                       NOTE,
@@ -22,7 +23,8 @@ from apps.api.administrator.validators import validate_image_size
 class Administrator(models.Model):
     user = models.OneToOneField(User,
                                 on_delete=models.PROTECT,
-                                related_name="administrator")
+                                related_name="administrator",
+                                verbose_name=gettext_lazy(USER))
 
     # thumbnail_link = ResizedImageField(     # Option 1, more simple: instead of PIL (pillow) lib (see bellow)
     #     upload_to=get_image_file_name,
