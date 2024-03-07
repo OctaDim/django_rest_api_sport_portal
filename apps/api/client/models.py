@@ -26,7 +26,7 @@ from apps.api.country.models import Country
 from django.utils.translation import gettext_lazy
 
 from apps.api.client.utils import get_image_file_name
-from apps.api.administrator.validators import validate_image_size
+from apps.api.client.validators import validate_image_size
 
 
 
