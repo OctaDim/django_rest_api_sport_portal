@@ -8,6 +8,7 @@ PASSWORD_EXISTING = "Existing password"
 PASSWORD_EXISTING_REPEATED = "Existing password (repeat)"
 
 USER = "user"
+USERS = "users"
 USER_ID = "user id"
 CREATOR = "creator"
 USER_CREATOR = "user creator"
@@ -64,6 +65,11 @@ DEPARTMENT_COMPANY = "department company"
 
 ADMINISTRATOR = "administrator"
 ADMINISTRATORS = "administrators"
+
+CLIENT = "client"
+CLIENTS = "clients"
+
+BIRTH_DATE = "birth date"
 
 TRAINING_YEAR = "training year/period"
 TRAINING_YEARS = "training years/periods"
