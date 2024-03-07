@@ -12,13 +12,13 @@ from apps.api.user.managers import UserManager  # Custom user manager
 
 from django.utils.translation import gettext_lazy
 
-from apps.api.messages_fields import (USER, USERS, EMAIL, USERNAME, NICKNAME,
-                                      FIRST_NAME, LAST_NAME, PHONE,
-                                      IS_STAFF, IS_TRAINER, IS_SUPERUSER,
-                                      IS_VERIFIED, IS_ACTIVE,
-                                      DATE_JOINED, LAST_LOGIN, UPDATED_AT,
-                                      USER_CREATOR,
-                                      )
+from apps.api.messages_api.messages_fields import (USER, USERS, EMAIL, USERNAME, NICKNAME,
+                                                   FIRST_NAME, LAST_NAME, PHONE,
+                                                   IS_STAFF, IS_TRAINER, IS_SUPERUSER,
+                                                   IS_VERIFIED, IS_ACTIVE,
+                                                   DATE_JOINED, LAST_LOGIN, UPDATED_AT,
+                                                   USER_CREATOR,
+                                                   )
 
 
 
@@ -38,19 +38,19 @@ class User(AbstractBaseUser, PermissionsMixin):  # todo: Try later to rename Cus
                                 verbose_name=gettext_lazy(NICKNAME),
                                 )
 
-    first_name = models.CharField(max_length=30,
-                                  blank=True, null=True,
-                                  verbose_name=gettext_lazy(FIRST_NAME),
-                                  )
+    # first_name = models.CharField(max_length=30,
+    #                               blank=True, null=True,
+    #                               verbose_name=gettext_lazy(FIRST_NAME),
+    #                               )
 
-    last_name = models.CharField(max_length=30,
-                                 blank=True, null=True,
-                                 verbose_name=gettext_lazy(LAST_NAME),
-                                 )
+    # last_name = models.CharField(max_length=30,
+    #                              blank=True, null=True,
+    #                              verbose_name=gettext_lazy(LAST_NAME),
+    #                              )
 
-    phone = models.CharField(max_length=100,
-                             blank=True, null=True,
-                             verbose_name=gettext_lazy(PHONE))
+    # phone = models.CharField(max_length=100,
+    #                          blank=True, null=True,
+    #                          verbose_name=gettext_lazy(PHONE))
 
     is_staff = models.BooleanField(default=False,
                                    verbose_name=gettext_lazy(IS_STAFF))
@@ -104,7 +104,8 @@ class User(AbstractBaseUser, PermissionsMixin):  # todo: Try later to rename Cus
 
     @property
     def full_name(self):
-        return f"{self.first_name} {self.last_name}"
+        return (f"Username: {self.nickname} "
+                f"[ nickname: {self.nickname}, email: {self.email} ]")
 
 
 

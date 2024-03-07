@@ -9,28 +9,16 @@ from apps.api.user.models import User  # Custom user
 
 from django.utils.translation import gettext_lazy
 
-from apps.api.messages_non_front import EXCEPTION_INFO
+from apps.api.messages_api.messages_non_front import EXCEPTION_INFO
 
-from apps.api.messages_errors import (PASSWORD_REQUIRED_MSG,
-                                      PASSWORD2_REQUIRED_MSG,
-                                      PASSWORDS_NOT_MATCH_ERROR)
-
-from apps.api.messages_actions import (PASSWORD_SET_MSG,
-                                       PASSWORD_UPDATED_MSG,
-                                       USER_CREATOR_IS_CURRENT_USER,
-                                       )
+from apps.api.messages_api.messages_actions import (PASSWORD_SET_MSG,
+                                                    PASSWORD_UPDATED_MSG,
+                                                    USER_CREATOR_IS_CURRENT_USER,
+                                                    )
 
 from apps.api.user.forms_admin_panel import UserCreationAdminCustomForm
 
-from django import forms
-
 from django.contrib import messages
-
-from django.db.models import Q
-
-
-
-
 
 
 @admin.register(User)
@@ -41,11 +29,10 @@ class CustomUserAdmin(admin.ModelAdmin):
     exclude = ["date_joined"]
 
     fieldsets = []
-    fields = ["password",
-              "password2",
+    fields = ["password", "password2",
               "email", "username", "nickname",
-              "first_name", "last_name", "phone",
-              "is_staff", "is_trainer", "is_superuser",
+              # "first_name", "last_name", "phone",
+              "is_staff", "is_superuser", "is_trainer",
               "is_verified", "is_active",
               "user_creator",
               "groups", "user_permissions",
@@ -57,9 +44,9 @@ class CustomUserAdmin(admin.ModelAdmin):
     )
 
     list_display = ["id", "email", "username", "nickname",
-                    "is_staff", "is_trainer", "is_superuser",
+                    "is_staff", "is_superuser", "is_trainer",
                     "is_verified", "is_active",
-                    "first_name", "last_name", "phone",
+                    # "first_name", "last_name", "phone",
                     "date_joined",
                     "last_login", "updated_at",
                     "user_creator",
@@ -67,8 +54,8 @@ class CustomUserAdmin(admin.ModelAdmin):
 
     search_fields = ["id",
                     "email", "username", "nickname",
-                    "first_name", "last_name", "phone",
-                    "is_staff", "is_trainer", "is_superuser",
+                    # "first_name", "last_name", "phone",
+                    "is_staff", "is_superuser", "is_trainer",
                     "is_verified", "is_active",
                     "date_joined",
                      "last_login", "updated_at",
