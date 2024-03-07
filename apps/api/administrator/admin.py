@@ -3,24 +3,24 @@ from django.contrib import admin
 
 from django.utils.translation import gettext_lazy
 
-from apps.api.messages_actions import ADMINISTRATOR_IS_CURRENT_USER
+from apps.api.messages_api.messages_actions import ADMINISTRATOR_CREATOR_IS_CURRENT_USER
 
-from apps.api.messages_fields import (USER,
-                                      USER_ID,
-                                      EMAIL,
-                                      USERNAME,
-                                      NICKNAME,
-                                      FIRST_NAME,
-                                      LAST_NAME,
-                                      PHONE,
-                                      IS_STAFF,
-                                      IS_VERIFIED,
-                                      IS_ACTIVE,
-                                      DATE_JOINED,
-                                      LAST_LOGIN,
-                                      CREATED_AT,
-                                      UPDATED_AT,
-                                      ADMINISTRATOR_CREATOR)
+from apps.api.messages_api.messages_fields import (USER,
+                                                   USER_ID,
+                                                   EMAIL,
+                                                   USERNAME,
+                                                   NICKNAME,
+                                                   FIRST_NAME,
+                                                   LAST_NAME,
+                                                   PHONE,
+                                                   IS_STAFF,
+                                                   IS_VERIFIED,
+                                                   IS_ACTIVE,
+                                                   DATE_JOINED,
+                                                   LAST_LOGIN,
+                                                   CREATED_AT,
+                                                   UPDATED_AT,
+                                                   ADMINISTRATOR_CREATOR, IS_SUPERUSER, IS_TRAINER)
 
 from apps.api.administrator.models import Administrator
 from apps.api.user.models import User
@@ -35,6 +35,13 @@ from django.db.models import Q
 class AdministratorAdmin(admin.ModelAdmin):
     fields = ["user",  # Form fields and order
               "thumbnail_link",
+              "first_name",
+              "last_name",
+              "phone",
+              "country",
+              "address",
+              "gender",
+              "birth_date",
               "bibliography",
               "note",
               "administrator_creator",
@@ -45,13 +52,22 @@ class AdministratorAdmin(admin.ModelAdmin):
                     "get_user_username",
                     "get_user_nickname",
                     "get_user_id",
-                    "get_user_first_name",
-                    "get_user_last_name",
-                    "get_user_phone",
                     "thumbnail_link",
+                    # "get_user_first_name",
+                    # "get_user_last_name",
+                    # "get_user_phone",
+                    "first_name",
+                    "last_name",
+                    "phone",
+                    "country",
+                    "address",
+                    "gender",
+                    "birth_date",
                     "bibliography",
                     "note",
                     "get_user_is_staff",
+                    "get_user_is_superuser",
+                    "get_user_is_trainer",
                     "get_user_is_verified",
                     "get_user_is_active",
                     "get_user_date_joined",
@@ -61,29 +77,42 @@ class AdministratorAdmin(admin.ModelAdmin):
                     "administrator_creator",
                     ]
 
-    search_fields = ["id",
-                    "user",
-                    "get_user_id",
+    search_fields = ["id",  # Table fields and order
                     "get_user_email",
                     "get_user_username",
                     "get_user_nickname",
-                    "get_user_first_name",
-                    "get_user_last_name",
-                    "get_user_phone",
+                    "get_user_id",
                     "thumbnail_link",
+                    # "get_user_first_name",
+                    # "get_user_last_name",
+                    # "get_user_phone",
+                    "first_name",
+                    "last_name",
+                    "phone",
+                    "country",
+                    "address",
+                    "gender",
+                    "birth_date",
                     "bibliography",
                     "note",
                     "get_user_is_staff",
+                    "get_user_is_superuser",
+                    "get_user_is_trainer",
                     "get_user_is_verified",
                     "get_user_is_active",
                     "get_user_date_joined",
                     "get_user_last_login",
                     "created_at",
                     "updated_at",
-                     "administrator_creator",
-                     ]
+                    "administrator_creator",
+                    ]
 
-    list_filter = ["user__is_staff",
+    list_filter = ["country",
+                   "gender",
+                   "birth_date",
+                   "user__is_staff",
+                   "user__is_superuser",
+                   "user__is_trainer",
                    "user__is_verified",
                    "user__is_active",
                    "user__date_joined",
@@ -120,7 +149,7 @@ class AdministratorAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):  # Default value for new object
         obj.administrator_creator = User.objects.get(id=request.user.id)  # Creator must always be current user
         messages.info(request=request,
-                      message=gettext_lazy(ADMINISTRATOR_IS_CURRENT_USER))
+                      message=gettext_lazy(ADMINISTRATOR_CREATOR_IS_CURRENT_USER))
         super().save_model(request, obj, form, change)
 
 
@@ -154,19 +183,19 @@ class AdministratorAdmin(admin.ModelAdmin):
         return obj.user.nickname
 
 
-    @admin.display(description=gettext_lazy(FIRST_NAME))
-    def get_user_first_name(self, obj):
-        return obj.user.first_name
-
-
-    @admin.display(description=gettext_lazy(LAST_NAME))
-    def get_user_last_name(self, obj):
-        return obj.user.last_name
-
-
-    @admin.display(description=gettext_lazy(PHONE))
-    def get_user_phone(self, obj):
-        return obj.user.phone
+    # @admin.display(description=gettext_lazy(FIRST_NAME))
+    # def get_user_first_name(self, obj):
+    #     return obj.user.first_name
+    #
+    #
+    # @admin.display(description=gettext_lazy(LAST_NAME))
+    # def get_user_last_name(self, obj):
+    #     return obj.user.last_name
+    #
+    #
+    # @admin.display(description=gettext_lazy(PHONE))
+    # def get_user_phone(self, obj):
+    #     return obj.user.phone
 
 
     @admin.display(boolean=True,
@@ -174,6 +203,20 @@ class AdministratorAdmin(admin.ModelAdmin):
                    description=gettext_lazy(IS_STAFF))
     def get_user_is_staff(self, obj):
         return obj.user.is_staff
+
+
+    @admin.display(boolean=True,
+                   ordering="user__is_superuser",
+                   description=gettext_lazy(IS_SUPERUSER))
+    def get_user_is_superuser(self, obj):
+        return obj.user.is_superuser
+
+
+    @admin.display(boolean=True,
+                   ordering="user__is_trainer",
+                   description=gettext_lazy(IS_TRAINER))
+    def get_user_is_trainer(self, obj):
+        return obj.user.is_trainer
 
 
     @admin.display(boolean=True,

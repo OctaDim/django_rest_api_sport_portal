@@ -1,19 +1,26 @@
 from django.db import models
 from django.utils.translation import gettext_lazy
 
-from apps.api.messages_fields import (USER,
-                                      ADMINISTRATOR,
-                                      ADMINISTRATORS,
-                                      BIBLIOGRAPHY,
-                                      NOTE,
-                                      AVATAR_THUMBNAIL_LINK,
-                                      CREATED_AT,
-                                      UPDATED_AT,
-                                      ADMINISTRATOR_CREATOR)
+from apps.api.messages_api.messages_fields import (USER,
+                                                   ADMINISTRATOR,
+                                                   ADMINISTRATORS,
+                                                   FIRST_NAME,
+                                                   LAST_NAME,
+                                                   PHONE,
+                                                   COUNTRY,
+                                                   ADDRESS,
+                                                   GENDER,
+                                                   BIRTH_DATE,
+                                                   BIBLIOGRAPHY,
+                                                   NOTE,
+                                                   AVATAR_THUMBNAIL_LINK,
+                                                   CREATED_AT,
+                                                   UPDATED_AT,
+                                                   ADMINISTRATOR_CREATOR)
 
 from apps.api.user.models import User
-
-from django_resized import ResizedImageField
+from apps.api.country.models import Country
+from apps.api.gender.models import Gender
 
 from apps.api.administrator.utils import get_image_file_name
 from apps.api.administrator.validators import validate_image_size
@@ -38,6 +45,37 @@ class Administrator(models.Model):
                             blank=True, null=True,
                             validators=[validate_image_size],
                             verbose_name=gettext_lazy(AVATAR_THUMBNAIL_LINK))
+
+    first_name = models.CharField(max_length=30,
+                                  blank=True, null=True,
+                                  verbose_name=gettext_lazy(FIRST_NAME))
+
+    last_name = models.CharField(max_length=30,
+                                 blank=True, null=True,
+                                 verbose_name=gettext_lazy(LAST_NAME))
+
+    phone = models.CharField(max_length=100,
+                             blank=True, null=True,
+                             verbose_name=gettext_lazy(PHONE))
+
+    country = models.ForeignKey(Country,
+                                on_delete=models.PROTECT,
+                                blank=True, null=True,
+                                related_name="administrator",
+                                verbose_name=gettext_lazy(COUNTRY))
+
+    address = models.TextField(max_length=500,
+                               blank=True, null=True,
+                               verbose_name=gettext_lazy(ADDRESS))
+
+    gender = models.ForeignKey(Gender,
+                               on_delete=models.PROTECT,
+                               blank=True, null=True,
+                               related_name="administrator",
+                               verbose_name=gettext_lazy(GENDER))
+
+    birth_date = models.DateField(blank=True, null=True,
+                                  verbose_name=gettext_lazy(BIRTH_DATE))
 
     bibliography = models.TextField(max_length=500,
                                     blank=True, null=True,
