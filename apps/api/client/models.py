@@ -1,22 +1,22 @@
 from django.db import models
 
-from apps.api.messages_fields import (USER,
-                                      CLIENT,
-                                      CLIENTS,
-                                      FIRST_NAME,
-                                      LAST_NAME,
-                                      PHONE,
-                                      COUNTRY,
-                                      ADDRESS,
-                                      CLIENT_STATUS,
-                                      GENDER,
-                                      BIRTH_DATE,
-                                      BIBLIOGRAPHY,
-                                      NOTE,
-                                      AVATAR_THUMBNAIL_LINK,
-                                      CREATED_AT,
-                                      UPDATED_AT,
-                                      CLIENT_CREATOR)
+from apps.api.messages_api.messages_fields import (USER,
+                                                   CLIENT,
+                                                   CLIENTS,
+                                                   FIRST_NAME,
+                                                   LAST_NAME,
+                                                   PHONE,
+                                                   COUNTRY,
+                                                   ADDRESS,
+                                                   CLIENT_STATUS,
+                                                   GENDER,
+                                                   BIRTH_DATE,
+                                                   BIBLIOGRAPHY,
+                                                   NOTE,
+                                                   AVATAR_THUMBNAIL_LINK,
+                                                   CREATED_AT,
+                                                   UPDATED_AT,
+                                                   CLIENT_CREATOR)
 
 from apps.api.user.models import User
 from apps.api.client_status.models import ClientStatus
@@ -25,8 +25,7 @@ from apps.api.country.models import Country
 
 from django.utils.translation import gettext_lazy
 
-from django_resized import ResizedImageField
-from apps.api.administrator.utils import get_image_file_name
+from apps.api.client.utils import get_image_file_name
 from apps.api.administrator.validators import validate_image_size
 
 
@@ -51,10 +50,11 @@ class Client(models.Model):
                             verbose_name=gettext_lazy(AVATAR_THUMBNAIL_LINK))
 
     client_status = models.ForeignKey(
-                            ClientStatus,
-                            on_delete = models.PROTECT,
-                            related_name = "client",
-                            verbose_name = gettext_lazy(CLIENT_STATUS))
+                                ClientStatus,
+                                on_delete = models.PROTECT,
+                                blank=True, null=True,
+                                related_name = "client",
+                                verbose_name = gettext_lazy(CLIENT_STATUS))
 
     first_name = models.CharField(max_length=30,
                                   blank=True, null=True,
@@ -70,14 +70,17 @@ class Client(models.Model):
 
     country = models.ForeignKey(Country,
                                 on_delete=models.PROTECT,
+                                blank=True, null=True,
                                 related_name="client",
                                 verbose_name=gettext_lazy(COUNTRY))
 
     address = models.TextField(max_length=500,
-                                verbose_name=gettext_lazy(ADDRESS))
+                               blank=True, null=True,
+                               verbose_name=gettext_lazy(ADDRESS))
 
     gender = models.ForeignKey(Gender,
                                on_delete=models.PROTECT,
+                               blank=True, null=True,
                                related_name="client",
                                verbose_name=gettext_lazy(GENDER))
 
