@@ -82,6 +82,7 @@ INSTALLED_APPS = [
     "apps.api.administrator.apps.AdministratorConfig",
     "apps.api.client.apps.ClientConfig",
     "apps.api.group_client.apps.GroupClientConfig",
+    "apps.api.group_coach.apps.GroupCoachConfig",
 
 ]
 
