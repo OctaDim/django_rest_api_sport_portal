@@ -100,7 +100,7 @@ class Coach(models.Model):
     updated_at = models.DateTimeField(auto_now=True,
                                       verbose_name=gettext_lazy(UPDATED_AT))
 
-    administrator_creator = models.ForeignKey(
+    coach_creator = models.ForeignKey(
                             User,
                             on_delete=models.PROTECT,
                             related_name="coaches",
