@@ -39,36 +39,20 @@ todo: Review: Remove all unnecessary comments in final variant
 todo: Review: Remove id fields from admin models and serializers
 todo: Review: Remove commented possible options from all admin panel models
 
-todo: Limit images type for saving in projects (jpeg, png, jpg)
+WORKS BY DEFAULT: todo: Limit images type for saving in projects (jpeg, png, jpg)
 
-todo: Make User.last_login saving data, if not auto
-todo: Add VerboseNames to User
+WORKS BY DEFAULT: todo: Make User.last_login saving data, if not auto
+WORKS BY DEFAULT: todo: Add VerboseNames to User
 
-todo: Settle the question with proxy or auto-generated class doubling User,
-todo: to define Creator without cycling error
+SETTLED ANOTHER WAY: todo: Settle the question with proxy or auto-generated class doubling User,
+SETTLED ANOTHER WAY: todo: to define Creator without cycling error
 
-todo:
-class Creator(User):
-    class Meta:
-        proxy=True
 
-    def __str__(self):
-        return f"{self.nickname} [{self.email}]"
+SETTLED ANOTHER WAY: todo: Make auto-creation Creator instance when User created, and deleting
+SETTLED ANOTHER WAY: todo: in reverse order (probably via signals)
 
-@receiver(post_save, sender=User)
-def post_(sender, instance, **kwargs):
-    """
-    Specific operations after User post save
-    """
-    if instance.pk:
-        administrator = Administrator.objects.create(id=instance.pk)
-        administrator.save()
-
-todo: Make auto-creation Creator instance when User created, and deleting
-todo: in reverse order (probably via signals)
-
-todo: Create checking the size of the image file before saving in db to protect
-todo: overloading the server space
+DONE: todo: Create checking the size of the image file before saving in db to protect
+DONE: todo: overloading the server space
 
 todo: EmotionalLevel: Fix image auto renaming with hash, fix replacing the
 todo: image without hash, add deleting img by model signal
@@ -90,3 +74,16 @@ todo: Change to error_messages_str = " /// ".join(error_messages)
 
 DONE: Fix new user creation, password validation and password hashing via
 custom admin panel and form
+
+todo: Refactor getting queryset once and using it methods later on, when
+todo: getting relative fields in admin panel (Administrator, Client, Coach
+todo: and so on)
+
+todo: For all reference books add method get_foreign_key() for creator to
+todo: limit the choice by the current user
+
+todo: Make direct fields is_administrator, is_coach, is_client to
+todo: to exclude complex combinations of is_staff, is_superuser, is_trainer
+
+todo: Make search by administrator_creator, client_creator, coach_creator
+todo: __str__ names (or at least by username, nickname, email)
