@@ -20,9 +20,6 @@ from apps.api.messages_api.messages_fields import (USER,
                                                    IS_ACTIVE,
                                                    DATE_JOINED,
                                                    LAST_LOGIN,
-                                                   CREATED_AT,
-                                                   UPDATED_AT,
-                                                   ADMINISTRATOR_CREATOR,
                                                    )
 
 from apps.api.administrator.models import Administrator
@@ -36,6 +33,9 @@ from django.db.models import Q
 
 @admin.register(Administrator)  # Option 1
 class AdministratorAdmin(admin.ModelAdmin):
+    # Defining fields and order to edit in the form and save
+    # Possible to use all fields from the model by names defined in the model
+    # <relative_table>__<field_name> does not work
     fields = ["user",  # Form fields and order
               "thumbnail_link",
               "first_name",
@@ -50,15 +50,18 @@ class AdministratorAdmin(admin.ModelAdmin):
               "administrator_creator",
               ]
 
-    list_display = ["id",  # Table fields and order
-                    "get_user_email",
-                    "get_user_username",
-                    "get_user_nickname",
-                    "get_user_id",
+    # Table displaying fields. Defining order and ordering
+    # Possible to use all fields by names from the model without ordering
+    # To order model fields or relative fields methods+decorator @admin.display() is necessary
+    # Direct access (as "country") to the relative fields is allowed ()
+    # <relative_table>__<field_name> does not work
+    list_display = ["id",
+                    # "user",  # If necessary
+                    "get_user_email_and_order",
+                    "get_user_username_and_order",
+                    "get_user_nickname_and_order",
+                    "get_user_id_and_order",
                     "thumbnail_link",
-                    # "get_user_first_name",
-                    # "get_user_last_name",
-                    # "get_user_phone",
                     "first_name",
                     "last_name",
                     "phone",
@@ -68,48 +71,55 @@ class AdministratorAdmin(admin.ModelAdmin):
                     "birth_date",
                     "bibliography",
                     "note",
-                    "get_user_is_staff",
-                    "get_user_is_superuser",
-                    "get_user_is_trainer",
-                    "get_user_is_verified",
-                    "get_user_is_active",
-                    "get_user_date_joined",
-                    "get_user_last_login",
+                    "get_user_is_staff_and_order",
+                    "get_user_is_superuser_and_order",
+                    "get_user_is_trainer_and_order",
+                    "get_user_is_verified_and_order",
+                    "get_user_is_active_and_order",
+                    "get_user_date_joined_and_order",
+                    "get_user_last_login_and_order",
                     "created_at",
                     "updated_at",
                     "administrator_creator",
                     ]
 
-    search_fields = ["id",  # Table fields and order
-                    "get_user_email",
-                    "get_user_username",
-                    "get_user_nickname",
-                    "get_user_id",
-                    "thumbnail_link",
-                    # "get_user_first_name",
-                    # "get_user_last_name",
-                    # "get_user_phone",
-                    "first_name",
-                    "last_name",
-                    "phone",
-                    "country",
-                    "address",
-                    "gender",
-                    "birth_date",
-                    "bibliography",
-                    "note",
-                    "get_user_is_staff",
-                    "get_user_is_superuser",
-                    "get_user_is_trainer",
-                    "get_user_is_verified",
-                    "get_user_is_active",
-                    "get_user_date_joined",
-                    "get_user_last_login",
-                    "created_at",
-                    "updated_at",
-                    "administrator_creator",
-                    ]
+    # All search fields defined as <relative_table>__<field_name> only
+    # Impossible to use relative FK fields __str__
+    # Direct access (as "country") to the relative fields is not allowed ()
+    search_fields = ["id",
+                     "user__email",
+                     "user__username",
+                     "user__nickname",
+                     "user__id",
+                     "thumbnail_link",
+                     "first_name",
+                     "last_name",
+                     "phone",
+                     "country__id",
+                     "country__name",
+                     "address",
+                     "gender__id",
+                     "gender__name",
+                     "birth_date",
+                     "bibliography",
+                     "note",
+                     "user__is_staff",
+                     "user__is_superuser",
+                     "user__is_trainer",
+                     "user__is_verified",
+                     "user__is_active",
+                     "user__date_joined",
+                     "user__last_login",
+                     "created_at",
+                     "updated_at",
+                     "administrator_creator__id",
+                     "department__id",
+                     "department__name",
+                     ]
 
+    # All search fields defined as <relative_table>__<field_name> only
+    # Possible to use relative FK fields __str__
+    # Direct access (as "country") to the relative fields is allowed ()
     list_filter = ["country",
                    "gender",
                    "birth_date",
@@ -156,110 +166,96 @@ class AdministratorAdmin(admin.ModelAdmin):
         super().save_model(request, obj, form, change)
 
 
-    @admin.display(ordering="user",
+    @admin.display(ordering="user",  # Relative model field
                    description=gettext_lazy(USER))  # User __str__
-    def get_user(self, obj):
-        return obj.user.objects.filter(is_staff=True)
+    def get_user_and_order(self, obj):
+        return obj.user
 
 
-    @admin.display(ordering="user__id",
+    @admin.display(ordering="user__id",  # Relative model field
                    description=gettext_lazy(USER_ID))
-    def get_user_id(self, obj):
+    def get_user_id_and_order(self, obj):
         return obj.user.id
 
 
-    @admin.display(ordering="email",
+    @admin.display(ordering="user__email",  # Relative model field
                    description=gettext_lazy(EMAIL))
-    def get_user_email(self, obj):
+    def get_user_email_and_order(self, obj):
         return obj.user.email
 
 
-    @admin.display(ordering="username",
+    @admin.display(ordering="user__username",  # Relative model field
                    description=gettext_lazy(USERNAME))
-    def get_user_username(self, obj):
+    def get_user_username_and_order(self, obj):
         return obj.user.username
-
-
-    @admin.display(ordering="nickname",
+    #
+    #
+    @admin.display(ordering="user__nickname",  # Relative model field
                    description=gettext_lazy(NICKNAME))
-    def get_user_nickname(self, obj):
+    def get_user_nickname_and_order(self, obj):
         return obj.user.nickname
 
 
-    # @admin.display(description=gettext_lazy(FIRST_NAME))
-    # def get_user_first_name(self, obj):
-    #     return obj.user.first_name
-    #
-    #
-    # @admin.display(description=gettext_lazy(LAST_NAME))
-    # def get_user_last_name(self, obj):
-    #     return obj.user.last_name
-    #
-    #
-    # @admin.display(description=gettext_lazy(PHONE))
-    # def get_user_phone(self, obj):
-    #     return obj.user.phone
+    # @admin.display(ordering="first_name",  # Self model field
+    #                description=gettext_lazy(FIRST_NAME))
+    # def get_administrator_first_name_ordered(self, obj):
+    #     return obj.first_name
 
 
-    @admin.display(boolean=True,
+    # @admin.display(ordering="last_name",  # Self model field
+    #                description=gettext_lazy(LAST_NAME))
+    # def get_administrator_last_name_ordered(self, obj):
+    #     return obj.last_name
+
+
+    # @admin.display(ordering="phone",  # Self model field
+    #                description=gettext_lazy(PHONE))
+    # def get_administrator_phone_ordered(self, obj):
+    #     return obj.phone
+
+
+    @admin.display(boolean=True,  # Boolean, relative model field
                    ordering="user__is_staff",
                    description=gettext_lazy(IS_STAFF))
-    def get_user_is_staff(self, obj):
+    def get_user_is_staff_and_order(self, obj):
         return obj.user.is_staff
 
 
-    @admin.display(boolean=True,
+    @admin.display(boolean=True,  # Boolean, relative model field
                    ordering="user__is_superuser",
                    description=gettext_lazy(IS_SUPERUSER))
-    def get_user_is_superuser(self, obj):
+    def get_user_is_superuser_and_order(self, obj):
         return obj.user.is_superuser
 
 
-    @admin.display(boolean=True,
+    @admin.display(boolean=True,  # Boolean, relative model field
                    ordering="user__is_trainer",
                    description=gettext_lazy(IS_TRAINER))
-    def get_user_is_trainer(self, obj):
+    def get_user_is_trainer_and_order(self, obj):
         return obj.user.is_trainer
 
 
-    @admin.display(boolean=True,
+    @admin.display(boolean=True,  # Boolean, relative model field
                    ordering="user__is_verified",
                    description=gettext_lazy(IS_VERIFIED))
-    def get_user_is_verified(self, obj):
+    def get_user_is_verified_and_order(self, obj):
         return obj.user.is_verified
 
 
-    @admin.display(boolean=True,
+    @admin.display(boolean=True,  # Boolean, relative model field
                    ordering="user__is_active",
                    description=gettext_lazy(IS_ACTIVE))
-    def get_user_is_active(self, obj):
+    def get_user_is_active_and_order(self, obj):
         return obj.user.is_active
 
 
-    @admin.display(ordering="date_joined",
+    @admin.display(ordering="date_joined",  # Date, relative model field
                    description=gettext_lazy(DATE_JOINED))
-    def get_user_date_joined(self, obj):
+    def get_user_date_joined_and_order(self, obj):
         return obj.user.date_joined
 
 
-    @admin.display(ordering="last_login",
+    @admin.display(ordering="last_login",  # Date, relative model field
                    description=gettext_lazy(LAST_LOGIN))
-    def get_user_last_login(self, obj):
+    def get_user_last_login_and_order(self, obj):
         return obj.user.last_login
-
-
-    @admin.display(ordering="created_at",
-                   description=gettext_lazy(CREATED_AT))
-    def get_user_created_at(self, obj):
-        return obj.user.created_at
-
-
-    @admin.display(ordering="updated_at",
-                   description=gettext_lazy(UPDATED_AT))
-    def get_user_updated_at(self, obj):
-        return obj.user.updated_at
-
-    @admin.display(ordering="administrator_creator",
-                   description=gettext_lazy(ADMINISTRATOR_CREATOR))
-    def administrator_creator(self, obj):
-        return obj.administrator_creator

@@ -5,8 +5,7 @@ from django.utils.translation import gettext_lazy
 
 from apps.api.messages_api.messages_actions import CLIENT_CREATOR_IS_CURRENT_USER
 
-from apps.api.messages_api.messages_fields import (CLIENT,
-                                                   USER,
+from apps.api.messages_api.messages_fields import (USER,
                                                    USER_ID,
                                                    EMAIL,
                                                    USERNAME,
@@ -21,9 +20,6 @@ from apps.api.messages_api.messages_fields import (CLIENT,
                                                    IS_ACTIVE,
                                                    DATE_JOINED,
                                                    LAST_LOGIN,
-                                                   CREATED_AT,
-                                                   UPDATED_AT,
-                                                   CLIENT_CREATOR,
                                                    )
 
 from apps.api.client.models import Client
@@ -40,6 +36,9 @@ from django.db.models import Q
 
 @admin.register(Client)  # Option 1
 class ClientAdmin(admin.ModelAdmin):
+    # Defining fields and order to edit in the form and save
+    # Possible to use all fields from the model by names defined in the model
+    # <relative_table>__<field_name> does not work
     fields = ["user",  # Form fields and order
               "thumbnail_link",
               "client_status",
@@ -55,16 +54,19 @@ class ClientAdmin(admin.ModelAdmin):
               "client_creator",
               ]
 
-    list_display = ["id",  # Table fields and order
-                    "get_user_email",
-                    "get_user_username",
-                    "get_user_nickname",
-                    "get_user_id",
+    # Table displaying fields. Defining order and ordering
+    # Possible to use all fields by names from the model without ordering
+    # To order model fields or relative fields methods+decorator @admin.display() is necessary
+    # Direct access (as "country") to the relative fields is allowed ()
+    # <relative_table>__<field_name> does not work
+    list_display = ["id",
+                    # "user",  # If necessary
+                    "get_user_email_and_order",
+                    "get_user_username_and_order",
+                    "get_user_nickname_and_order",
+                    "get_user_id_and_order",
                     "thumbnail_link",
                     "client_status",
-                    # "get_user_first_name",
-                    # "get_user_last_name",
-                    # "get_user_phone",
                     "first_name",
                     "last_name",
                     "phone",
@@ -74,49 +76,55 @@ class ClientAdmin(admin.ModelAdmin):
                     "birth_date",
                     "bibliography",
                     "note",
-                    "get_user_is_staff",
-                    "get_user_is_superuser",
-                    "get_user_is_trainer",
-                    "get_user_is_verified",
-                    "get_user_is_active",
-                    "get_user_date_joined",
-                    "get_user_last_login",
+                    "get_user_is_staff_and_order",
+                    "get_user_is_superuser_and_order",
+                    "get_user_is_trainer_and_order",
+                    "get_user_is_verified_and_order",
+                    "get_user_is_active_and_order",
+                    "get_user_date_joined_and_order",
+                    "get_user_last_login_and_order",
                     "created_at",
                     "updated_at",
                     "client_creator",
                     ]
 
+    # All search fields defined as <relative_table>__<field_name> only
+    # Impossible to use relative FK fields __str__
+    # Direct access (as "country") to the relative fields is not allowed ()
     search_fields = ["id",
-                    "get_user_email",
-                    "get_user_username",
-                    "get_user_nickname",
-                    "get_user_id",
-                    "thumbnail_link",
-                    "client_status",
-                    # "get_user_first_name",
-                    # "get_user_last_name",
-                    # "get_user_phone",
-                    "first_name",
-                    "last_name",
-                    "phone",
-                    "country",
-                    "address",
-                    "gender",
-                    "birth_date",
-                    "bibliography",
-                    "note",
-                    "get_user_is_staff",
-                    "get_user_is_superuser",
-                    "get_user_is_trainer",
-                    "get_user_is_verified",
-                    "get_user_is_active",
-                    "get_user_date_joined",
-                    "get_user_last_login",
-                    "created_at",
-                    "updated_at",
-                    "client_creator",
-                    ]
+                     "user__email",
+                     "user__username",
+                     "user__nickname",
+                     "user__id",
+                     "thumbnail_link",
+                     "client_status__id",
+                     "client_status__name",
+                     "first_name",
+                     "last_name",
+                     "phone",
+                     "country__id",
+                     "country__name",
+                     "address",
+                     "gender__id",
+                     "gender__name",
+                     "birth_date",
+                     "bibliography",
+                     "note",
+                     "user__is_staff",
+                     "user__is_superuser",
+                     "user__is_trainer",
+                     "user__is_verified",
+                     "user__is_active",
+                     "user__date_joined",
+                     "user__last_login",
+                     "created_at",
+                     "updated_at",
+                     "client_creator__id",
+                     ]
 
+    # All search fields defined as <relative_table>__<field_name> only
+    # Possible to use relative FK fields __str__
+    # Direct access (as "country") to the relative fields is allowed ()
     list_filter = ["client_status",
                    "country",
                    "gender",
@@ -132,6 +140,8 @@ class ClientAdmin(admin.ModelAdmin):
                    "updated_at",
                    "client_creator",
                    ]
+
+
 
     def get_queryset(self, request):  # Getting queryset once, not each time getting related field, faster
         query_set = super().get_queryset(request)
@@ -165,105 +175,93 @@ class ClientAdmin(admin.ModelAdmin):
     @admin.display(ordering="user",
                    description=gettext_lazy(USER))  # User __str__
     def get_user(self, obj):
-        return obj.user.objects.filter(is_staff=False, is_superuser=False, is_trainer=False)
+        return obj.user
+        # return obj.user.objects.filter(is_staff=False, is_superuser=False, is_trainer=False)
 
-
-    @admin.display(ordering="user__id",
+    @admin.display(ordering="user__id",  # Relative model field
                    description=gettext_lazy(USER_ID))
-    def get_user_id(self, obj):
+    def get_user_id_and_order(self, obj):
         return obj.user.id
 
 
-    @admin.display(ordering="email",
+    @admin.display(ordering="user__email",  # Relative model field
                    description=gettext_lazy(EMAIL))
-    def get_user_email(self, obj):
+    def get_user_email_and_order(self, obj):
         return obj.user.email
 
 
-    @admin.display(ordering="username",
+    @admin.display(ordering="user__username",  # Relative model field
                    description=gettext_lazy(USERNAME))
-    def get_user_username(self, obj):
+    def get_user_username_and_order(self, obj):
         return obj.user.username
-
-
-    @admin.display(ordering="nickname",
+    #
+    #
+    @admin.display(ordering="user__nickname",  # Relative model field
                    description=gettext_lazy(NICKNAME))
-    def get_user_nickname(self, obj):
+    def get_user_nickname_and_order(self, obj):
         return obj.user.nickname
 
 
-    # @admin.display(description=gettext_lazy(FIRST_NAME))
-    # def get_user_first_name(self, obj):
-    #     return obj.user.first_name
+    # @admin.display(ordering="first_name",  # Self model field
+    #                description=gettext_lazy(FIRST_NAME))
+    # def get_administrator_first_name_ordered(self, obj):
+    #     return obj.first_name
 
 
-    # @admin.display(description=gettext_lazy(LAST_NAME))
-    # def get_user_last_name(self, obj):
-    #     return obj.user.last_name
+    # @admin.display(ordering="last_name",  # Self model field
+    #                description=gettext_lazy(LAST_NAME))
+    # def get_administrator_last_name_ordered(self, obj):
+    #     return obj.last_name
 
 
-    # @admin.display(description=gettext_lazy(PHONE))
-    # def get_user_phone(self, obj):
-    #     return obj.user.phone
+    # @admin.display(ordering="phone",  # Self model field
+    #                description=gettext_lazy(PHONE))
+    # def get_administrator_phone_ordered(self, obj):
+    #     return obj.phone
 
 
-    @admin.display(boolean=True,
+    @admin.display(boolean=True,  # Boolean, relative model field
                    ordering="user__is_staff",
                    description=gettext_lazy(IS_STAFF))
-    def get_user_is_staff(self, obj):
+    def get_user_is_staff_and_order(self, obj):
         return obj.user.is_staff
 
-    @admin.display(boolean=True,
-                   ordering="user__is_trainer",
-                   description=gettext_lazy(IS_TRAINER))
-    def get_user_is_trainer(self, obj):
-        return obj.user.is_trainer
 
-    @admin.display(boolean=True,
+    @admin.display(boolean=True,  # Boolean, relative model field
                    ordering="user__is_superuser",
                    description=gettext_lazy(IS_SUPERUSER))
-    def get_user_is_superuser(self, obj):
+    def get_user_is_superuser_and_order(self, obj):
         return obj.user.is_superuser
 
 
-    @admin.display(boolean=True,
+    @admin.display(boolean=True,  # Boolean, relative model field
+                   ordering="user__is_trainer",
+                   description=gettext_lazy(IS_TRAINER))
+    def get_user_is_trainer_and_order(self, obj):
+        return obj.user.is_trainer
+
+
+    @admin.display(boolean=True,  # Boolean, relative model field
                    ordering="user__is_verified",
                    description=gettext_lazy(IS_VERIFIED))
-    def get_user_is_verified(self, obj):
+    def get_user_is_verified_and_order(self, obj):
         return obj.user.is_verified
 
 
-    @admin.display(boolean=True,
+    @admin.display(boolean=True,  # Boolean, relative model field
                    ordering="user__is_active",
                    description=gettext_lazy(IS_ACTIVE))
-    def get_user_is_active(self, obj):
+    def get_user_is_active_and_order(self, obj):
         return obj.user.is_active
 
 
-    @admin.display(ordering="date_joined",
+    @admin.display(ordering="date_joined",  # Date, relative model field
                    description=gettext_lazy(DATE_JOINED))
-    def get_user_date_joined(self, obj):
+    def get_user_date_joined_and_order(self, obj):
         return obj.user.date_joined
 
 
-    @admin.display(ordering="last_login",
+    @admin.display(ordering="last_login",  # Date, relative model field
                    description=gettext_lazy(LAST_LOGIN))
-    def get_user_last_login(self, obj):
+    def get_user_last_login_and_order(self, obj):
         return obj.user.last_login
-
-
-    @admin.display(ordering="created_at",
-                   description=gettext_lazy(CREATED_AT))
-    def get_user_created_at(self, obj):
-        return obj.user.created_at
-
-
-    @admin.display(ordering="updated_at",
-                   description=gettext_lazy(UPDATED_AT))
-    def get_user_updated_at(self, obj):
-        return obj.user.updated_at
-
-    @admin.display(ordering="client_creator",
-                   description=gettext_lazy(CLIENT_CREATOR))
-    def client_creator(self, obj):
-        return obj.client_creator
