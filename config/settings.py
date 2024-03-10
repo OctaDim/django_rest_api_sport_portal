@@ -66,7 +66,7 @@ INSTALLED_APPS = [
     "apps.api.coach_speciality.apps.CoachSpecialityConfig",
     "apps.api.company.apps.CompanyConfig",
     "apps.api.dynamics.apps.DynamicsConfig",
-    "apps.api.group.apps.GroupConfig",
+    "apps.api.training_group.apps.TrainingGroupConfig",
     "apps.api.jwt_auth.apps.JwtAuthConfig",
     "apps.api.emotional_level.apps.MoodLevelConfig",
     "apps.api.status_level.apps.StatusLevelConfig",
@@ -78,11 +78,12 @@ INSTALLED_APPS = [
     "apps.api.self_satisfaction_level.apps.SelfSatisfactionLevelConfig",
     "apps.api.administrator.apps.AdministratorConfig",
     "apps.api.client.apps.ClientConfig",
-    "apps.api.group_client.apps.GroupClientConfig",
-    "apps.api.group_coach.apps.GroupCoachConfig",
     "apps.api.group_client_payment.apps.GroupClientPaymentConfig",
     "apps.api.group_client_start_data.apps.GroupClientStartDataConfig",
-    "apps.api.group_client_progress_data.apps.GroupClientProgressDataConfig",
+    "apps.api.group_client_progress.apps.GroupClientProgressDataConfig",
+    "apps.api.payment_type.apps.PaymentTypeConfig",
+    "apps.api.payment_document.apps.PaymentDocumentConfig",
+
 ]
 
 MIDDLEWARE = [
