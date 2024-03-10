@@ -87,3 +87,16 @@ todo: to exclude complex combinations of is_staff, is_superuser, is_trainer
 
 todo: Make search by administrator_creator, client_creator, coach_creator
 todo: __str__ names (or at least by username, nickname, email)
+
+todo: Check and fix search, filter error in all reference books
+todo: Unsupported lookup 'icontains' for ForeignKey or join on the field not permitted.
+
+todo: Attach all administrators, clients and coaches to the department
+
+todo: Define order for all models
+
+todo: Define search fields for all models, where not defined
+
+todo: Admin panel: Make custom grouping
+
+todo: Admin panel: Remove underline
