@@ -15,6 +15,7 @@ USER_CREATOR = "user creator"
 ADMINISTRATOR_CREATOR = "administrator creator"
 COACH_CREATOR = "coach creator"
 CLIENT_CREATOR = "client creator"
+ENROLL_GROUP_CREATOR = "enroll group creator"
 
 EMAIL = "email"
 USERNAME = "username"
@@ -62,6 +63,25 @@ DEPARTMENT = "department"
 DEPARTMENTS = "departments"
 DEPARTMENT_ADMINISTRATOR = "department administrator"
 DEPARTMENT_COMPANY = "department company"
+DEPARTMENT_NAME = "department name"
+
+TRAINING_GROUP = "training group"
+TRAINING_GROUPS = "training groups"
+TRAINING_GROUP_CODE = "training group code"
+TRAINING_GROUP_NAME = "training group name"
+
+PAYMENT = "Payment"
+PAYMENTS = "Payments"
+
+PAYMENT_TYPE = "Payment type"
+PAYMENT_TYPES = "Payment types"
+
+PAYMENT_DOCUMENT = "Payment document"
+PAYMENT_DOCUMENTS = "Payment documents"
+
+PAYMENT_AMOUNT = "Payment amount"
+PAYMENT_REFUND = "Payment refund"
+PAYMENT_DATE = "Payment date"
 
 ADMINISTRATOR = "administrator"
 ADMINISTRATORS = "administrators"
@@ -77,6 +97,8 @@ BIRTH_DATE = "birth date"
 TRAINING_YEAR = "training year/period"
 TRAINING_YEARS = "training years/periods"
 TRAINING_YEAR_NAME = "training year number/name"
+
+
 
 NOTE = "note"
 BIBLIOGRAPHY = "bibliography"
