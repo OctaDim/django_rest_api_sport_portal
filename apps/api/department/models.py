@@ -3,10 +3,12 @@ from django.utils.translation import gettext_lazy
 
 from apps.api.messages_api.messages_fields import (DEPARTMENT,
                                                    DEPARTMENTS,
+                                                   DEPARTMENT_NAME,
                                                    DEPARTMENT_COMPANY,
                                                    DEPARTMENT_ADMINISTRATOR,
                                                    ADDRESS,
                                                    DESCRIPTION,
+                                                   NOTE,
                                                    IS_ACTIVE,
                                                    CREATED_AT,
                                                    UPDATED_AT,
@@ -32,14 +34,19 @@ class Department(models.Model):
 
     name = models.CharField(max_length=100,
                             unique=True,
-                            verbose_name=gettext_lazy(DEPARTMENT))
+                            verbose_name=gettext_lazy(DEPARTMENT_NAME))
 
     address = models.CharField(max_length=300,
+                               blank=True, null=True,
                                verbose_name=gettext_lazy(ADDRESS))
 
     description = models.TextField(max_length=500,
                                    blank=True, null=True,
                                    verbose_name=gettext_lazy(DESCRIPTION))
+
+    note = models.CharField(max_length=150,
+                            blank=True, null=True,
+                            verbose_name=gettext_lazy(NOTE))
 
     is_active = models.BooleanField(default=True,
                                     verbose_name=gettext_lazy(IS_ACTIVE))
@@ -61,4 +68,4 @@ class Department(models.Model):
         ordering = ["name", "is_active"]
 
     def __str__(self):
-        return f"{self.name}"
+        return f"{self.name} (company: {self.company})"
