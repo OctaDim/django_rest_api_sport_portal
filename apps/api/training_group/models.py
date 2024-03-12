@@ -28,6 +28,8 @@ from apps.api.administrator.models import Administrator
 from apps.api.client.models import Client
 from apps.api.coach.models import Coach
 
+from apps.api.group_many_client.models import GroupManyClient
+
 
 
 class TrainingGroup(models.Model):
@@ -70,6 +72,7 @@ class TrainingGroup(models.Model):
                                     verbose_name=gettext_lazy(ADMINISTRATOR))
 
     client = models.ManyToManyField(Client,
+                                    through=GroupManyClient,
                                     blank=True, #null=True,
                                     related_name="training_group",
                                     verbose_name=gettext_lazy(CLIENT))
