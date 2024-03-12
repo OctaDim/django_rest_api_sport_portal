@@ -25,16 +25,20 @@ def delete_file_os_remove(project_path_file_name):
         print(gettext_lazy(ERROR_OCCURRED(error)))
 
 
-def number_or_str_to_int(number_or_str_number: int | float | str) -> int | None:
+def number_or_str_to_abs_int(number_or_str_number: int | float | str) -> int | None:
     try:
+        number_or_str_number = str(number_or_str_number)
+        number_or_str_number = number_or_str_number.replace(",", ".")
         integer_number = abs(int(number_or_str_number))
         return integer_number
     except (TypeError, ValueError) as error:
         raise ValidationError(gettext_lazy(ERROR_OCCURRED(error)))
 
 
-def number_or_str_to_float(number_or_str_number: int | float | str) -> float | None:
+def number_or_str_to_abs_float(number_or_str_number: int | float | str) -> float | None:
     try:
+        number_or_str_number = str(number_or_str_number)
+        number_or_str_number = number_or_str_number.replace(",", ".")
         float_number = abs(float(number_or_str_number))
         return float_number
     except (TypeError, ValueError) as error:
