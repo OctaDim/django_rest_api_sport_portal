@@ -80,7 +80,7 @@ INSTALLED_APPS = [
     "apps.api.client.apps.ClientConfig",
     "apps.api.group_client_payment.apps.GroupClientPaymentConfig",
     "apps.api.group_client_start_data.apps.GroupClientStartDataConfig",
-    "apps.api.group_client_progress_data.apps.GroupClientProgressDataConfig",
+    "apps.api.group_client_progress.apps.GroupClientProgressDataConfig",
     "apps.api.payment_type.apps.PaymentTypeConfig",
     "apps.api.payment_document.apps.PaymentDocumentConfig",
     "apps.api.group_many_client.apps.GroupManyClientConfig",
