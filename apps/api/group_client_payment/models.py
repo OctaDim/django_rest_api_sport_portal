@@ -25,6 +25,9 @@ from apps.api.client.models import Client
 from apps.api.payment_type.models import PaymentType
 from apps.api.payment_document.models import PaymentDocument
 
+from apps.api.utils.utils import number_or_str_to_abs_float
+from django.core.exceptions import ValidationError
+
 
 
 class GroupClientPayment(models.Model):
@@ -41,10 +44,12 @@ class GroupClientPayment(models.Model):
 
     payment_amount = models.FloatField(
                             blank=True, null=True,
+                            validators=[number_or_str_to_abs_float],
                             verbose_name=gettext_lazy(PAYMENT_AMOUNT))
 
     refund_amount = models.FloatField(
                             blank=True, null=True,
+                            validators=[number_or_str_to_abs_float],
                             verbose_name=gettext_lazy(PAYMENT_REFUND))
 
     payment_date = models.DateField(verbose_name=gettext_lazy(PAYMENT_DATE))
@@ -85,7 +90,19 @@ class GroupClientPayment(models.Model):
         verbose_name_plural = gettext_lazy(PAYMENTS)
         ordering = ["payment_date"]
 
+
     def __str__(self):
         return (f"{self.payment_date}: "
-                f"[+{self.payment_amount}]"
-                f"[-self.refund_amount]")
+                f"[{self.training_group}] "
+                f"[{self.client}] "
+                f"[payment: {self.payment_amount}] "
+                f"[refund: {self.refund_amount}]")
+
+
+    # def clean(self):
+    #     cleaned_data = super().clean()
+    #     payment_amount = cleaned_data.get("payment_amount")
+    #     refund_amount = cleaned_data.get("refund_amount")
+    #     if not payment_amount and not refund_amount:
+    #         raise ValidationError("ERROR")
+    #     return cleaned_data
