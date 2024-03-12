@@ -70,6 +70,10 @@ TRAINING_GROUPS = "training groups"
 TRAINING_GROUP_CODE = "training group code"
 TRAINING_GROUP_NAME = "training group name"
 
+GROUP = "group"
+GROUP_CLIENT = "group - client"
+GROUPS_CLIENTS = "groups - clients"
+
 PAYMENT = "Payment"
 PAYMENTS = "Payments"
 
@@ -94,11 +98,9 @@ CLIENTS = "clients"
 
 BIRTH_DATE = "birth date"
 
-TRAINING_YEAR = "training year/period"
-TRAINING_YEARS = "training years/periods"
-TRAINING_YEAR_NAME = "training year number/name"
-
-
+TRAINING_YEAR = "training year (period)"
+TRAINING_YEARS = "training years (periods)"
+TRAINING_YEAR_NAME = "training year number (period name)"
 
 NOTE = "note"
 BIBLIOGRAPHY = "bibliography"

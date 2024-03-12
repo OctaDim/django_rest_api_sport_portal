@@ -45,3 +45,4 @@ TRAINING_GROUP_CREATOR_IS_CURRENT_USER = "Current user was set as training group
 PAYMENT_TYPE_CREATOR_IS_CURRENT_USER = "Current user was set as payment type creator"
 PAYMENT_DOC_CREATOR_IS_CURRENT_USER = "Current user was set as payment document creator"
 PAYMENT_RECORD_CREATOR_IS_CURRENT_USER = "Current user was set as payment record creator"
+GROUP_CLIENT_RECORD_CREATOR_IS_CURRENT_USER = "Current user was set as group-client record creator"
