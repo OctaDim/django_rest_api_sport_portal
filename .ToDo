@@ -100,3 +100,9 @@ todo: Define search fields for all models, where not defined
 todo: Admin panel: Make custom grouping
 
 todo: Admin panel: Remove underline
+
+todo: Fix validators for GroupClientPayment, amount or refund not null
+todo: clean()
+
+todo: Fix validators for GroupClientProgerss, all progress parameters
+todo: clean()
