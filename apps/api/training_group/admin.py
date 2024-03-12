@@ -12,9 +12,18 @@ from django.contrib import messages
 from django.db.models import Q
 
 
+from apps.api.group_many_client.models import GroupManyClient
+class GroupManyClientInline(admin.TabularInline):
+    model = GroupManyClient
+    extra = 1
+
 
 @admin.register(TrainingGroup)
 class TrainingGroupAdmin(admin.ModelAdmin):
+
+    inlines = [GroupManyClientInline]
+
+
     # Defining fields and order to edit in the form and save
     # Possible to use all fields from the model by names defined in the model
     # <relative_table>__<field_name> does not work
@@ -29,7 +38,7 @@ class TrainingGroupAdmin(admin.ModelAdmin):
               "finish_date",
               "administrator",
               "coach",
-              "client",
+              # "client",  # Many-to-many with custom model - does not work in django
               "creator",
               ]
 
@@ -55,7 +64,10 @@ class TrainingGroupAdmin(admin.ModelAdmin):
                     "creator",
                     ]
 
-    filter_horizontal = ["administrator", "client", "coach"]
+    filter_horizontal = ["administrator",
+                         "client",
+                         "coach",
+                         ]
 
     # All search fields defined as <relative_table>__<field_name> only
     # Impossible to use relative FK fields __str__
