@@ -83,6 +83,9 @@ INSTALLED_APPS = [
     "apps.api.group_client_progress_data.apps.GroupClientProgressDataConfig",
     "apps.api.payment_type.apps.PaymentTypeConfig",
     "apps.api.payment_document.apps.PaymentDocumentConfig",
+    "apps.api.group_many_client.apps.GroupManyClientConfig",
+    "apps.api.group_many_administrator.apps.GroupManyAdministratorConfig",
+    "apps.api.group_many_coach.apps.GroupManyCoachConfig",
 
 ]
 
