@@ -106,3 +106,5 @@ todo: clean()
 
 todo: Fix validators for GroupClientProgerss, all progress parameters
 todo: clean()
+
+todo: Fix admin list_display and search_list in GroupClientProgress
