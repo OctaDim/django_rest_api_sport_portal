@@ -68,4 +68,5 @@ class Department(models.Model):
         ordering = ["name", "is_active"]
 
     def __str__(self):
-        return f"{self.name} (company: {self.company})"
+        return (f"{self.company} > "
+                f"{self.name}")

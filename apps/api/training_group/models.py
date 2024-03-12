@@ -100,4 +100,6 @@ class TrainingGroup(models.Model):
                     "training_group_name"]
 
     def __str__(self):
-        return f"{self.training_group_code}: [{self.training_group_name}])"
+        return (f"{self.department} > "
+                f"{self.training_group_code} > "
+                f"{self.training_group_name}")

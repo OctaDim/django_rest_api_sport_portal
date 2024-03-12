@@ -49,6 +49,9 @@ class GroupManyClient(models.Model):
         unique_together = ["training_group_id", "client_id"]
 
     def __str__(self):
-        return (f"{self.client_many.user}: "
-                f"[{self.training_group_many.training_group_code}] "
-                f"[{self.training_group_many.training_group_name}]")
+        return (
+                # f"{self.training_group_id.department} > "
+                f"{self.training_group_id.training_group_code} > "
+                f"{self.training_group_id.training_group_name} > "
+                f"{self.client_id.user}"
+                )
