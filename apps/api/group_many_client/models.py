@@ -18,18 +18,18 @@ from apps.api.client.models import Client
 
 
 class GroupManyClient(models.Model):
-    training_group_many = models.ForeignKey(
+    training_group_id = models.ForeignKey(
                                 to="training_group.TrainingGroup",  # Direct text reference to fix import cycling error
                                 on_delete=models.PROTECT,
                                 related_name="group_many_client",
                                 verbose_name=gettext_lazy(TRAINING_GROUP),
                                 )
 
-    client_many = models.ForeignKey(Client,
-                               on_delete=models.PROTECT,
-                               related_name="group_many_client",
-                               verbose_name=gettext_lazy(CLIENT),
-                               )
+    client_id = models.ForeignKey(Client,
+                                  on_delete=models.PROTECT,
+                                  related_name="group_many_client",
+                                  verbose_name=gettext_lazy(CLIENT),
+                                  )
 
     created_at = models.DateTimeField(auto_now_add=True,
                                         verbose_name=gettext_lazy(CREATED_AT))
@@ -45,8 +45,8 @@ class GroupManyClient(models.Model):
     class Meta:
         verbose_name = gettext_lazy(GROUP_CLIENT)
         verbose_name_plural = gettext_lazy(GROUPS_CLIENTS)
-        ordering = ["training_group_many", "client_many"]
-        unique_together = ["training_group_many", "client_many"]
+        ordering = ["training_group_id", "client_id"]
+        unique_together = ["training_group_id", "client_id"]
 
     def __str__(self):
         return (f"{self.client_many.user}: "

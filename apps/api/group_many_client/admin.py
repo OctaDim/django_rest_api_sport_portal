@@ -18,8 +18,8 @@ class GroupManyClientAdmin(admin.ModelAdmin):
     # Possible to use all fields from the model by names defined in the model
     # <relative_table>__<field_name> does not work
     # fields = "__all__"
-    fields = ["training_group_many",
-              "client_many",
+    fields = ["training_group_id",
+              "client_id",
               "creator"
               ]
 
@@ -29,8 +29,8 @@ class GroupManyClientAdmin(admin.ModelAdmin):
     # Direct access (as "country") to the relative fields is allowed ()
     # <relative_table>__<field_name> does not work
     list_display = ["id",
-                    "training_group_many",
-                    "client_many",
+                    "training_group_id",
+                    "client_id",
                     "created_at",
                     "updated_at",
                     "creator",
@@ -56,8 +56,8 @@ class GroupManyClientAdmin(admin.ModelAdmin):
     # Possible to use relative FK fields __str__
     # Direct access (as "country") to the relative fields is allowed ()
     # list_filter = "__all__"
-    list_filter = ["training_group_many",
-                   "client_many",
+    list_filter = ["training_group_id",
+                   "client_id",
                    "created_at",
                    "updated_at",
                    "creator",
