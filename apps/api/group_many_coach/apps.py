@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class GroupCoachConfig(AppConfig):
+class GroupManyCoachConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'group_many_coach'
+    name = 'apps.api.group_many_coach'
