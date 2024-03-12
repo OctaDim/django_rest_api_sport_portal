@@ -23,9 +23,34 @@ class Migration(migrations.Migration):
             name='client',
             field=models.ManyToManyField(blank=True, related_name='training_group', to='client.client', verbose_name='client'),
         ),
+        # migrations.AlterField(
+        #     model_name='traininggroup',
+        #     name='coach',
+        #     field=models.ManyToManyField(blank=True, related_name='training_group', to='coach.coach', verbose_name='coach'),
+        # ),
+
         migrations.AlterField(
             model_name='traininggroup',
             name='coach',
-            field=models.ManyToManyField(blank=True, related_name='training_group', to='coach.coach', verbose_name='coach'),
+            field=models.ManyToManyField(blank=True, related_name='training_group', to='coach.coach',
+                                         verbose_name='coach'),
         ),
+
+        migrations.AlterField(
+            model_name='traininggroup',
+            name='coach',
+            field=models.ManyToManyField(blank=True, related_name='training_group', to='coach.coach',
+                                         verbose_name='coach'),
+        ),
+
+
+
+
+
+
+
+
+
+
+
     ]
