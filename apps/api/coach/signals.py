@@ -12,7 +12,7 @@ from PIL import Image, UnidentifiedImageError
 
 from apps.api.coach.utils import get_image_file_name
 from apps.api.utils.utils import (delete_file_default_storage,
-                                  number_or_str_to_int
+                                  number_or_str_to_abs_int
                                   )
 
 from django.utils.translation import gettext_lazy
@@ -81,9 +81,9 @@ def open_resize_save_new_avatar_after_coach_saved(sender, instance, **kwargs):
                                         full_path_new_filename_with_id)
 
             with Image.open(instance.thumbnail_link.path) as img:  # PIL.Image.open(): Resizing image
-                img_width = number_or_str_to_int(AVATAR_WIDTH)
-                img_height = number_or_str_to_int(AVATAR_HEIGHT)
-                resample_quality = number_or_str_to_int(IMAGE_QUALITY)
+                img_width = number_or_str_to_abs_int(AVATAR_WIDTH)
+                img_height = number_or_str_to_abs_int(AVATAR_HEIGHT)
+                resample_quality = number_or_str_to_abs_int(IMAGE_QUALITY)
 
                 img = img.resize(size=(img_width, img_height),
                                  resample=Image.BICUBIC)
