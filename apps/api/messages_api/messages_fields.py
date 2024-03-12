@@ -71,8 +71,11 @@ TRAINING_GROUP_CODE = "training group code"
 TRAINING_GROUP_NAME = "training group name"
 
 GROUP = "group"
-GROUP_CLIENT = "group - client"
-GROUPS_CLIENTS = "groups - clients"
+GROUP_CLIENT = "group - Client"
+GROUPS_CLIENTS = "groups - Clients"
+
+GROUP_CLIENT_PROGRESS = "group-Client-Progress"
+GROUPS_CLIENTS_PROGRESSES = "groups-Clients-Progresses"
 
 PAYMENT = "Payment"
 PAYMENTS = "Payments"
@@ -105,6 +108,18 @@ TRAINING_YEAR_NAME = "training year number (period name)"
 NOTE = "note"
 BIBLIOGRAPHY = "bibliography"
 
+CHECK_POINT_DATE = "check point date"
+
+TASK_COMPLETED = "task completed"
+
+CURRENT_WEIGHT = "current weight"
+CURRENT_BREAST = "current breast"
+CURRENT_SHOULDERS = "current shoulders"
+CURRENT_WAIST = "current weight"
+CURRENT_HIPS = "current hips"
+CURRENT_HEIGHT = "current height"
+
+DATE = "date"
 START_DATE = "start date"
 FINISH_DATE = "finish date"
 

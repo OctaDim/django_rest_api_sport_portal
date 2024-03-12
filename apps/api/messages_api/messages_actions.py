@@ -46,3 +46,4 @@ PAYMENT_TYPE_CREATOR_IS_CURRENT_USER = "Current user was set as payment type cre
 PAYMENT_DOC_CREATOR_IS_CURRENT_USER = "Current user was set as payment document creator"
 PAYMENT_RECORD_CREATOR_IS_CURRENT_USER = "Current user was set as payment record creator"
 GROUP_CLIENT_RECORD_CREATOR_IS_CURRENT_USER = "Current user was set as group-client record creator"
+PROGRESS_RECORD_CREATOR_IS_CURRENT_USER = "Current user was set as progress record creator"
