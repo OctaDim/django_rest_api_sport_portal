@@ -192,3 +192,5 @@ static/*
 
 media/
 Media/
+
+.dump*
