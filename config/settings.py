@@ -46,6 +46,7 @@ ALLOWED_HOSTS = [env("ALLOWED_HOST_1"), env("ALLOWED_HOST_2")]
 
 INSTALLED_APPS = [
     ##### native django apps
+    "debug_toolbar",  # Added
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -56,7 +57,8 @@ INSTALLED_APPS = [
     ##### 3-rd parties apps
     "rest_framework",  # Added for DjangoRestFramework
     "django_resized",
-    # "PIL",
+    "admin_reorder",  # To reorder admin panel side bar
+    "drf_yasg",  # Added for SWAGER
 
     ##### local apps #####
     "apps.api.utils.apps.UtilsConfig",
@@ -97,7 +99,14 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    "debug_toolbar.middleware.DebugToolbarMiddleware",  # Added
+
+    # "admin_reorder.middleware.ModelAdminReorder",  # To reorder admin panel side bar
+
 ]
+
+
 
 ROOT_URLCONF = 'config.urls'
 AUTH_USER_MODEL = "user.User"  # IMPORTANT: NECESSARY FOR CUSTOM USER
@@ -201,3 +210,9 @@ AUTHENTICATION_BACKENDS = [
     "apps.api.user.authentications.CustomAuthByEmailBackend",  # Custom auth by email
     "apps.api.user.authentications.CustomAuthByNickNameBackend",  # Custom auth by nickname
 ]
+
+
+# ADMIN_REORDER = (
+#     ("user", ("User", )),
+#     ("administrator", ("Administrator", ))
+# )
