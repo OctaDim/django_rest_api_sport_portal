@@ -15,6 +15,13 @@ class UsersAllFieldsSerializer(serializers.ModelSerializer):
         exclude = ["password"]
 
 
+class UsersAllFieldsNoPermissionsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        # fields = "__all__"
+        exclude = ["password", "groups", "user_permissions"]
+
+
 class UsersSerializerLimitFields(serializers.ModelSerializer):
     class Meta:
         model = User
