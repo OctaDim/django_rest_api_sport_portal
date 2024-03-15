@@ -7,6 +7,11 @@ PASSWORDS_NOT_MATCH_ERROR = "The two password fields did not match. Please, try 
 
 USER_CREATOR_REQUIRED = "User creator is required. Select user creator"
 
+USER_REQUIRED = "User is required. Select user"
+CLIENT_CREATOR_REQUIRED = "Client creator is required. Select client creator"
+CLIENT_WITH_THIS_USER_ALREADY_EXISTS_MSG = "Client with this user already exists. Select another user"
+
+
 EMAIL_OR_USERNAME_REQUIRED_MSG = "Empty login name. Email or Username is required"
 EMAIL_OR_USERNAME_OR_NICKNAME_REQUIRED_MSG = "Empty login name. Email, Username or Nickname is required"
 

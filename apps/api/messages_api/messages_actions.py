@@ -1,14 +1,26 @@
 NO_USERS_MSG = "Users were not found. No user exists"
 ALL_USERS_MSG = "All users list:"
 
+NO_CLIENTS_MSG = "Clients were not found. No client exists"
+ALL_CLIENTS_MSG = "All clients list:"
+
 NO_USER_WITH_ID_MSG = "User was not found"
 USER_DETAILS = "User details:"
+
+NO_CLIENT_WITH_ID_MSG = "User was not found"
+CLIENT_DETAILS = "User details:"
 
 USER_CREATED_MSG = "User was created successfully"
 USER_NOT_CREATED_MSG = "User was not created"
 USER_UPDATED_MSG = "User was updated successfully"
 USER_NOT_UPDATED_MSG = "User was not updated"
 USER_DELETED_MSG = "User was deleted successfully"
+
+CLIENT_CREATED_MSG = "User was created successfully"
+CLIENT_NOT_CREATED_MSG = "User was not created"
+CLIENT_UPDATED_MSG = "User was updated successfully"
+CLIENT_NOT_UPDATED_MSG = "User was not updated"
+CLIENT_DELETED_MSG = "User was deleted successfully"
 
 SUPERUSER_CREATED_MSG = "Superuser was created successfully"
 SUPERUSER_NOT_CREATED_MSG = "Superuser was not created"
