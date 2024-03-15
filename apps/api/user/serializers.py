@@ -8,7 +8,7 @@ from apps.api.user.models import User  # Custom user
 
 
 
-class UsersSerializerAllFields(serializers.ModelSerializer):
+class UsersAllFieldsSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         # fields = "__all__"

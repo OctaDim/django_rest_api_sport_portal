@@ -45,7 +45,7 @@ from apps.api.user.serializer_reg_superuser import SuperUserRegistrySerializer
 from apps.api.user.serializer_reg_staff_user import StaffUserRegistrySerializer
 from apps.api.user.serializer_reg_trainer_user import TrainerUserRegistrySerializer
 
-from apps.api.user.serializers import (UsersSerializerAllFields,
+from apps.api.user.serializers import (UsersAllFieldsSerializer,
                                        UsersSerializerLimitFields,
                                        UserInfoByIdAllFieldsSerializer,
                                        UserInfoByIdLimitedFieldsSerializer,
@@ -60,7 +60,7 @@ from rest_framework.generics import (ListAPIView,
 
 
 class AllUsersGenericListForSuperuser(ListAPIView):
-    serializer_class = UsersSerializerAllFields
+    serializer_class = UsersAllFieldsSerializer
 
     def get_queryset(self):
         users = User.objects.all()  # Superuser can see all users including himself
