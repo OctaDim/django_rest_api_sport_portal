@@ -18,7 +18,7 @@ from apps.api.user.models import User
 
 from apps.api.user.serializers import UsersAllFieldsNoPermissionsSerializer
 
-from apps.api.administrator.validators import validate_image_size
+from apps.api.client.validators import validate_image_size
 
 
 
@@ -46,8 +46,7 @@ class ClientCreateModelSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Client
-        # fields = "__all__"  # Not used, if exclude is used (exclude= all-exclude)
-        fields = "id", "user", "thumbnail_link", "client_status", "client_creator"
+        fields = "__all__"  # Not used, if exclude is used (exclude= all-exclude)
         unique_together = ("id", "user")
 
     def to_representation(self, instance):  # Forms dictionary with response fields (fields-keys can be added)
