@@ -112,3 +112,6 @@ todo: Fix admin list_display and search_list in GroupClientProgress
 todo: Fix image validation in serializer:
 todo: model: <class 'django.db.models.fields.files.ImageFieldFile'>
 todo: serializer <class 'django.core.files.uploadedfile.InMemoryUploadedFile'>
+todo: serializer sends to the model another type of field value (differing
+todo: from the model ImageField type), so the error occurs
+todo: try-except plug was set temporary
