@@ -12,7 +12,6 @@ from apps.api.messages_api.messages_errors import MAXIMUM_FILE_SIZE
 
 
 def check_maximum_limit_image_file_size(image, max_image_file_size_in_mb: float|int) -> None:
-    print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ IMAGE LIMIT", max_image_file_size_in_mb)
     try:
         file_size = image.file.size
         max_file_size = number_or_str_to_abs_float(max_image_file_size_in_mb)

@@ -1,23 +1,6 @@
-# from django.utils.translation import gettext_lazy
-# from django.core.exceptions import ValidationError
-# from apps.api.utils.utils import number_or_str_to_abs_float
-
 from apps.api.coach.settings import MAX_IMAGE_FILE_SIZE_IN_MB
-# from apps.api.messages_api.messages_errors import MAXIMUM_FILE_SIZE
-
-# from apps.api.messages_api.messages_non_front import EXCEPTION_INFO
-
 from apps.api.utils.utils import check_maximum_limit_image_file_size
 
 
 def validate_image_size(image):
     check_maximum_limit_image_file_size(image, MAX_IMAGE_FILE_SIZE_IN_MB)
-
-    # try:
-    #     file_size = image.file.size
-    #     max_file_size = number_or_str_to_abs_float(MAX_IMAGE_FILE_SIZE_IN_MB)
-    #     if file_size > max_file_size * 1024 * 1024:
-    #         raise ValidationError(
-    #             gettext_lazy(MAXIMUM_FILE_SIZE(max_file_size)))
-    # except (IOError, Exception) as error:
-    #     print(gettext_lazy(EXCEPTION_INFO(error)))
