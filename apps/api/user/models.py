@@ -22,7 +22,7 @@ from apps.api.messages_api.messages_fields import (USER, USERS, EMAIL, USERNAME,
 
 
 
-class User(AbstractBaseUser, PermissionsMixin):  # todo: Try later to rename CustomUser
+class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(max_length=100,
                               unique=True,
                               verbose_name=gettext_lazy(EMAIL),
@@ -104,8 +104,9 @@ class User(AbstractBaseUser, PermissionsMixin):  # todo: Try later to rename Cus
 
     @property
     def full_name(self):
-        return (f"Username: {self.nickname} "
-                f"[ nickname: {self.nickname}, email: {self.email} ]")
+        return (f"Username: {self.username}, "
+                f"nickname: {self.nickname}, "
+                f"email: {self.email}")
 
 
 
