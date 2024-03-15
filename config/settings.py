@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     "django_resized",
     "admin_reorder",  # To reorder admin panel side bar
     "drf_yasg",  # Added for SWAGER
+    "PIL",
 
     ##### local apps #####
     "apps.api.utils.apps.UtilsConfig",
