@@ -18,7 +18,8 @@ from apps.api.messages_api.messages_actions import (NO_CLIENTS_MSG,
                                                     CLIENT_DELETED_MSG
                                                     )
 
-from apps.api.messages_api.messages_errors import (NOT_SUPERUSER_FORBIDDEN,
+from apps.api.messages_api.messages_errors import (NOT_SUPERUSER_HARD_DELETE_FORBIDDEN,
+                                                   NOT_SUPERUSER_FORBIDDEN,
                                                    DELETE_YOURSELF_FORBIDDEN,
                                                    INACTIVE_YOURSELF_FORBIDDEN,
                                                    )
@@ -241,7 +242,7 @@ class ClientByIdGenericRetrieveDestroy(RetrieveDestroyAPIView):
         if not user_is_superuser:
             return Response(
                 status=status.HTTP_403_FORBIDDEN,
-                data={"message": gettext_lazy(NOT_SUPERUSER_FORBIDDEN)})
+                data={"message": gettext_lazy(NOT_SUPERUSER_HARD_DELETE_FORBIDDEN)})
 
         client = self.get_object()
         client.delete()

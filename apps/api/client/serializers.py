@@ -15,6 +15,9 @@ from apps.api.messages_api.messages_errors import (
 
 from apps.api.client.models import Client
 from apps.api.user.models import User
+from apps.api.client_status.models import ClientStatus
+from apps.api.country.models import Country
+from apps.api.gender.models import Gender
 
 from apps.api.user.serializers import UsersAllFieldsNoPermissionsSerializer
 
@@ -28,9 +31,35 @@ class ClientAllFieldsModelSerializer(serializers.ModelSerializer):
     client_creator = serializers.SlugRelatedField(slug_field="full_name",
                                                   read_only=True)
 
+    client_status = serializers.SlugRelatedField(slug_field="name",
+                                                  read_only=True)
+
+    country = serializers.SlugRelatedField(slug_field="name",
+                                           read_only=True)
+
+    gender = serializers.SlugRelatedField(slug_field="name",
+                                          read_only=True)
+
     class Meta:
         model = Client
-        fields = "__all__"
+        # fields = "__all__"
+        fields = ["id",
+                  "user",
+                  "thumbnail_link",
+                  "first_name",
+                  "last_name",
+                  "phone",
+                  "address",
+                  "birth_date",
+                  "bibliography",
+                  "note",
+                  "created_at",
+                  "updated_at",
+                  "client_status",
+                  "country",
+                  "gender",
+                  "client_creator",
+                  ]
 
 
 
@@ -44,10 +73,40 @@ class ClientCreateModelSerializer(serializers.ModelSerializer):
         )
     )
 
+    client_status = serializers.SlugRelatedField(
+                                    slug_field="name",
+                                    read_only=False,
+                                    queryset=ClientStatus.objects.all())
+
+    country = serializers.SlugRelatedField(slug_field="name",
+                                           read_only=False,
+                                           queryset=Country.objects.all())
+
+    gender = serializers.SlugRelatedField(slug_field="name",
+                                          read_only=False,
+                                          queryset=Gender.objects.all())
+
     class Meta:
         model = Client
-        fields = "__all__"  # Not used, if exclude is used (exclude= all-exclude)
         unique_together = ("id", "user")
+        # fields = "__all__"  # Not used, if exclude is used (exclude= all-exclude)
+        fields = ["id",
+                  "user",
+                  "thumbnail_link",
+                  "first_name",
+                  "last_name",
+                  "phone",
+                  "address",
+                  "birth_date",
+                  "bibliography",
+                  "note",
+                  "created_at",
+                  "updated_at",
+                  "client_status",
+                  "country",
+                  "gender",
+                  "client_creator",
+                  ]
 
 
     def to_representation(self, instance):  # Forms dictionary with response fields (fields-keys can be added)
@@ -126,18 +185,51 @@ class ClientRetrieveUpdateDeleteModelSerializer(serializers.ModelSerializer):
                                               initial=True,
                                               )
 
+    client_status = serializers.SlugRelatedField(
+                                    slug_field="name",
+                                    read_only=False,
+                                    queryset=ClientStatus.objects.all())
+
+    country = serializers.SlugRelatedField(slug_field="name",
+                                           read_only=False,
+                                           queryset=Country.objects.all())
+
+    gender = serializers.SlugRelatedField(slug_field="name",
+                                          read_only=False,
+                                          queryset=Gender.objects.all())
+
     class Meta:
         model = Client
-        fields = "__all__"  # Not used, if exclude is used (exclude= all-exclude)
         unique_together = ("id", "user")
-        # fields = ["id", "user", "client_creator", "user_is_active"]
-
+        # fields = "__all__"  # Not used, if exclude is used (exclude= all-exclude)
+        fields = ["id",
+                  "user",
+                  "user_is_active",
+                  "thumbnail_link",
+                  "first_name",
+                  "last_name",
+                  "phone",
+                  "address",
+                  "birth_date",
+                  "bibliography",
+                  "note",
+                  "created_at",
+                  "updated_at",
+                  "client_status",
+                  "country",
+                  "gender",
+                  "client_creator",
+                  ]
 
     def to_representation(self, instance):  # Forms dictionary with response fields (fields-keys can be added)
         representation = super().to_representation(instance)
         representation["client_creator_full_name"] = instance.client_creator.full_name
-        representation["user_is_active"] = instance.user.is_active
         representation["user_full_name"] = instance.user.full_name
+        representation["user_is_active"] = instance.user.is_active
+        representation["user_is_verified"] = instance.user.is_verified
+        representation["user_is_staff"] = instance.user.is_staff
+        representation["user_is_trainer"] = instance.user.is_trainer
+        representation["user_is_superuser"] = instance.user.is_superuser
         return representation
 
 
