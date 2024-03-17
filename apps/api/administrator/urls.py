@@ -21,7 +21,7 @@ urlpatterns = [
          AdministratorByIdGenericRetrieveUpdate.as_view(),
          name="administrator-by-id-soft"),
 
-    path("administrator_by_id_hard/<int:user_id>/",
+    path("administrator_by_id_hard/<int:administrator_id>/",
          AdministratorByIdGenericRetrieveDestroy.as_view(),
          name="administrator-by-id-hard"),
 ]
