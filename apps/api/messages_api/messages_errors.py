@@ -47,6 +47,8 @@ TRAINER_NOT_IS_TRAINER_ERROR = "Trainer must be trainer"
 NOT_SUPERUSER_FORBIDDEN = "Forbidden. Only superuser can create other superusers accounts"
 NOT_STAFF_USER_FORBIDDEN = "Forbidden. Only staff user can create other staff users accounts"
 
+NOT_SUPERUSER_HARD_DELETE_FORBIDDEN = "Forbidden. Only superuser can make hard deleting operation"
+
 DELETE_YOURSELF_FORBIDDEN = "Forbidden. As Superuser, you cannot delete yourself"
 INACTIVE_YOURSELF_FORBIDDEN = "Forbidden. You cannot make yourself inactive"
 
