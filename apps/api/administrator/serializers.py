@@ -40,7 +40,9 @@ class AdministratorCreateModelSerializer(serializers.ModelSerializer):
         read_only=False,
         # validators=[UniqueValidator(queryset=User.objects.all())],  # Defined validation in validate() method
         queryset=User.objects.filter(
-            Q(is_staff=False) & Q(is_superuser=False) & Q(is_staff=False)))
+            (Q(is_staff=True) | Q(is_superuser=True)) & Q(is_trainer=False)
+        )
+    )
 
     class Meta:
         model = Administrator
