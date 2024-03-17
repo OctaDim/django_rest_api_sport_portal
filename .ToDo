@@ -115,3 +115,6 @@ todo: serializer <class 'django.core.files.uploadedfile.InMemoryUploadedFile'>
 todo: serializer sends to the model another type of field value (differing
 todo: from the model ImageField type), so the error occurs
 todo: try-except plug was set temporary
+
+todo: Limit user choice for creating client, administrator, coach by
+todo: is_active=True (in admin panel, in serializer)
