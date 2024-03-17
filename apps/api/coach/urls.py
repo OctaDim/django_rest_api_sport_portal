@@ -21,7 +21,7 @@ urlpatterns = [
          CoachByIdGenericRetrieveUpdate.as_view(),
          name="coach-by-id-soft"),
 
-    path("coach_by_id_hard/<int:user_id>/",
+    path("coach_by_id_hard/<int:coach_id>/",
          CoachByIdGenericRetrieveDestroy.as_view(),
          name="coach-by-id-hard"),
 ]

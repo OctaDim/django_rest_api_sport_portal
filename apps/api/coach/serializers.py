@@ -15,6 +15,9 @@ from apps.api.messages_api.messages_errors import (
 
 from apps.api.coach.models import Coach
 from apps.api.user.models import User
+from apps.api.coach_speciality.models import CoachSpeciality
+from apps.api.country.models import Country
+from apps.api.gender.models import Gender
 
 from apps.api.user.serializers import UsersAllFieldsNoPermissionsSerializer
 
@@ -28,9 +31,35 @@ class CoachAllFieldsModelSerializer(serializers.ModelSerializer):
     coach_creator = serializers.SlugRelatedField(slug_field="full_name",
                                                   read_only=True)
 
+    coach_speciality = serializers.SlugRelatedField(slug_field="name",
+                                                    read_only=True)
+
+    country = serializers.SlugRelatedField(slug_field="name",
+                                           read_only=True)
+
+    gender = serializers.SlugRelatedField(slug_field="name",
+                                          read_only=True)
+
     class Meta:
         model = Coach
-        fields = "__all__"
+        # fields = "__all__"
+        fields = ["id",
+                  "user",
+                  "thumbnail_link",
+                  "coach_speciality",
+                  "first_name",
+                  "last_name",
+                  "phone",
+                  "address",
+                  "birth_date",
+                  "bibliography",
+                  "note",
+                  "created_at",
+                  "updated_at",
+                  "country",
+                  "gender",
+                  "coach_creator",
+                  ]
 
 
 
@@ -44,11 +73,40 @@ class CoachCreateModelSerializer(serializers.ModelSerializer):
         )
     )
 
+    coach_speciality = serializers.SlugRelatedField(
+                                slug_field="name",
+                                read_only=False,
+                                queryset=CoachSpeciality.objects.all())
+
+    country = serializers.SlugRelatedField(slug_field="name",
+                                           read_only=False,
+                                           queryset=Country.objects.all())
+
+    gender = serializers.SlugRelatedField(slug_field="name",
+                                          read_only=False,
+                                          queryset=Gender.objects.all())
+
     class Meta:
         model = Coach
-        fields = "__all__"  # Not used, if exclude is used (exclude= all-exclude)
         unique_together = ("id", "user")
-
+        # fields = "__all__"  # Not used, if exclude is used (exclude= all-exclude)
+        fields = ["id",
+                  "user",
+                  "thumbnail_link",
+                  "coach_speciality",
+                  "first_name",
+                  "last_name",
+                  "phone",
+                  "address",
+                  "birth_date",
+                  "bibliography",
+                  "note",
+                  "created_at",
+                  "updated_at",
+                  "country",
+                  "gender",
+                  "coach_creator",
+                  ]
 
     def to_representation(self, instance):  # Forms dictionary with response fields (fields-keys can be added)
         representation = super().to_representation(instance)
@@ -119,25 +177,43 @@ class CoachRetrieveUpdateDeleteModelSerializer(serializers.ModelSerializer):
         read_only=False,
         # validators=[UniqueValidator(queryset=User.objects.all())],  # Defined validation in validate() method
         queryset=User.objects.filter(
-            Q(is_staff=False) & Q(is_superuser=False) & Q(is_staff=False)))
+            Q(is_staff=True) & Q(is_trainer=True)
+        )
+    )
 
     user_is_active = serializers.BooleanField(write_only=True,  # IMPORTANT: write_only=True if no model field
                                               allow_null=False,
                                               initial=True,
                                               )
 
+    coach_speciality = serializers.SlugRelatedField(
+                                slug_field="name",
+                                read_only=False,
+                                queryset=CoachSpeciality.objects.all())
+
+    country = serializers.SlugRelatedField(slug_field="name",
+                                           read_only=False,
+                                           queryset=Country.objects.all())
+
+    gender = serializers.SlugRelatedField(slug_field="name",
+                                          read_only=False,
+                                          queryset=Gender.objects.all())
+
     class Meta:
         model = Coach
         fields = "__all__"  # Not used, if exclude is used (exclude= all-exclude)
         unique_together = ("id", "user")
-        # fields = ["id", "user", "coach_creator", "user_is_active"]
 
 
     def to_representation(self, instance):  # Forms dictionary with response fields (fields-keys can be added)
         representation = super().to_representation(instance)
         representation["coach_creator_full_name"] = instance.coach_creator.full_name
-        representation["user_is_active"] = instance.user.is_active
         representation["user_full_name"] = instance.user.full_name
+        representation["user_is_active"] = instance.user.is_active
+        representation["user_is_verified"] = instance.user.is_verified
+        representation["user_is_staff"] = instance.user.is_staff
+        representation["user_is_trainer"] = instance.user.is_trainer
+        representation["user_is_superuser"] = instance.user.is_superuser
         return representation
 
 
