@@ -8,9 +8,15 @@ PASSWORDS_NOT_MATCH_ERROR = "The two password fields did not match. Please, try 
 USER_CREATOR_REQUIRED = "User creator is required. Select user creator"
 
 USER_REQUIRED = "User is required. Select user"
-CLIENT_CREATOR_REQUIRED = "Client creator is required. Select client creator"
-CLIENT_WITH_THIS_USER_ALREADY_EXISTS_MSG = "Client with this user already exists. Select another user"
 
+CLIENT_CREATOR_REQUIRED = "Client creator is required. Select client creator"
+CLIENT_WITH_USER_ALREADY_EXISTS = "Client with this user already exists. Select another user"
+
+ADMINISTRATOR_CREATOR_REQUIRED = "Administrator creator is required. Select client creator"
+ADMINISTRATOR_WITH_USER_ALREADY_EXISTS = "Administrator with this user already exists. Select another user"
+
+COACH_CREATOR_REQUIRED = "Coach creator is required. Select client creator"
+COACH_WITH_USER_ALREADY_EXISTS = "Coach with this user already exists. Select another user"
 
 EMAIL_OR_USERNAME_REQUIRED_MSG = "Empty login name. Email or Username is required"
 EMAIL_OR_USERNAME_OR_NICKNAME_REQUIRED_MSG = "Empty login name. Email, Username or Nickname is required"
@@ -42,7 +48,7 @@ NOT_SUPERUSER_FORBIDDEN = "Forbidden. Only superuser can create other superusers
 NOT_STAFF_USER_FORBIDDEN = "Forbidden. Only staff user can create other staff users accounts"
 
 DELETE_YOURSELF_FORBIDDEN = "Forbidden. As Superuser, you cannot delete yourself"
-INACTIVE_YOURSELF_FORBIDDEN = "Forbidden. As Staff, you cannot make yourself inactive"
+INACTIVE_YOURSELF_FORBIDDEN = "Forbidden. You cannot make yourself inactive"
 
 NOT_AUTHENTICATED_USER_FORBIDDEN = "Forbidden. You are not authenticated"
 
