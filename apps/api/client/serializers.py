@@ -40,7 +40,7 @@ class ClientCreateModelSerializer(serializers.ModelSerializer):
         read_only=False,
         # validators=[UniqueValidator(queryset=User.objects.all())],  # Defined validation in validate() method
         queryset=User.objects.filter(
-            Q(is_staff=False) & Q(is_superuser=False) & Q(is_staff=False)))
+            Q(is_staff=False) & Q(is_superuser=False) & Q(is_trainer=False)))
 
     class Meta:
         model = Client
@@ -51,8 +51,12 @@ class ClientCreateModelSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):  # Forms dictionary with response fields (fields-keys can be added)
         representation = super().to_representation(instance)
         representation["client_creator_full_name"] = instance.client_creator.full_name
-        representation["user_is_active"] = instance.user.is_active
         representation["user_full_name"] = instance.user.full_name
+        representation["user_is_active"] = instance.user.is_active
+        representation["user_is_verified"] = instance.user.is_verified
+        representation["user_is_staff"] = instance.user.is_staff
+        representation["user_is_trainer"] = instance.user.is_trainer
+        representation["user_is_superuser"] = instance.user.is_superuser
 
         return representation
 

@@ -51,8 +51,12 @@ class CoachCreateModelSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):  # Forms dictionary with response fields (fields-keys can be added)
         representation = super().to_representation(instance)
         representation["coach_creator_full_name"] = instance.coach_creator.full_name
-        representation["user_is_active"] = instance.user.is_active
         representation["user_full_name"] = instance.user.full_name
+        representation["user_is_active"] = instance.user.is_active
+        representation["user_is_verified"] = instance.user.is_verified
+        representation["user_is_staff"] = instance.user.is_staff
+        representation["user_is_trainer"] = instance.user.is_trainer
+        representation["user_is_superuser"] = instance.user.is_superuser
 
         return representation
 
