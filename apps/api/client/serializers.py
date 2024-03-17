@@ -8,9 +8,9 @@ from django.db.models import Q
 from apps.api.messages_api.messages_non_front import EXCEPTION_INFO
 
 from apps.api.messages_api.messages_errors import (
-                                    USER_REQUIRED,
-                                    CLIENT_CREATOR_REQUIRED,
-                                    CLIENT_WITH_THIS_USER_ALREADY_EXISTS_MSG,
+    USER_REQUIRED,
+    CLIENT_CREATOR_REQUIRED,
+    CLIENT_WITH_USER_ALREADY_EXISTS,
                                     )
 
 from apps.api.client.models import Client
@@ -23,7 +23,7 @@ from apps.api.client.validators import validate_image_size
 
 
 class ClientAllFieldsModelSerializer(serializers.ModelSerializer):
-    user = UsersAllFieldsNoPermissionsSerializer()
+    user = UsersAllFieldsNoPermissionsSerializer(read_only=True)
 
     client_creator = serializers.SlugRelatedField(slug_field="full_name",
                                                   read_only=True)
@@ -42,23 +42,26 @@ class ClientCreateModelSerializer(serializers.ModelSerializer):
         queryset=User.objects.filter(
             Q(is_staff=False) & Q(is_superuser=False) & Q(is_staff=False)))
 
-    thumbnail_link = serializers.ImageField(validators=[validate_image_size])
-
     class Meta:
         model = Client
         fields = "__all__"  # Not used, if exclude is used (exclude= all-exclude)
         unique_together = ("id", "user")
 
+
     def to_representation(self, instance):  # Forms dictionary with response fields (fields-keys can be added)
         representation = super().to_representation(instance)
+        representation["client_creator_full_name"] = instance.client_creator.full_name
+        representation["user_is_active"] = instance.user.is_active
         representation["user_full_name"] = instance.user.full_name
+
         return representation
+
 
     def get_fields(self):
         fields = super().get_fields()
 
         try:
-            current_user_id = self.context['request'].user.id
+            current_user_id = self.context["request"].user.id
             fields["client_creator"].queryset = User.objects.filter(id=current_user_id)
             return fields
         except (ValueError, Exception) as error:
@@ -67,9 +70,9 @@ class ClientCreateModelSerializer(serializers.ModelSerializer):
         return fields
 
 
-    def validate_thumbnail_link(self, value):
-        # Model field defined validator intercepts value before validation in serializer
-        return value
+    # def validate_thumbnail_link(self, value):
+    #     # Model field defined validator intercepts value before validation in serializer
+    #     return value
 
 
     def validate(self, attrs):
@@ -91,13 +94,100 @@ class ClientCreateModelSerializer(serializers.ModelSerializer):
             #     gettext_lazy(CLIENT_CREATOR_REQUIRED))
 
         if Client.objects.filter(user=user_attr).exists():
-            error_messages.append(CLIENT_WITH_THIS_USER_ALREADY_EXISTS_MSG)
+            error_messages.append(CLIENT_WITH_USER_ALREADY_EXISTS)
             # raise serializers.ValidationError(
-            #     gettext_lazy(CLIENT_WITH_THIS_USER_ALREADY_EXISTS_MSG))
+            #     gettext_lazy(CLIENT_WITH_USER_ALREADY_EXISTS))
 
         if error_messages:
             ERROR_MESSAGES_STR = ", ".join(error_messages)
             raise serializers.ValidationError(
                 gettext_lazy(ERROR_MESSAGES_STR))
+
+        return attrs
+
+
+
+class ClientRetrieveUpdateDeleteModelSerializer(serializers.ModelSerializer):
+    user = serializers.SlugRelatedField(
+        slug_field="id",
+        read_only=False,
+        # validators=[UniqueValidator(queryset=User.objects.all())],  # Defined validation in validate() method
+        queryset=User.objects.filter(
+            Q(is_staff=False) & Q(is_superuser=False) & Q(is_staff=False)))
+
+    user_is_active = serializers.BooleanField(write_only=True,  # IMPORTANT: write_only=True if no model field
+                                              allow_null=False,
+                                              initial=True,
+                                              )
+
+    class Meta:
+        model = Client
+        fields = "__all__"  # Not used, if exclude is used (exclude= all-exclude)
+        unique_together = ("id", "user")
+        # fields = ["id", "user", "client_creator", "user_is_active"]
+
+
+    def to_representation(self, instance):  # Forms dictionary with response fields (fields-keys can be added)
+        representation = super().to_representation(instance)
+        representation["client_creator_full_name"] = instance.client_creator.full_name
+        representation["user_is_active"] = instance.user.is_active
+        representation["user_full_name"] = instance.user.full_name
+        return representation
+
+
+    def get_fields(self):
+        fields = super().get_fields()
+
+        try:
+            current_user_id = self.context['request'].user.id
+            fields["client_creator"].queryset = User.objects.filter(id=current_user_id)
+            return fields
+        except (ValueError, Exception) as error:
+            print(gettext_lazy(EXCEPTION_INFO(error)))
+
+        return fields
+
+
+    # def validate_thumbnail_link(self, value):
+    #     # Model field defined validator intercepts value before validation in serializer
+    #     return value
+
+
+    def validate(self, attrs, *args, **kwargs):
+        attrs = super().validate(attrs)
+
+        error_messages = []
+
+        user_in_attrs = attrs.get("user")
+        client_creator_in_attrs = attrs.get("client_creator")
+
+        if not user_in_attrs:
+            error_messages.append(USER_REQUIRED)
+            # raise serializers.ValidationError(
+            #     gettext_lazy(USER_REQUIRED))
+
+        if not client_creator_in_attrs:
+            error_messages.append(CLIENT_CREATOR_REQUIRED)
+            # raise serializers.ValidationError(
+            #     gettext_lazy(CLIENT_CREATOR_REQUIRED))
+
+        client_id_from_view_passed_request_param = self.context.get("client_id")
+        old_user_id_in_client = Client.objects.get(
+                        id=client_id_from_view_passed_request_param).user.id
+        new_user_id_in_client = attrs.get("user").id
+        user_in_attrs = attrs.get("user")
+
+        if new_user_id_in_client != old_user_id_in_client:
+            if Client.objects.filter(user=user_in_attrs):
+                error_messages.append(CLIENT_WITH_USER_ALREADY_EXISTS)
+                # raise serializers.ValidationError(
+                #     gettext_lazy(CLIENT_WITH_USER_ALREADY_EXISTS))
+
+        if error_messages:
+            error_messages_str = ", ".join(error_messages)
+            raise serializers.ValidationError(
+                gettext_lazy(error_messages_str))
+
+        attrs.setdefault("user_is_active", False)  # If None, should be False, fixed django bug Boolean field None value
 
         return attrs
