@@ -118,3 +118,7 @@ todo: try-except plug was set temporary
 
 todo: Limit user choice for creating client, administrator, coach by
 todo: is_active=True (in admin panel, in serializer)
+
+todo: When SlugField(readonly=True), then User model @property full_name
+todo: is accessible, when (readonly=False) and queryset is necessary,
+todo: (Administrator.objects.all()) then full_name is not accessible
