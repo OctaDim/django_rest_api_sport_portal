@@ -5,9 +5,15 @@ PASSWORD_REQUIRED_MSG = "Empty password. Password is required"
 PASSWORD2_REQUIRED_MSG = "Empty repeated password. Repeated password is required"
 PASSWORDS_NOT_MATCH_ERROR = "The two password fields did not match. Please, try again"
 
+DEPARTMENT_NAME_REQUIRED = "Department name is required. Fill the department field"
+COMPANY_NAME_REQUIRED = "Company name is required. Fill the company field"
+ADMINISTRATOR_REQUIRED = "Administrator is required. Fill the administrator field"
+
 USER_CREATOR_REQUIRED = "User creator is required. Select user creator"
 
 USER_REQUIRED = "User is required. Select user"
+
+DEPARTMENT_NAME_ALREADY_EXISTS = "Department with this name already exists. Try another name"
 
 CLIENT_CREATOR_REQUIRED = "Client creator is required. Select client creator"
 CLIENT_WITH_USER_ALREADY_EXISTS = "Client with this user already exists. Select another user"

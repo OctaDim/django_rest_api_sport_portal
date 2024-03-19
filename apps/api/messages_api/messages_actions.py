@@ -22,6 +22,19 @@ ADMINISTRATOR_DETAILS = "Administrator details:"
 NO_COACH_WITH_ID_MSG = "Coach was not found"
 COACH_DETAILS = "Coach details:"
 
+NO_DEPARTMENTS_MSG = "Departments were not found. No one exists"
+ALL_DEPARTMENTS_MSG = "All departments list:"
+
+NO_CLIENTS_PROGRESS_MSG = "Clients progresses were not found. No one exists"
+ALL_CLIENTS_PROGRESS_MSG = "All clients progresses list:"
+
+NO_DEPARTMENT_WITH_ID_MSG = "Department was not found"
+DEPARTMENT_DETAILS = "Department details:"
+
+NO_CLIENT_PROGRESS_WITH_ID_MSG = "Client was not found"
+CLIENT_PROGRESS_DETAILS = "Client details:"
+
+
 USER_CREATED_MSG = "User was created successfully"
 USER_NOT_CREATED_MSG = "User was not created"
 USER_UPDATED_MSG = "User was updated successfully"
@@ -46,6 +59,17 @@ COACH_UPDATED_MSG = "Coach was updated successfully"
 COACH_NOT_UPDATED_MSG = "Coach was not updated"
 COACH_DELETED_MSG = "Coach was deleted successfully"
 
+DEPARTMENT_CREATED_MSG = "Department was created successfully"
+DEPARTMENT_NOT_CREATED_MSG = "Department was not created"
+DEPARTMENT_UPDATED_MSG = "Department was updated successfully"
+DEPARTMENT_NOT_UPDATED_MSG = "Department was not updated"
+DEPARTMENT_DELETED_MSG = "Department was deleted successfully"
+
+CLIENT_PROGRESS_CREATED_MSG = "Client progress was created successfully"
+CLIENT_PROGRESS_NOT_CREATED_MSG = "Client progress was not created"
+CLIENT_PROGRESS_UPDATED_MSG = "Client progress was updated successfully"
+CLIENT_PROGRESS_NOT_UPDATED_MSG = "Client progress was not updated"
+CLIENT_PROGRESS_DELETED_MSG = "Client progress was deleted successfully"
 
 SUPERUSER_CREATED_MSG = "Superuser was created successfully"
 SUPERUSER_NOT_CREATED_MSG = "Superuser was not created"
