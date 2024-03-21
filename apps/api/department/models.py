@@ -67,6 +67,13 @@ class Department(models.Model):
         verbose_name_plural = gettext_lazy(DEPARTMENTS)
         ordering = ["name", "is_active"]
 
+
     def __str__(self):
-        return (f"{self.company} > "
+        return (f"{self.company.name} >> "
+                f"{self.name}")
+
+
+    @property
+    def full_name(self):
+        return (f"{self.company.name} >> "
                 f"{self.name}")
