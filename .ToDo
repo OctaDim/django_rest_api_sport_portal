@@ -122,3 +122,53 @@ todo: is_active=True (in admin panel, in serializer)
 todo: When SlugField(readonly=True), then User model @property full_name
 todo: is accessible, when (readonly=False) and queryset is necessary,
 todo: (Administrator.objects.all()) then full_name is not accessible
+
+todo: Fix displaying __str__ or full_name @property for the related fields
+todo: in many to many models serializers (TrainingGroup)
+todo: Option 1
+class CustomAdministratorRelatedField(serializers.RelatedField):
+    def display_value(self, instance):
+        return instance
+
+    def to_representation(self, value):
+        # return value.full_name
+        return str(value)
+
+    def to_internal_value(self, data):
+        return Administrator.objects.get(???????=data)
+todo: Option 2
+def create(self, validated_data):
+    administrators_list = validated_data.pop('administrator',[])
+    training_group = super().create(validated_data)
+    administrator_queryset = Administrator.objects.filter(????name__in=administrators_list)
+    training_group.administrators_list.add(*administrator_queryset)
+    return training_group
+todo: Option 3
+def validate(self, data):
+    administrators_list = data.get('administrator', [])
+    administrators_objects_list = [Administrator.objects.get(????name=name) for name in administrators_list.all()]
+    data.update({'administrator': administrators_objects_list})
+    return data
+
+todo: To Fix PIL.Image bug with opening file in only "r" mode.
+todo: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+todo: Option 1
+from PIL import Image
+def open_image(file_path):
+    with open(file_path, 'rb') as f:
+        img = Image.open(f)
+    return img
+
+with open_image(instance.thumbnail_link.path) as img:
+
+todo: Option 2
+from PIL import Image
+class MyImage(Image.Image):
+    def open(self, file, mode='r'):
+        if mode != 'r':
+            raise ValueError("mode must be 'r'")
+        with open(file, mode) as f:
+            img = Image.open(f)
+        return img
+
+with MyImage.open(instance.thumbnail_link.path) as img:
