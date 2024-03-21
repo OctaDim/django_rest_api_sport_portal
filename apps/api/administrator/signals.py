@@ -101,8 +101,8 @@ def open_resize_save_new_avatar_after_administrator_saved(sender, instance, **kw
                     delete_file_default_storage(proj_path_old_filename)  # for cloud default_storage
                     # delete_file_os_remove(proj_path_old_filename)  # only for local storage
 
-        except (sender.DoesNotExist, UnidentifiedImageError,
-                IOError) as error:
+        except (sender.DoesNotExist, UnidentifiedImageError, UnicodeDecodeError,
+                IOError, ValueError, TypeError, FileNotFoundError) as error:
             print(gettext_lazy(EXCEPTION_INFO(error)))
 
 

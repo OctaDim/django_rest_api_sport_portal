@@ -101,7 +101,7 @@ def open_resize_save_new_avatar_after_client_saved(sender, instance, **kwargs):
                     # delete_file_os_remove(proj_path_old_filename)  # only for local storage
 
         except (sender.DoesNotExist, UnidentifiedImageError,
-                IOError) as error:
+                IOError, ValueError, TypeError, FileNotFoundError) as error:
             print(gettext_lazy(EXCEPTION_INFO(error)))
 
 
