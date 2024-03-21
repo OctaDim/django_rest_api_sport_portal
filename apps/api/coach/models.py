@@ -115,6 +115,13 @@ class Coach(models.Model):
         return f"{self.user.nickname} [{self.user.email}]"
 
 
+    @property
+    def full_name(self):
+        return (f"username: {self.user.username}, "
+                f"nickname: {self.user.nickname}, "
+                f"email: {self.user.email}")
+
+
     def save(self, *args, **kwargs):
         # SIGNAL EXECUTING HERE: Before super() pre_save signal executes (apps.api.administrator.signals)
         super().save(*args, **kwargs)  # Origin method creating and saving new object record
