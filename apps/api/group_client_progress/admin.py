@@ -19,7 +19,7 @@ class GroupClientProgressAdmin(admin.ModelAdmin):
     # Defining fields and order to edit in the form and save
     # Possible to use all fields from the model by names defined in the model
     # <relative_table>__<field_name> does not work
-    fields = ["group_client_id",  # Form fields and order
+    fields = ["group_many_client",  # Form fields and order
               "self_satisfaction_level",
               "emotional_level",
               "task_completed",
@@ -40,7 +40,7 @@ class GroupClientProgressAdmin(admin.ModelAdmin):
     # Direct access (as "country") to the relative fields is allowed ()
     # <relative_table>__<field_name> does not work
     list_display = ["id",  # Table fields and order
-                    # "group_client_id__group_many_client__client_username",
+                    # "group_many_client__group_many_client__client_username",
                     "self_satisfaction_level",
                     "emotional_level",
                     "task_completed",
@@ -62,8 +62,8 @@ class GroupClientProgressAdmin(admin.ModelAdmin):
     # # Direct access (as "country") to the relative fields is not allowed ()
     # # search_fields = "__all__"
     search_fields = ["id",
-                    # "group_client_id__group_many_client__training_group_id",
-                    #  "group_client_id__group_many_client__client_id",
+                    # "group_many_client__group_many_client__training_group_id",
+                    #  "group_many_client__group_many_client__client_id",
                      "self_satisfaction_level__value",
                      "self_satisfaction_level__name",
                      "emotional_level__value",

@@ -34,7 +34,7 @@ from apps.api.utils.utils import number_or_str_to_abs_float
 
 
 class GroupClientProgress(models.Model):
-    group_client_id = models.ForeignKey(
+    group_many_client = models.ForeignKey(
                                 GroupManyClient,
                                 on_delete=models.PROTECT,
                                 related_name="group_client_progress",
@@ -109,12 +109,12 @@ class GroupClientProgress(models.Model):
                                 verbose_name=gettext_lazy(CREATOR))
 
     class Meta:
-        unique_together = ["check_point_date","group_client_id"]
+        unique_together = ["check_point_date","group_many_client"]
         verbose_name = gettext_lazy(GROUP_CLIENT_PROGRESS)
         verbose_name_plural = gettext_lazy(GROUPS_CLIENTS_PROGRESSES)
         ordering = ["check_point_date",
-                    # "group_client_id",
+                    # "group_many_client",
                     ]
 
     def __str__(self):
-        return f"{self.check_point_date}: {self.group_client_id}"
+        return f"{self.check_point_date}: {self.group_many_client}"

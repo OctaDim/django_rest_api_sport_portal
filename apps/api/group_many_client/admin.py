@@ -70,11 +70,3 @@ class GroupManyClientAdmin(admin.ModelAdmin):
                     kwargs["queryset"] = User.objects.filter(pk=request.user.pk)
 
         return super().formfield_for_foreignkey(db_field, request, **kwargs)
-
-
-    def save_model(self, request, obj, form, change):  # Default value for new object
-        obj.creator = User.objects.get(id=request.user.id)  # Creator must always be current user
-        messages.info(request=request,
-                      message=gettext_lazy(
-                          GROUP_CLIENT_RECORD_CREATOR_IS_CURRENT_USER))
-        super().save_model(request, obj, form, change)

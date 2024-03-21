@@ -40,6 +40,7 @@ class GroupManyClient(models.Model):
     creator = models.ForeignKey(User,
                                 on_delete=models.PROTECT,
                                 related_name="group_many_client",
+                                blank=True, null=True,
                                 verbose_name=gettext_lazy(CREATOR))
 
     class Meta:
