@@ -6,6 +6,16 @@ from apps.api.department.models import Department
 @admin.register(Department)  # Option 1
 # admin.site.register(Department)  # Option 2
 class DepartmentAdmin(admin.ModelAdmin):
+    fields = ["name",
+              "is_active",
+              "company",
+              "administrator",
+              "address",
+              "description",
+              "note",
+              "creator",
+              ]
+
     list_display = ["id",
                     "name",
                     "company",
