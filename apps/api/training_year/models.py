@@ -25,10 +25,10 @@ class TrainingYear(models.Model):
                                    blank=True, null=True,
                                    verbose_name=gettext_lazy(DESCRIPTION))
 
-    start_date = models.DateTimeField(blank=True, null=True,
+    start_date = models.DateField(blank=True, null=True,
                                       verbose_name=gettext_lazy(START_DATE))
 
-    finish_date = models.DateTimeField(blank=True, null=True,
+    finish_date = models.DateField(blank=True, null=True,
                                         verbose_name=gettext_lazy(FINISH_DATE))
 
     created_at = models.DateTimeField(auto_now_add=True,
@@ -47,5 +47,15 @@ class TrainingYear(models.Model):
         verbose_name_plural = gettext_lazy(TRAINING_YEARS)
         ordering = ["name"]
 
+
     def __str__(self):
-        return f"{self.name}"
+        return (f"{self.name} "
+                f"({(lambda s: '' if not s else s)(self.start_date)} >> "
+                f"{(lambda f: '' if not f else f)(self.finish_date)})")
+
+
+    @property
+    def full_name(self):
+        return (f"{self.name} "
+                f"( {(lambda s: ' ' if not s else s)(self.start_date)} >> "
+                f"{(lambda f: ' ' if not f else f)(self.finish_date)} )")
