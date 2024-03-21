@@ -69,8 +69,6 @@ class TrainingGroupAllFieldsModelSerializer(serializers.ModelSerializer):
                   "coach",
                   "created_at",
                   "updated_at",
-                  "created_at",
-                  "updated_at",
                   "creator",
                   ]
 
@@ -122,8 +120,6 @@ class TrainingGroupCreateModelSerializer(serializers.ModelSerializer):
                   "administrator",
                   "client",
                   "coach",
-                  "created_at",
-                  "updated_at",
                   "created_at",
                   "updated_at",
                   "creator",
@@ -263,8 +259,6 @@ class TrainingGroupRetrieveUpdateDeleteModelSerializer(serializers.ModelSerializ
                   "administrator",
                   "client",
                   "coach",
-                  "created_at",
-                  "updated_at",
                   "created_at",
                   "updated_at",
                   "creator",
