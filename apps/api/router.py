@@ -8,6 +8,7 @@ urlpatterns = [
     path('clients/', include("apps.api.client.urls")),
     path('coaches/', include("apps.api.coach.urls")),
     path('departments/', include("apps.api.department.urls")),
+    path('training_groups/', include("apps.api.training_group.urls")),
     path('clients_progress/', include("apps.api.group_client_progress.urls")),
 
 ]
