@@ -33,8 +33,7 @@ class TrainingGroupAllFieldsModelSerializer(serializers.ModelSerializer):
     training_year = serializers.SlugRelatedField(slug_field="full_name",
                                                  read_only=True)
 
-    department = serializers.SlugRelatedField(slug_field="full_name",
-                                                 read_only=True)
+    department = serializers.SerializerMethodField()
 
     administrator = serializers.SlugRelatedField(slug_field="full_name",
                                                  many=True,
@@ -72,6 +71,15 @@ class TrainingGroupAllFieldsModelSerializer(serializers.ModelSerializer):
                   "creator",
                   ]
 
+    def get_department(self, obj):
+        department = {
+            "department_str": str(obj.department),
+            "department_id": obj.department.id,
+            "department_name": obj.department.name,
+            "department_company": obj.department.company.name,
+            "department_administrator": str(obj.department.administrator),
+            "department_full_name": obj.department.full_name}
+        return department
 
 
 class TrainingGroupCreateModelSerializer(serializers.ModelSerializer):
