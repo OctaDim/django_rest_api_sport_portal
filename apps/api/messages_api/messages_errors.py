@@ -5,15 +5,26 @@ PASSWORD_REQUIRED_MSG = "Empty password. Password is required"
 PASSWORD2_REQUIRED_MSG = "Empty repeated password. Repeated password is required"
 PASSWORDS_NOT_MATCH_ERROR = "The two password fields did not match. Please, try again"
 
-DEPARTMENT_NAME_REQUIRED = "Department name is required. Fill the department field"
-COMPANY_NAME_REQUIRED = "Company name is required. Fill the company field"
-ADMINISTRATOR_REQUIRED = "Administrator is required. Fill the administrator field"
+DEPARTMENT_NAME_REQUIRED = "Department name is required. Fill department field"
+COMPANY_NAME_REQUIRED = "Company name is required. Fill company field"
+
+TRAINING_GROUP_CODE_REQUIRED = "Training group is required. Fill training group code field"
+
+START_DATE_REQUIRED = "Start date is required. Fill start date field"
+FINISH_DATE_REQUIRED = "Finish date is required. Fill finish date field"
+
+DEPARTMENT_REQUIRED = "Department is required. Select department"
+TRAINING_YEAR_REQUIRED = "Training year is required. Select training year"
+
+ADMINISTRATOR_REQUIRED = "Administrator is required. Select creator"
+CREATOR_REQUIRED = "Creator is required. Select creator"
 
 USER_CREATOR_REQUIRED = "User creator is required. Select user creator"
 
 USER_REQUIRED = "User is required. Select user"
 
 DEPARTMENT_NAME_ALREADY_EXISTS = "Department with this name already exists. Try another name"
+TRAINING_GROUP_CODE_ALREADY_EXISTS = "Training group with this code already exists. Try another code"
 
 CLIENT_CREATOR_REQUIRED = "Client creator is required. Select client creator"
 CLIENT_WITH_USER_ALREADY_EXISTS = "Client with this user already exists. Select another user"
@@ -54,6 +65,8 @@ NOT_SUPERUSER_FORBIDDEN = "Forbidden. Only superuser can create other superusers
 NOT_STAFF_USER_FORBIDDEN = "Forbidden. Only staff user can create other staff users accounts"
 
 NOT_SUPERUSER_HARD_DELETE_FORBIDDEN = "Forbidden. Only superuser can make hard deleting operation"
+
+HARD_DELETE_FORBIDDEN_CLIENT_REFS_EXIST = "Hard delete is forbidden. Remove clients from this training group first"
 
 DELETE_YOURSELF_FORBIDDEN = "Forbidden. As Superuser, you cannot delete yourself"
 INACTIVE_YOURSELF_FORBIDDEN = "Forbidden. You cannot make yourself inactive"

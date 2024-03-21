@@ -25,11 +25,17 @@ COACH_DETAILS = "Coach details:"
 NO_DEPARTMENTS_MSG = "Departments were not found. No one exists"
 ALL_DEPARTMENTS_MSG = "All departments list:"
 
+NO_TRAINING_GROUPS_MSG = "Training groups were not found. No one exists"
+ALL_TRAINING_GROUPS_MSG = "All training groups list:"
+
 NO_CLIENTS_PROGRESS_MSG = "Clients progresses were not found. No one exists"
 ALL_CLIENTS_PROGRESS_MSG = "All clients progresses list:"
 
 NO_DEPARTMENT_WITH_ID_MSG = "Department was not found"
 DEPARTMENT_DETAILS = "Department details:"
+
+NO_TRAINING_GROUP_WITH_ID_MSG = "Training group was not found"
+TRAINING_GROUP_DETAILS = "Training group details:"
 
 NO_CLIENT_PROGRESS_WITH_ID_MSG = "Client was not found"
 CLIENT_PROGRESS_DETAILS = "Client details:"
@@ -64,6 +70,12 @@ DEPARTMENT_NOT_CREATED_MSG = "Department was not created"
 DEPARTMENT_UPDATED_MSG = "Department was updated successfully"
 DEPARTMENT_NOT_UPDATED_MSG = "Department was not updated"
 DEPARTMENT_DELETED_MSG = "Department was deleted successfully"
+
+TRAINING_GROUP_CREATED_MSG = "Training group was created successfully"
+TRAINING_GROUP_NOT_CREATED_MSG = "Training group was not created"
+TRAINING_GROUP_UPDATED_MSG = "Training group was updated successfully"
+TRAINING_GROUP_NOT_UPDATED_MSG = "Training group was not updated"
+TRAINING_GROUP_DELETED_MSG = "Training group was deleted successfully"
 
 CLIENT_PROGRESS_CREATED_MSG = "Client progress was created successfully"
 CLIENT_PROGRESS_NOT_CREATED_MSG = "Client progress was not created"
