@@ -10,12 +10,21 @@ from apps.api.user.models import User
 
 from django.contrib import messages
 from django.db.models import Q
-
-
 from apps.api.group_many_client.models import GroupManyClient
+
+
+
 class GroupManyClientInline(admin.TabularInline):
     model = GroupManyClient
     extra = 1
+
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):  # Values available to choice
+        if (db_field.name == "creator"
+                and request.user.is_authenticated):
+                    kwargs["queryset"] = User.objects.filter(pk=request.user.pk)
+
+        return super().formfield_for_foreignkey(db_field, request, **kwargs)
+
 
 
 @admin.register(TrainingGroup)
@@ -31,6 +40,7 @@ class TrainingGroupAdmin(admin.ModelAdmin):
     fields = ["department",  # Form fields and order
               "training_group_code",
               "training_group_name",
+              "is_active",
               "description",
               "note",
               "training_year",
@@ -53,6 +63,7 @@ class TrainingGroupAdmin(admin.ModelAdmin):
                     "training_group_name",
                     "description",
                     "note",
+                    "is_active",
                     "training_year",
                     "start_date",
                     "finish_date",
@@ -83,6 +94,7 @@ class TrainingGroupAdmin(admin.ModelAdmin):
                      "training_group_name",
                      "description",
                      "note",
+                     "is_active",
                      "start_date",
                      "finish_date",
                      "created_at",
@@ -104,6 +116,7 @@ class TrainingGroupAdmin(admin.ModelAdmin):
                    "administrator",
                    "coach",
                    "client",
+                   "is_active",
                    "created_at",
                    "updated_at",
                    "creator",
