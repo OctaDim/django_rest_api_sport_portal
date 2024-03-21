@@ -104,7 +104,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     @property
     def full_name(self):
-        return (f"Username: {self.username}, "
+        return (f"username: {self.username}, "
                 f"nickname: {self.nickname}, "
                 f"email: {self.email}")
 
