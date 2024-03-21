@@ -14,6 +14,7 @@ from apps.api.messages_api.messages_fields import (TRAINING_GROUP,
                                                    NOTE,
                                                    START_DATE,
                                                    FINISH_DATE,
+                                                   IS_ACTIVE,
                                                    CREATED_AT,
                                                    UPDATED_AT,
                                                    CREATOR,
@@ -82,6 +83,9 @@ class TrainingGroup(models.Model):
                                    related_name="training_group",
                                    verbose_name=gettext_lazy(COACH))
 
+    is_active = models.BooleanField(default=True,
+                                    verbose_name=gettext_lazy(IS_ACTIVE))
+
     created_at = models.DateTimeField(auto_now_add=True,
                                       verbose_name=gettext_lazy(CREATED_AT))
 
@@ -99,7 +103,16 @@ class TrainingGroup(models.Model):
         ordering = ["training_group_code",
                     "training_group_name"]
 
+
     def __str__(self):
-        return (f"{self.department} > "
-                f"{self.training_group_code} > "
-                f"{self.training_group_name}")
+        return (f"{self.department.company.name} >> "
+                f"{self.department.name} > "
+                f"{self.training_group_code} "
+                f"{(lambda tgn: '' if not tgn else f'( {tgn} )')(self.training_group_name)}")
+
+
+    @property
+    def full_name(self):
+        return (f"{self.department.company.name} >> "
+                f"{self.department.name} > "
+                f"{self.training_group_code} ({self.training_group_name})")
