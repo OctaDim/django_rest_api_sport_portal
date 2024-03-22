@@ -120,3 +120,5 @@ PAYMENT_DOC_CREATOR_IS_CURRENT_USER = "Current user was set as payment document 
 PAYMENT_RECORD_CREATOR_IS_CURRENT_USER = "Current user was set as payment record creator"
 GROUP_CLIENT_RECORD_CREATOR_IS_CURRENT_USER = "Current user was set as group-client record creator"
 PROGRESS_RECORD_CREATOR_IS_CURRENT_USER = "Current user was set as progress record creator"
+
+ENTER_POSITIVE_FLOAT_OR_INT_NUMBER = "Enter positive (fractional or integer) number value"

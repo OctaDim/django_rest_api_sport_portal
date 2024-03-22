@@ -74,21 +74,21 @@ GROUP = "group"
 GROUP_CLIENT = "group - Client"
 GROUPS_CLIENTS = "groups - Clients"
 
-GROUP_CLIENT_PROGRESS = "group-Client-Progress"
-GROUPS_CLIENTS_PROGRESSES = "groups-Clients-Progresses"
+GROUP_CLIENT_PROGRESS = "group - Client - Progress"
+GROUPS_CLIENTS_PROGRESSES = "groups - Clients - Progresses"
 
-PAYMENT = "Payment"
-PAYMENTS = "Payments"
+PAYMENT = "payment"
+PAYMENTS = "payments"
 
-PAYMENT_TYPE = "Payment type"
-PAYMENT_TYPES = "Payment types"
+PAYMENT_TYPE = "payment type"
+PAYMENT_TYPES = "payment types"
 
-PAYMENT_DOCUMENT = "Payment document"
-PAYMENT_DOCUMENTS = "Payment documents"
+PAYMENT_DOCUMENT = "payment document"
+PAYMENT_DOCUMENTS = "payment documents"
 
-PAYMENT_AMOUNT = "Payment amount"
-PAYMENT_REFUND = "Payment refund"
-PAYMENT_DATE = "Payment date"
+PAYMENT_AMOUNT = "payment amount"
+PAYMENT_REFUND = "payment refund"
+PAYMENT_DATE = "payment date"
 
 ADMINISTRATOR = "administrator"
 ADMINISTRATORS = "administrators"

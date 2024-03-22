@@ -13,6 +13,14 @@ TRAINING_GROUP_CODE_REQUIRED = "Training group is required. Fill training group 
 START_DATE_REQUIRED = "Start date is required. Fill start date field"
 FINISH_DATE_REQUIRED = "Finish date is required. Fill finish date field"
 
+GROUP_CLIENT_REQUIRED = "Group-Client is required. Select Group-Client"
+SELF_SATISFACTION_LEVEL_REQUIRED = "Self satisfaction level is required. Select this level"
+EMOTIONAL_LEVEL_REQUIRED = "Emotional level is required. Select emotional level"
+CHECK_POINT_DATE_REQUIRED = "Checkpoint date is required. Fill checkpoint date field"
+GROUP_CLIENT_DATE_EXISTS = "Group-Client-Progress with this date already exists. Try again"
+
+NEGATIVE_NUMBER_OR_STRING = "Invalid format, negative number or string. Must be a positive number"
+
 DEPARTMENT_REQUIRED = "Department is required. Select department"
 TRAINING_YEAR_REQUIRED = "Training year is required. Select training year"
 
@@ -78,7 +86,13 @@ def USER_NOT_FOUND_MESSAGE(username_email_or_nickname: str) -> str:
 
 
 def INVALID_EMAIL_ERROR(email_validation_error: str) -> str:
-    return f"Email [{email_validation_error}] validation error. Please, enter a valid email"
+    return (f"Email [{email_validation_error}] validation error. "
+            f"Please, enter a valid email")
 
 def MAXIMUM_FILE_SIZE(max_file_size_limit: float) -> str:
-    return f"File size error. Maximum file size is {max_file_size_limit} Megabyte"
+    return (f"File size error. "
+            f"Maximum file size is {max_file_size_limit} Megabyte")
+
+def NOT_POSITIVE_FLOAT_OR_INT(field_name: str, field_value: any) -> str:
+    return (f"Field [{field_name}] value ({field_value}) is not "
+            f"valid positive (fractional or integer) number")
