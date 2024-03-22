@@ -49,13 +49,15 @@ class TrainingYear(models.Model):
 
 
     def __str__(self):
-        return (f"{self.name} "
-                f"({(lambda s: '' if not s else s)(self.start_date)} >> "
-                f"{(lambda f: '' if not f else f)(self.finish_date)})")
+        return self.__get_training_year_str_and_full_name()
 
 
     @property
     def full_name(self):
-        return (f"{self.name} "
-                f"( {(lambda s: ' ' if not s else s)(self.start_date)} >> "
-                f"{(lambda f: ' ' if not f else f)(self.finish_date)} )")
+        return self.__get_training_year_str_and_full_name()
+
+
+    def __get_training_year_str_and_full_name(self):
+        start_date = (lambda s: s if s else "")(self.start_date)
+        finish_date = (lambda f: f if f else "")(self.finish_date)
+        return f"{self.name} ({start_date} >> {finish_date})"

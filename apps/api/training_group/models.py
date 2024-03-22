@@ -105,14 +105,24 @@ class TrainingGroup(models.Model):
 
 
     def __str__(self):
-        return (f"{self.department.company.name} >> "
-                f"{self.department.name} > "
-                f"{self.training_group_code} "
-                f"{(lambda tgn: '' if not tgn else f'( {tgn} )')(self.training_group_name)}")
+        return self.__get_training_group_str_and_full_name()
 
 
     @property
     def full_name(self):
-        return (f"{self.department.company.name} >> "
-                f"{self.department.name} > "
-                f"{self.training_group_code} ({self.training_group_name})")
+        return self.__get_training_group_str_and_full_name()
+
+
+    def __get_training_group_str_and_full_name(self):
+        company_name = self.department.company.name
+        department_name = self.department.name
+        training_group_code = self.training_group_code
+
+        lamb_tgn = self.training_group_name
+        training_group_name = (lambda tgn: f" ({tgn})" if tgn else "")(lamb_tgn)
+
+        return (f"{company_name} >> "
+                f"{department_name} >> "
+                f"{training_group_code}"
+                f"{training_group_name}"
+                )

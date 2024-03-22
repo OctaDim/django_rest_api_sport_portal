@@ -49,10 +49,23 @@ class GroupManyClient(models.Model):
         ordering = ["training_group_id", "client_id"]
         unique_together = ["training_group_id", "client_id"]
 
+
     def __str__(self):
-        return (
-                # f"{self.training_group_id.department} > "
-                f"{self.training_group_id.training_group_code} > "
-                f"{self.training_group_id.training_group_name} > "
-                f"{self.client_id.user}"
-                )
+        return self.__get_group_client_str_and_full_name()
+
+
+    @property
+    def full_name(self):
+        return self.__get_group_client_str_and_full_name()
+
+
+    def __get_group_client_str_and_full_name(self):
+        training_group_code = self.training_group_id.training_group_code
+        client = self.client_id
+
+        lamb_tgn = self.training_group_id.training_group_name
+        training_group_name = (lambda tgn: f"({tgn}) " if tgn else "")(lamb_tgn)
+
+        return (f"{training_group_code} "
+                f"{training_group_name}"
+                f">> {client}")

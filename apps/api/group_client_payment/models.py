@@ -92,17 +92,23 @@ class GroupClientPayment(models.Model):
 
 
     def __str__(self):
-        return (f"{self.payment_date}: "
-                f"[{self.training_group}] "
-                f"[{self.client}] "
-                f"[payment: {self.payment_amount}] "
-                f"[refund: {self.refund_amount}]")
+        return self.__get_group_client_payment_str_and_full_name()
 
 
-    # def clean(self):
-    #     cleaned_data = super().clean()
-    #     payment_amount = cleaned_data.get("payment_amount")
-    #     refund_amount = cleaned_data.get("refund_amount")
-    #     if not payment_amount and not refund_amount:
-    #         raise ValidationError("ERROR")
-    #     return cleaned_data
+    def full_name(self):
+        return self.__get_group_client_payment_str_and_full_name()
+
+
+    def __get_group_client_payment_str_and_full_name(self):
+        payment_date = self.payment_date
+        training_group_code = self.training_group.training_group_code
+        client = self.client
+        payment = self.payment_amount
+        refund = self.refund_amount
+        return (
+                f"{training_group_code} >> "
+                f"{client} >> "
+                f"[{payment_date}:  "
+                f"Payment: +{self.payment_amount}, "
+                f"Refund: -{self.refund_amount}] "
+                )

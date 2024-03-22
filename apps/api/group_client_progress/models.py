@@ -109,12 +109,30 @@ class GroupClientProgress(models.Model):
                                 verbose_name=gettext_lazy(CREATOR))
 
     class Meta:
-        unique_together = ["check_point_date","group_many_client"]
+        unique_together = ["group_many_client", "check_point_date"]
         verbose_name = gettext_lazy(GROUP_CLIENT_PROGRESS)
         verbose_name_plural = gettext_lazy(GROUPS_CLIENTS_PROGRESSES)
-        ordering = ["check_point_date",
-                    # "group_many_client",
-                    ]
+        ordering = ["-check_point_date",
+                    "group_many_client"]
+
 
     def __str__(self):
-        return f"{self.check_point_date}: {self.group_many_client}"
+        return self.__get_group_client_progress_str_and_full_name()
+
+
+    def full_name(self):
+        return self.__get_group_client_progress_str_and_full_name()
+
+
+    def __get_group_client_progress_str_and_full_name(self):
+        check_point_date = self.check_point_date
+        training_group_code = self.group_many_client.training_group_id.training_group_code
+        client_str = self.group_many_client.client_id
+
+        lamb_tgn = self.group_many_client.training_group_id.training_group_name
+        training_group_name = (lambda tgn: f"({tgn}) " if tgn else "")(lamb_tgn)
+
+        return (f"{check_point_date}:  "
+                f"{training_group_code} "
+                f"{training_group_name}"
+                f">> {client_str}")

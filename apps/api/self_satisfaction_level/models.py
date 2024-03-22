@@ -63,7 +63,13 @@ class SelfSatisfactionLevel(models.Model):
 
 
     def __str__(self):
-        return f"{self.name}"
+        return f"{self.value} ({self.name})"
+
+
+    @property
+    def full_name(self):
+        return f"{self.value} ({self.name})"
+
 
 
     # def save(self, *args, **kwargs):  # Option 2, more advanced: to resize image via PIL (pillow) lib
