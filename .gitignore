@@ -194,3 +194,5 @@ media/
 Media/
 
 .dump*
+
+.EndpointsList
