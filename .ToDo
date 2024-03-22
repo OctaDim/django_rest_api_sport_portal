@@ -172,3 +172,10 @@ class MyImage(Image.Image):
         return img
 
 with MyImage.open(instance.thumbnail_link.path) as img:
+
+DONE: todo: Fix serializer bug returning None to validate() method if
+DONE: todo: FloatField value is wrong format (with comma or negative)
+
+todo: Fix (as in serializer it was done) admin panel bug returning None
+todo: to validate() method if FloatField value is wrong format
+todo: (with comma or negative). Define CharField and then convert and validate
