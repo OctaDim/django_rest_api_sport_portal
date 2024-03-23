@@ -14,7 +14,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.exceptions import (TokenError,
                                                  InvalidToken)
 
-from apps.api.jwt_auth.serializers import CustomTokenObtainPairSerializer
+from apps.api.authentication_jwt.serializers import CustomTokenObtainPairSerializer
 
 from apps.api.messages_api.messages_actions import LOG_IN_SUCCESS, LOG_OUT_SUCCESS
 

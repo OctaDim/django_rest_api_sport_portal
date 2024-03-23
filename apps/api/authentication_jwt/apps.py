@@ -3,4 +3,4 @@ from django.apps import AppConfig
 
 class JwtAuthConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'apps.api.jwt_auth'
+    name = 'apps.api.authentication_jwt'

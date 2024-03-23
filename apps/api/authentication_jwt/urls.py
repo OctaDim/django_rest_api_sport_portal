@@ -6,11 +6,11 @@ from rest_framework_simplejwt.views import (TokenRefreshView,
                                             TokenRefreshSlidingView,
                                             )
 
-from apps.api.jwt_auth.views import (CustomTokenObtainPairView,
-                                     logout_function)
+from apps.api.authentication_jwt.views import (CustomTokenObtainPairView,
+                                               logout_function)
 
 
-app_name = "jwt_auth"
+app_name = "authentication_jwt"
 
 urlpatterns = [
     # JWT
