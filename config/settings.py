@@ -63,6 +63,8 @@ INSTALLED_APPS = [
     "PIL",
 
     ##### local apps #####
+    "apps.api.authentication.apps.AuthenticationConfig",
+    "apps.api.authentication_jwt.apps.JwtAuthConfig",
     "apps.api.utils.apps.UtilsConfig",
     "apps.api.messages_api.apps.MessagesApiConfig",
     "apps.api.client_status.apps.ClientStatusConfig",
@@ -71,7 +73,6 @@ INSTALLED_APPS = [
     "apps.api.company.apps.CompanyConfig",
     "apps.api.dynamics.apps.DynamicsConfig",
     "apps.api.training_group.apps.TrainingGroupConfig",
-    "apps.api.authentication_jwt.apps.JwtAuthConfig",
     "apps.api.emotional_level.apps.MoodLevelConfig",
     "apps.api.status_level.apps.StatusLevelConfig",
     "apps.api.user.apps.UserConfig",
