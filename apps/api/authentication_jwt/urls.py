@@ -13,7 +13,6 @@ from apps.api.authentication_jwt.views import (CustomTokenObtainPairView,
 app_name = "authentication_jwt"
 
 urlpatterns = [
-    # JWT
     path("jwt_obtain_token/", CustomTokenObtainPairView.as_view(), name="jwt-obtain-token"),
     path("jwt_refresh_token/", TokenRefreshView.as_view(), name="jwt-refresh-token"),
     path("jwt_verify_token/", TokenVerifyView.as_view(), name="jwt-verify-token"),
