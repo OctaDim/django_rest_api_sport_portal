@@ -122,3 +122,6 @@ GROUP_CLIENT_RECORD_CREATOR_IS_CURRENT_USER = "Current user was set as group-cli
 PROGRESS_RECORD_CREATOR_IS_CURRENT_USER = "Current user was set as progress record creator"
 
 ENTER_POSITIVE_FLOAT_OR_INT_NUMBER = "Enter positive (fractional or integer) number value"
+
+LOG_IN_SUCCESS = "User logged in successfully"
+LOG_OUT_SUCCESS = "User logged out successfully"
