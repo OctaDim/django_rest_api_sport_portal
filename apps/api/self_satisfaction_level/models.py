@@ -18,6 +18,9 @@ from django_resized import ResizedImageField
 
 from apps.api.self_satisfaction_level.utils import get_image_file_name
 
+from apps.api.self_satisfaction_level.validators import (
+                                    validate_satisfaction_level_value)
+
 
 
 class SelfSatisfactionLevel(models.Model):
@@ -35,6 +38,7 @@ class SelfSatisfactionLevel(models.Model):
 
     value = models.SmallIntegerField(
                             unique=True,
+                            validators=[validate_satisfaction_level_value],
                             verbose_name=gettext_lazy(SATISFACTION_LEVEL_VALUE))
 
     name = models.CharField(max_length=50,
