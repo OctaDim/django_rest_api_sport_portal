@@ -15,8 +15,9 @@ from apps.api.messages_api.messages_fields import (EMOTIONAL_LEVEL,
 from apps.api.user.models import User
 
 from django_resized import ResizedImageField
-
 from apps.api.emotional_level.utils import get_image_file_name
+
+from apps.api.emotional_level.validators import validate_emotional_level_value
 
 
 
@@ -35,6 +36,7 @@ class EmotionalLevel(models.Model):
 
     value = models.SmallIntegerField(
                             unique=True,
+                            validators=[validate_emotional_level_value],
                             verbose_name=gettext_lazy(EMOTIONAL_LEVEL_VALUE))
 
     name = models.CharField(max_length=50,
