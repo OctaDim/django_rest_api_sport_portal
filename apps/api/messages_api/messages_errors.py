@@ -13,11 +13,24 @@ TRAINING_GROUP_CODE_REQUIRED = "Training group is required. Fill training group 
 START_DATE_REQUIRED = "Start date is required. Fill start date field"
 FINISH_DATE_REQUIRED = "Finish date is required. Fill finish date field"
 
+CLIENT_STATUS_FILLED = "Client status is required. Please, fill client status field"
+
+EMOTIONAL_LEVEL_NAME_REQUIRED = "Emotional level name is required. Fill this field"
+SATISFACTION_LEVEL_VALUE_REQUIRED = "Self satisfaction level value is required. Fill this field"
+
+EMOTIONAL_LEVEL_VALUE_REQUIRED = "Emotional level value is required. Fill this field"
+
 GROUP_CLIENT_REQUIRED = "Group-Client is required. Select Group-Client"
 SELF_SATISFACTION_LEVEL_REQUIRED = "Self satisfaction level is required. Select this level"
 EMOTIONAL_LEVEL_REQUIRED = "Emotional level is required. Select emotional level"
 CHECK_POINT_DATE_REQUIRED = "Checkpoint date is required. Fill checkpoint date field"
+
 GROUP_CLIENT_DATE_EXISTS = "Group-Client-Progress with this date already exists. Try again"
+EMOTIONAL_LEVEL_VALUE_EXISTS = "Emotional level with this level already exists. Try again"
+EMOTIONAL_LEVEL_NAME_EXISTS = "Emotional level with this name already exists. Try again"
+SATISFACTION_LEVEL_VALUE_EXISTS = "Self satisfaction level with this level already exists. Try again"
+SATISFACTION_LEVEL_NAME_EXISTS = "Self satisfaction with this name already exists. Try again"
+
 
 NEGATIVE_NUMBER_OR_STRING = "Invalid format, negative number or string. Must be a positive number"
 
@@ -56,6 +69,12 @@ EMAIL_REQUIRED_MESSAGE = "Empty email. Email is required"
 NON_VALID_EMAIL_MESSAGE = "Please, enter a valid email"
 EMAIL_ALREADY_EXISTS = "Such email already exists. Try another email"
 
+EMOTIONAL_LEVEL_VALUE_EXISTS = "Such emotional level value already exists. Try another value"
+SATISFACTION_LEVEL_VALUE_EXISTS = "Such self satisfaction level value already exists. Try another value"
+
+EMOTIONAL_LEVEL_NAME_EXISTS = "Such emotional level name already exists. Try another name"
+SATISFACTION_LEVEL_NAME_EXISTS = "Such satisfaction level name already exists. Try another name"
+
 FIRST_NAME_REQUIRED_MESSAGE = "Empty first name. First name is required"
 
 LAST_NAME_REQUIRED_MESSAGE = "Empty last name. Last name is required"
@@ -81,12 +100,12 @@ INACTIVE_YOURSELF_FORBIDDEN = "Forbidden. You cannot make yourself inactive"
 
 NOT_AUTHENTICATED_USER_FORBIDDEN = "Forbidden. You are not authenticated"
 
+
 def USER_NOT_FOUND_MESSAGE(username_email_or_nickname: str) -> str:
     return f"User [ {username_email_or_nickname} ] was not found"
 
-
 def INVALID_EMAIL_ERROR(email_validation_error: str) -> str:
-    return (f"Email [{email_validation_error}] validation error. "
+    return (f"Email [ {email_validation_error} ] is not valid. "
             f"Please, enter a valid email")
 
 def MAXIMUM_FILE_SIZE(max_file_size_limit: float) -> str:
@@ -94,5 +113,17 @@ def MAXIMUM_FILE_SIZE(max_file_size_limit: float) -> str:
             f"Maximum file size is {max_file_size_limit} Megabyte")
 
 def NOT_POSITIVE_FLOAT_OR_INT(field_name: str, field_value: any) -> str:
-    return (f"Field [{field_name}] value ({field_value}) is not "
-            f"valid positive (fractional or integer) number")
+    return (f"Field '{field_name}' value ({field_value}) "
+            f"is not valid positive number. Try again")
+
+def NOT_INTEGER_NUMBER(field_name: str, field_value: any) -> str:
+    return (f"Field '{field_name}' value ({field_value}) "
+            f"is not valid integer number. Try again")
+
+def LEVEL_VALUE_MIN_LIMIT(value: any, min_limit: any) -> str:
+    return (f"Level value ({value}) is less "
+            f"minimum limit ({min_limit}). Try again")
+
+def LEVEL_VALUE_MAX_LIMIT(value: any, max_limit: any) -> str:
+    return (f"Level value ({value}) is bigger "
+            f"maximum limit ({max_limit}). Try again")

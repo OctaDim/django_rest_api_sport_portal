@@ -31,14 +31,26 @@ ALL_TRAINING_GROUPS_MSG = "All training groups list:"
 NO_CLIENTS_PROGRESS_MSG = "Clients progresses were not found. No one exists"
 ALL_CLIENTS_PROGRESS_MSG = "All clients progresses list:"
 
+NO_CLIENT_STATUSES_MSG = "Client statuses were not found. No one exists"
+ALL_CLIENT_STATUSES_MSG = "All client statuses list:"
+
+NO_EMOTIONAL_LEVELS_MSG = "Emotional levels were not found. No one exists"
+ALL_EMOTIONAL_LEVELS_MSG = "All emotional levels list:"
+
 NO_DEPARTMENT_WITH_ID_MSG = "Department was not found"
 DEPARTMENT_DETAILS = "Department details:"
 
 NO_TRAINING_GROUP_WITH_ID_MSG = "Training group was not found"
 TRAINING_GROUP_DETAILS = "Training group details:"
 
-NO_CLIENT_PROGRESS_WITH_ID_MSG = "Client was not found"
-CLIENT_PROGRESS_DETAILS = "Client details:"
+NO_CLIENT_PROGRESS_WITH_ID_MSG = "Client progress was not found"
+CLIENT_PROGRESS_DETAILS = "Client progress details:"
+
+NO_CLIENT_STATUS_WITH_ID_MSG = "Client status was not found"
+CLIENT_STATUS_DETAILS = "Client status details:"
+
+NO_EMOTIONAL_LEVEL_WITH_ID_MSG = "Emotional level was not found"
+EMOTIONAL_LEVEL_DETAILS = "Emotional level details:"
 
 
 USER_CREATED_MSG = "User was created successfully"
@@ -83,6 +95,19 @@ CLIENT_PROGRESS_UPDATED_MSG = "Client progress was updated successfully"
 CLIENT_PROGRESS_NOT_UPDATED_MSG = "Client progress was not updated"
 CLIENT_PROGRESS_DELETED_MSG = "Client progress was deleted successfully"
 
+EMOTIONAL_LEVEL_CREATED_MSG = "Emotional level was created successfully"
+EMOTIONAL_LEVEL_NOT_CREATED_MSG = "Emotional level was not created"
+EMOTIONAL_LEVEL_UPDATED_MSG = "Emotional level was updated successfully"
+EMOTIONAL_LEVEL_NOT_UPDATED_MSG = "Emotional level was not updated"
+EMOTIONAL_LEVEL_DELETED_MSG = "Emotional level was deleted successfully"
+
+CLIENT_STATUS_CREATED_MSG = "Client status was created successfully"
+CLIENT_STATUS_NOT_CREATED_MSG = "Client status was not created"
+CLIENT_STATUS_UPDATED_MSG = "Client status was updated successfully"
+CLIENT_STATUS_NOT_UPDATED_MSG = "Client status was not updated"
+CLIENT_STATUS_DELETED_MSG = "Client status was deleted successfully"
+
+
 SUPERUSER_CREATED_MSG = "Superuser was created successfully"
 SUPERUSER_NOT_CREATED_MSG = "Superuser was not created"
 
@@ -122,6 +147,7 @@ GROUP_CLIENT_RECORD_CREATOR_IS_CURRENT_USER = "Current user was set as group-cli
 PROGRESS_RECORD_CREATOR_IS_CURRENT_USER = "Current user was set as progress record creator"
 
 ENTER_POSITIVE_FLOAT_OR_INT_NUMBER = "Enter positive (fractional or integer) number value"
+ENTER_INTEGER_NUMBER = "Enter integer number value"
 
 LOG_IN_SUCCESS = "User logged in successfully"
 LOG_OUT_SUCCESS = "User logged out successfully"
