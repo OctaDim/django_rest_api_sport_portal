@@ -13,6 +13,8 @@ from datetime import timedelta
 from pathlib import Path
 
 import os  # Added
+
+import rest_framework.permissions
 from environ import environ  # Added for environ
 
 
@@ -181,20 +183,21 @@ REST_FRAMEWORK = {
         'rest_framework.parsers.MultiPartParser'
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework_simplejwt.authentication.JWTAuthentication'
+        # 'rest_framework_simplejwt.authentication.JWTAuthentication'
         # 'rest_framework.authentication.SessionAuthentication',
-        # 'rest_framework.authentication.BasicAuthentication'
+        'rest_framework.authentication.BasicAuthentication'
     ],
 
     'DEFAULT_PERMISSION_CLASSES': [
         "rest_framework.permissions.AllowAny",  # if not defined any permission, will be AllowAny by default
-        # "rest_framework.permissions.IsAuthenticated",  # DM added: For standard Django permissions work good
-        # "rest_framework.permissions.IsAdminUser",  # DM added: For standard Django permissions work good
+        # "rest_framework.permissions.IsAuthenticated",
+        # "rest_framework.permissions.IsAdminUser",
+        # "rest_framework.permissions.IsAdminUser",
     ],
 }
 
 SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=5),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
     "ROTATE_REFRESH_TOKENS": False,
     "BLACKLIST_AFTER_ROTATION": False,
