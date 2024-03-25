@@ -8,13 +8,6 @@ from django.db.models import Q
 from apps.api.messages_api.messages_non_front import EXCEPTION_INFO
 
 from apps.api.messages_api.messages_actions import ENTER_POSITIVE_FLOAT_OR_INT_NUMBER
-from apps.api.messages_api.messages_fields import (CURRENT_WEIGHT,
-                                                   CURRENT_BREAST,
-                                                   CURRENT_SHOULDERS,
-                                                   CURRENT_WAIST,
-                                                   CURRENT_HIPS,
-                                                   CURRENT_HEIGHT,
-                                                   )
 
 from apps.api.messages_api.messages_errors import (
                                         GROUP_CLIENT_REQUIRED,
@@ -33,7 +26,7 @@ from apps.api.self_satisfaction_level.models import SelfSatisfactionLevel
 from apps.api.emotional_level.models import EmotionalLevel
 from apps.api.user.models import User
 
-from apps.api.utils.utils import convert_to_abs_float
+from apps.api.utils.utils import get_abs_float_from_str_or_number
 
 from apps.api.user.serializers import UsersAllFieldsNoPermissionsSerializer
 
@@ -274,7 +267,7 @@ class GroupClientProgressCreateModelSerializer(serializers.ModelSerializer):
             if not field_value_attr:
                 attrs[field_name] = None  # To replace empty "" string value with None valid for FloatField
             else:
-                validated_field_value = convert_to_abs_float(field_value_attr)
+                validated_field_value = get_abs_float_from_str_or_number(field_value_attr)
 
                 if not validated_field_value:
                     error_messages.append(
@@ -481,7 +474,7 @@ class GroupClientProgressRetrieveUpdateDeleteModelSerializer(serializers.ModelSe
             if not field_value_attr:
                 attrs[field_name] = None  # To replace empty "" string value with None valid for FloatField
             else:
-                validated_field_value = convert_to_abs_float(field_value_attr)
+                validated_field_value = get_abs_float_from_str_or_number(field_value_attr)
 
                 if not validated_field_value:
                     error_messages.append(
