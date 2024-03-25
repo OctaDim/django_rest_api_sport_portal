@@ -20,10 +20,10 @@ urlpatterns = [
 
     path("emotional_level_by_id_soft/<int:emotional_level_id>/",
          EmotionalLevelByIdGenericRetrieveUpdate.as_view(),
-         name="emotional_level-by-id-soft"),
+         name="emotional-level-by-id-soft"),
 
     path("emotional_level_by_id_hard/<int:emotional_level_id>/",
          EmotionalLevelByIdGenericRetrieveDestroy.as_view(),
-         name="emotional_level-by-id-hard"),
+         name="emotional-level-by-id-hard"),
 
 ]
