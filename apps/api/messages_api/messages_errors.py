@@ -16,8 +16,9 @@ FINISH_DATE_REQUIRED = "Finish date is required. Fill finish date field"
 CLIENT_STATUS_FILLED = "Client status is required. Please, fill client status field"
 
 EMOTIONAL_LEVEL_NAME_REQUIRED = "Emotional level name is required. Fill this field"
-SATISFACTION_LEVEL_VALUE_REQUIRED = "Self satisfaction level value is required. Fill this field"
+SATISFACTION_LEVEL_NAME_REQUIRED = "Self satisfaction level name is required. Fill this field"
 
+SATISFACTION_LEVEL_VALUE_REQUIRED = "Self satisfaction level value is required. Fill this field"
 EMOTIONAL_LEVEL_VALUE_REQUIRED = "Emotional level value is required. Fill this field"
 
 GROUP_CLIENT_REQUIRED = "Group-Client is required. Select Group-Client"
@@ -26,11 +27,6 @@ EMOTIONAL_LEVEL_REQUIRED = "Emotional level is required. Select emotional level"
 CHECK_POINT_DATE_REQUIRED = "Checkpoint date is required. Fill checkpoint date field"
 
 GROUP_CLIENT_DATE_EXISTS = "Group-Client-Progress with this date already exists. Try again"
-EMOTIONAL_LEVEL_VALUE_EXISTS = "Emotional level with this level already exists. Try again"
-EMOTIONAL_LEVEL_NAME_EXISTS = "Emotional level with this name already exists. Try again"
-SATISFACTION_LEVEL_VALUE_EXISTS = "Self satisfaction level with this level already exists. Try again"
-SATISFACTION_LEVEL_NAME_EXISTS = "Self satisfaction with this name already exists. Try again"
-
 
 NEGATIVE_NUMBER_OR_STRING = "Invalid format, negative number or string. Must be a positive number"
 
@@ -69,11 +65,11 @@ EMAIL_REQUIRED_MESSAGE = "Empty email. Email is required"
 NON_VALID_EMAIL_MESSAGE = "Please, enter a valid email"
 EMAIL_ALREADY_EXISTS = "Such email already exists. Try another email"
 
-EMOTIONAL_LEVEL_VALUE_EXISTS = "Such emotional level value already exists. Try another value"
-SATISFACTION_LEVEL_VALUE_EXISTS = "Such self satisfaction level value already exists. Try another value"
+EMOTIONAL_LEVEL_VALUE_EXISTS = "Emotional level with this level value already exists. Try again"
+EMOTIONAL_LEVEL_NAME_EXISTS = "Emotional level with this name already exists. Try again"
 
-EMOTIONAL_LEVEL_NAME_EXISTS = "Such emotional level name already exists. Try another name"
-SATISFACTION_LEVEL_NAME_EXISTS = "Such satisfaction level name already exists. Try another name"
+SATISFACTION_LEVEL_VALUE_EXISTS = "Self satisfaction level with this value already exists. Try again"
+SATISFACTION_LEVEL_NAME_EXISTS = "Self satisfaction with this name already exists. Try again"
 
 FIRST_NAME_REQUIRED_MESSAGE = "Empty first name. First name is required"
 

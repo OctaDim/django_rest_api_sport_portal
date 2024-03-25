@@ -37,6 +37,9 @@ ALL_CLIENT_STATUSES_MSG = "All client statuses list:"
 NO_EMOTIONAL_LEVELS_MSG = "Emotional levels were not found. No one exists"
 ALL_EMOTIONAL_LEVELS_MSG = "All emotional levels list:"
 
+NO_SATISFACTION_LEVELS_MSG = "Self satisfaction levels were not found. No one exists"
+ALL_SATISFACTION_LEVELS_MSG = "All satisfaction levels list:"
+
 NO_DEPARTMENT_WITH_ID_MSG = "Department was not found"
 DEPARTMENT_DETAILS = "Department details:"
 
@@ -51,6 +54,9 @@ CLIENT_STATUS_DETAILS = "Client status details:"
 
 NO_EMOTIONAL_LEVEL_WITH_ID_MSG = "Emotional level was not found"
 EMOTIONAL_LEVEL_DETAILS = "Emotional level details:"
+
+NO_SATISFACTION_LEVEL_WITH_ID_MSG = "Self satisfaction level was not found"
+SATISFACTION_LEVEL_DETAILS = "Self satisfaction level details:"
 
 
 USER_CREATED_MSG = "User was created successfully"
@@ -100,6 +106,12 @@ EMOTIONAL_LEVEL_NOT_CREATED_MSG = "Emotional level was not created"
 EMOTIONAL_LEVEL_UPDATED_MSG = "Emotional level was updated successfully"
 EMOTIONAL_LEVEL_NOT_UPDATED_MSG = "Emotional level was not updated"
 EMOTIONAL_LEVEL_DELETED_MSG = "Emotional level was deleted successfully"
+
+SATISFACTION_LEVEL_CREATED_MSG = "Self satisfaction level was created successfully"
+SATISFACTION_LEVEL_NOT_CREATED_MSG = "Self satisfaction level was not created"
+SATISFACTION_LEVEL_UPDATED_MSG = "Self satisfaction level was updated successfully"
+SATISFACTION_LEVEL_NOT_UPDATED_MSG = "Self satisfaction level was not updated"
+SATISFACTION_LEVEL_DELETED_MSG = "Self satisfaction level was deleted successfully"
 
 CLIENT_STATUS_CREATED_MSG = "Client status was created successfully"
 CLIENT_STATUS_NOT_CREATED_MSG = "Client status was not created"
