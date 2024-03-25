@@ -76,7 +76,6 @@ INSTALLED_APPS = [
     "apps.api.dynamics.apps.DynamicsConfig",
     "apps.api.training_group.apps.TrainingGroupConfig",
     "apps.api.emotional_level.apps.MoodLevelConfig",
-    "apps.api.status_level.apps.StatusLevelConfig",
     "apps.api.user.apps.UserConfig",
     "apps.api.gender.apps.GenderConfig",
     "apps.api.country.apps.CountryConfig",
