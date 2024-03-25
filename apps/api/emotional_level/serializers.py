@@ -24,12 +24,10 @@ from apps.api.messages_api.messages_errors import (
 from apps.api.emotional_level.models import EmotionalLevel
 from apps.api.user.models import User
 
-from apps.api.user.serializers import UsersAllFieldsNoPermissionsSerializer
-
+from apps.api.utils.utils import (get_integer_from_str_or_number,
+                                  number_or_str_to_int)
 from apps.api.emotional_level.settings import (EMOTIONAL_LEVEL_VALUE_MIN_LIMIT,
                                                EMOTIONAL_LEVEL_VALUE_MAX_LIMIT)
-
-from apps.api.utils.utils import get_abs_float_from_str_or_number, get_integer_from_str_or_number
 
 
 
@@ -127,36 +125,35 @@ class EmotionalLevelCreateModelSerializer(serializers.ModelSerializer):
         if not level_value_in_attr:
             attrs["value"] = None  # To replace empty "" str value with None valid for db FloatField
         else:
-            converted_value = get_integer_from_str_or_number(level_value_in_attr)
+            int_converted_value = get_integer_from_str_or_number(level_value_in_attr)
 
-            if not converted_value:
+            if not int_converted_value:
                 error_messages.append(NOT_INTEGER_NUMBER(
                     field_name="value", field_value=level_value_in_attr))
                 # raise serializers.ValidationError(gettext_lazy(
                 #     NOT_POSITIVE_FLOAT_OR_INT("value", level_value_in_attr)))
             else:
-                min_value_limit = EMOTIONAL_LEVEL_VALUE_MIN_LIMIT
-                max_value_limit = EMOTIONAL_LEVEL_VALUE_MAX_LIMIT
+                min_value_limit = number_or_str_to_int(EMOTIONAL_LEVEL_VALUE_MIN_LIMIT)
+                max_value_limit = number_or_str_to_int(EMOTIONAL_LEVEL_VALUE_MAX_LIMIT)
 
-                if converted_value < min_value_limit:
+                if int_converted_value < min_value_limit:
                     error_messages.append(LEVEL_VALUE_MIN_LIMIT(
-                        value=converted_value, min_limit=min_value_limit))
+                        value=int_converted_value, min_limit=min_value_limit))
                     # raise serializers.ValidationError(gettext_lazy(
-                    #     LEVEL_VALUE_MIN_LIMIT(converted_value, min_value_limit)))
+                    #     LEVEL_VALUE_MIN_LIMIT(int_converted_value, min_value_limit)))
 
-                elif converted_value > max_value_limit:
+                elif int_converted_value > max_value_limit:
                     error_messages.append(LEVEL_VALUE_MAX_LIMIT(
-                        value=converted_value, max_limit=max_value_limit))
+                        value=int_converted_value, max_limit=max_value_limit))
                     # raise serializers.ValidationError(gettext_lazy(
-                    #     LEVEL_VALUE_MAX_LIMIT(converted_value, max_value_limit)))
+                    #     LEVEL_VALUE_MAX_LIMIT(int_converted_value, max_value_limit)))
 
-                if EmotionalLevel.objects.filter(value=converted_value).exists():
+                if EmotionalLevel.objects.filter(value=int_converted_value).exists():
                     error_messages.append(EMOTIONAL_LEVEL_VALUE_EXISTS)
                     # raise serializers.ValidationError(
                     #     gettext_lazy(EMOTIONAL_LEVEL_VALUE_EXISTS))
 
-                else:
-                    attrs["value"] = converted_value  # Replacing by the value converted to the valid formant
+                attrs["value"] = int_converted_value  # Replacing by the value converted to the valid formant
 
         if error_messages:
             error_messages_str = ", ".join(error_messages)
@@ -228,7 +225,7 @@ class EmotionalLevelRetrieveUpdateDeleteModelSerializer(serializers.ModelSeriali
 
 
         emotional_level_id_view_passed_req_param = (
-                                    self.context.get("emotional_level_id"))
+            self.context.get("emotional_level_id"))
 
         old_emotional_level_name = EmotionalLevel.objects.get(
             id=emotional_level_id_view_passed_req_param).name
@@ -256,28 +253,29 @@ class EmotionalLevelRetrieveUpdateDeleteModelSerializer(serializers.ModelSeriali
         if not level_value_in_attr:
             attrs["value"] = None  # To replace empty "" str value with None valid for db FloatField
         else:
-            converted_value = get_integer_from_str_or_number(level_value_in_attr)
+            int_converted_value = get_integer_from_str_or_number(level_value_in_attr)
 
-            if not converted_value:
+            if not int_converted_value:
                 error_messages.append(NOT_INTEGER_NUMBER(
                     field_name="value", field_value=level_value_in_attr))
                 # raise serializers.ValidationError(gettext_lazy(
                 #     NOT_POSITIVE_FLOAT_OR_INT("value", level_value_in_attr)))
+
             else:
-                min_value_limit = EMOTIONAL_LEVEL_VALUE_MIN_LIMIT
-                max_value_limit = EMOTIONAL_LEVEL_VALUE_MAX_LIMIT
+                min_value_limit = number_or_str_to_int(EMOTIONAL_LEVEL_VALUE_MIN_LIMIT)
+                max_value_limit = number_or_str_to_int(EMOTIONAL_LEVEL_VALUE_MAX_LIMIT)
 
-                if converted_value < min_value_limit:
+                if int_converted_value < min_value_limit:
                     error_messages.append(LEVEL_VALUE_MIN_LIMIT(
-                        value=converted_value, min_limit=min_value_limit))
+                        value=int_converted_value, min_limit=min_value_limit))
                     # raise serializers.ValidationError(gettext_lazy(
-                    #     LEVEL_VALUE_MIN_LIMIT(converted_value, min_value_limit)))
+                    #     LEVEL_VALUE_MIN_LIMIT(int_converted_value, min_value_limit)))
 
-                elif converted_value > max_value_limit:
+                if int_converted_value > max_value_limit:
                     error_messages.append(LEVEL_VALUE_MAX_LIMIT(
-                        value=converted_value, max_limit=max_value_limit))
+                        value=int_converted_value, max_limit=max_value_limit))
                     # raise serializers.ValidationError(gettext_lazy(
-                    #     LEVEL_VALUE_MAX_LIMIT(converted_value, max_value_limit)))
+                    #     LEVEL_VALUE_MAX_LIMIT(int_converted_value, max_value_limit)))
 
 
                 emotional_level_id_view_passed_req_param = (
@@ -286,22 +284,19 @@ class EmotionalLevelRetrieveUpdateDeleteModelSerializer(serializers.ModelSeriali
                 old_emotional_level_value = EmotionalLevel.objects.get(
                     id=emotional_level_id_view_passed_req_param).value
 
-                new_emotional_level_value = attrs.get("value")
+                new_emotional_level_value = int_converted_value
 
                 if new_emotional_level_value != old_emotional_level_value:
                     if EmotionalLevel.objects.filter(
-                            name=new_emotional_level_value).exists():
+                                value=new_emotional_level_value).exists():
                         error_messages.append(EMOTIONAL_LEVEL_VALUE_EXISTS)
                         # raise serializers.ValidationError(
                         #     gettext_lazy(EMOTIONAL_LEVEL_VALUE_EXISTS))
 
-
-                else:
-                    attrs["value"] = converted_value  # Replacing by the value converted to the valid formant
+                attrs["value"] = int_converted_value  # Replacing by the value converted to the valid formant
 
         if error_messages:
             error_messages_str = ", ".join(error_messages)
             raise serializers.ValidationError(
                 gettext_lazy(error_messages_str))
-
         return attrs
