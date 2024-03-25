@@ -11,5 +11,9 @@ urlpatterns = [
     path('training_groups/', include("apps.api.training_group.urls")),
     path('clients_progress/', include("apps.api.group_client_progress.urls")),
     path('authentication_jwt/', include("apps.api.authentication_jwt.urls")),
+    path('authentication/', include("apps.api.authentication.urls")),
+
+    path('emotional_levels/', include("apps.api.emotional_level.urls")),
+    # path('client_statuses/', include("apps.api.client_status.urls")),
 
 ]
