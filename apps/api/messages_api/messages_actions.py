@@ -152,11 +152,23 @@ ADMINISTRATOR_CREATOR_IS_CURRENT_USER = "Current user was set as administrator c
 CLIENT_CREATOR_IS_CURRENT_USER = "Current user was set as client creator"
 COACH_CREATOR_IS_CURRENT_USER = "Current user was set as coach creator"
 TRAINING_GROUP_CREATOR_IS_CURRENT_USER = "Current user was set as training group creator"
-PAYMENT_TYPE_CREATOR_IS_CURRENT_USER = "Current user was set as payment type creator"
-PAYMENT_DOC_CREATOR_IS_CURRENT_USER = "Current user was set as payment document creator"
 PAYMENT_RECORD_CREATOR_IS_CURRENT_USER = "Current user was set as payment record creator"
 GROUP_CLIENT_RECORD_CREATOR_IS_CURRENT_USER = "Current user was set as group-client record creator"
 PROGRESS_RECORD_CREATOR_IS_CURRENT_USER = "Current user was set as progress record creator"
+
+PAYMENT_TYPE_CREATOR_IS_CURRENT_USER = "Current user was set as payment type creator"
+PAYMENT_DOC_CREATOR_IS_CURRENT_USER = "Current user was set as payment document creator"
+CLIENT_STATUS_CREATOR_IS_CURRENT_USER = "Current user was set as client status record creator"
+COACH_SPECIALITY_CREATOR_IS_CURRENT_USER = "Current user was set as coach speciality record creator"
+COMPANY_CREATOR_IS_CURRENT_USER = "Current user was set as company record creator"
+COUNTRY_CREATOR_IS_CURRENT_USER = "Current user was set as country record creator"
+DEPARTMENT_CREATOR_IS_CURRENT_USER = "Current user was set as department record creator"
+EMOTIONAL_LEVEL_CREATOR_IS_CURRENT_USER = "Current user was set as emotional level record creator"
+SATISFACTION_LEVEL_CREATOR_IS_CURRENT_USER = "Current user was set as self satisfaction level record creator"
+GENDER_CREATOR_IS_CURRENT_USER = "Current user was set as gender record creator"
+TRAINING_YEAR_CREATOR_IS_CURRENT_USER = "Current user was set as training year record creator"
+
+
 
 ENTER_POSITIVE_FLOAT_OR_INT_NUMBER = "Enter positive (fractional or integer) number value"
 ENTER_INTEGER_NUMBER = "Enter integer number value"
