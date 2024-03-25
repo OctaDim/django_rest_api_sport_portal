@@ -3,7 +3,8 @@ from django.contrib import admin
 
 from django.utils.translation import gettext_lazy
 
-from apps.api.messages_api.messages_actions import PROGRESS_RECORD_CREATOR_IS_CURRENT_USER
+from apps.api.messages_api.messages_actions import (
+                                PROGRESS_RECORD_CREATOR_IS_CURRENT_USER)
 
 from apps.api.group_client_progress.models import GroupClientProgress
 from apps.api.user.models import User
