@@ -179,3 +179,11 @@ DONE: todo: FloatField value is wrong format (with comma or negative)
 todo: Fix (as in serializer it was done) admin panel bug returning None
 todo: to validate() method if FloatField value is wrong format
 todo: (with comma or negative). Define CharField and then convert and validate
+todo: Admin (EmotionalLevel, SelfSatisfactionLevel, Payments, Progress)
+
+todo: Make for clients-users url_view to see user-client of themself (current user)
+
+todo: Check and define permissions to all view classes
+
+todo: Limit selection of the creator by current user for all references books
+todo: in admin, as it is in other main admins
