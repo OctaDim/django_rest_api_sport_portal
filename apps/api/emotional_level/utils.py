@@ -5,7 +5,8 @@ from datetime import datetime, UTC # Optional, if necessary
 
 
 def get_image_file_name(instance, filename):
-    level_value = f"{instance.value :04d}"
+    level_value = f"{instance.value}"
+    # level_value = f"{instance.value :04d}"
     file_ext = pathlib.Path(filename).suffix
 
     # file_path, file_ext = os.path.splitext(filename)
