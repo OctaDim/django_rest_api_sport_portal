@@ -11,14 +11,14 @@ from apps.api.messages_api.messages_actions import (
     ENTER_POSITIVE_FLOAT_OR_INT_NUMBER, ENTER_INTEGER_NUMBER)
 
 from apps.api.messages_api.messages_errors import (
-    EMOTIONAL_LEVEL_NAME_REQUIRED,
-    EMOTIONAL_LEVEL_VALUE_REQUIRED,
-    CREATOR_REQUIRED,
-    EMOTIONAL_LEVEL_VALUE_EXISTS,
-    EMOTIONAL_LEVEL_NAME_EXISTS,
-    NOT_INTEGER_NUMBER,
-    LEVEL_VALUE_MIN_LIMIT,
-    LEVEL_VALUE_MAX_LIMIT
+                                        EMOTIONAL_LEVEL_NAME_REQUIRED,
+                                        EMOTIONAL_LEVEL_VALUE_REQUIRED,
+                                        CREATOR_REQUIRED,
+                                        EMOTIONAL_LEVEL_VALUE_EXISTS,
+                                        EMOTIONAL_LEVEL_NAME_EXISTS,
+                                        NOT_INTEGER_NUMBER,
+                                        LEVEL_VALUE_MIN_LIMIT,
+                                        LEVEL_VALUE_MAX_LIMIT
 )
 
 from apps.api.emotional_level.models import EmotionalLevel
@@ -26,6 +26,7 @@ from apps.api.user.models import User
 
 from apps.api.utils.utils import (get_integer_from_str_or_number,
                                   number_or_str_to_int)
+
 from apps.api.emotional_level.settings import (EMOTIONAL_LEVEL_VALUE_MIN_LIMIT,
                                                EMOTIONAL_LEVEL_VALUE_MAX_LIMIT)
 
