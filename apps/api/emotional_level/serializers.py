@@ -7,8 +7,7 @@ from django.db.models import Q
 
 from apps.api.messages_api.messages_non_front import EXCEPTION_INFO
 
-from apps.api.messages_api.messages_actions import (
-    ENTER_POSITIVE_FLOAT_OR_INT_NUMBER, ENTER_INTEGER_NUMBER)
+from apps.api.messages_api.messages_actions import ENTER_INTEGER_NUMBER
 
 from apps.api.messages_api.messages_errors import (
                                         EMOTIONAL_LEVEL_NAME_REQUIRED,
