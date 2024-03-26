@@ -12,7 +12,7 @@ app_name = "client_status"
 urlpatterns = [
    path("all_client_statuses/",
          AllClientStatusesGenericList.as_view(),
-         name="list_all-client-statuses"),
+         name="list-all-client-statuses"),
 
     path("create_new_client_status/",
          CreateNewClientStatusGenericCreate.as_view(),
@@ -20,10 +20,10 @@ urlpatterns = [
 
     path("client_status_by_id_soft/<int:client_status_id>/",
          ClientStatusByIdGenericRetrieveUpdate.as_view(),
-         name="client_status-by-id-soft"),
+         name="client-status-by-id-soft"),
 
     path("client_status_by_id_hard/<int:client_status_id>/",
          ClientStatusByIdGenericRetrieveDestroy.as_view(),
-         name="client_status-by-id-hard"),
+         name="client-status-by-id-hard"),
 
 ]
