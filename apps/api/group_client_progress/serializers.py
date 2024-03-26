@@ -276,8 +276,8 @@ class GroupClientProgressCreateModelSerializer(serializers.ModelSerializer):
                     # raise serializers.ValidationError(gettext_lazy(
                     #     NOT_POSITIVE_FLOAT_OR_INT(field_name,
                     #                               field_value_attr)))
-                else:
-                    attrs[field_name] = validated_field_value  # Replacing by the value converted to the valid formant
+
+                attrs[field_name] = validated_field_value  # Replacing by the value converted to the valid formant
 
         if GroupClientProgress.objects.filter(
                 group_many_client=group_many_client_attr,
@@ -483,8 +483,8 @@ class GroupClientProgressRetrieveUpdateDeleteModelSerializer(serializers.ModelSe
                     # raise serializers.ValidationError(gettext_lazy(
                     #     NOT_POSITIVE_FLOAT_OR_INT(field_name,
                     #                               field_value_attr)))
-                else:
-                    attrs[field_name] = validated_field_value  # Replacing by the value converted to the valid formant
+
+                attrs[field_name] = validated_field_value  # Replacing by the value converted to the valid formant
 
 
         client_progress_id_view_passed_req_param = (
