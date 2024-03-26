@@ -1,5 +1,3 @@
-# Create your views here.
-
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.generics import get_object_or_404
@@ -18,11 +16,8 @@ from apps.api.messages_api.messages_actions import (NO_CLIENT_STATUSES_MSG,
                                                     CLIENT_STATUS_DELETED_MSG
                                                     )
 
-from apps.api.messages_api.messages_errors import (NOT_SUPERUSER_HARD_DELETE_FORBIDDEN,
-                                                   NOT_SUPERUSER_FORBIDDEN,
-                                                   DELETE_YOURSELF_FORBIDDEN,
-                                                   INACTIVE_YOURSELF_FORBIDDEN,
-                                                   )
+from apps.api.messages_api.messages_errors import (
+                                    NOT_SUPERUSER_HARD_DELETE_FORBIDDEN)
 
 from rest_framework.generics import (ListAPIView,
                                      CreateAPIView,

@@ -1,35 +1,15 @@
 from rest_framework import serializers, request
 
-from rest_framework.validators import UniqueValidator
-
 from django.utils.translation import gettext_lazy
-
-from django.db.models import Q
 
 from apps.api.messages_api.messages_non_front import EXCEPTION_INFO
 
-from apps.api.messages_api.messages_actions import ENTER_INTEGER_NUMBER
-
-from apps.api.messages_api.messages_errors import (
-    EMOTIONAL_LEVEL_NAME_REQUIRED,
-    EMOTIONAL_LEVEL_VALUE_REQUIRED,
-    CREATOR_REQUIRED,
-    EMOTIONAL_LEVEL_VALUE_EXISTS,
-    EMOTIONAL_LEVEL_NAME_EXISTS,
-    NOT_INTEGER_NUMBER,
-    LEVEL_VALUE_MIN_LIMIT,
-    LEVEL_VALUE_MAX_LIMIT,
-    CLIENT_STATUS_REQUIRED, CLIENT_STATUS_EXISTS
-)
+from apps.api.messages_api.messages_errors import (CREATOR_REQUIRED,
+                                                   CLIENT_STATUS_REQUIRED,
+                                                   CLIENT_STATUS_EXISTS)
 
 from apps.api.client_status.models import ClientStatus
 from apps.api.user.models import User
-
-from apps.api.utils.utils import (get_integer_from_str_or_number,
-                                  number_or_str_to_int)
-
-from apps.api.emotional_level.settings import (EMOTIONAL_LEVEL_VALUE_MIN_LIMIT,
-                                               EMOTIONAL_LEVEL_VALUE_MAX_LIMIT)
 
 
 
