@@ -7,7 +7,7 @@ from apps.api.emotional_level.views import (
                                   EmotionalLevelByIdGenericRetrieveDestroy,
                                   )
 
-app_name = "emotional_level"
+app_name = "emotional_levels"
 
 urlpatterns = [
    path("all_emotional_levels/",
