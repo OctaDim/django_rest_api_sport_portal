@@ -12,7 +12,7 @@ app_name = "satisfaction_level"
 urlpatterns = [
    path("all_satisfaction_levels/",
          AllSatisfactionLevelsGenericList.as_view(),
-         name="list_all-satisfaction-levels"),
+         name="list-all-satisfaction-levels"),
 
     path("create_new_satisfaction_level/",
          CreateNewSatisfactionLevelGenericCreate.as_view(),
