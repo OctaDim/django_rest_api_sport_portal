@@ -6,7 +6,7 @@ PASSWORD2_REQUIRED_MSG = "Empty repeated password. Repeated password is required
 PASSWORDS_NOT_MATCH_ERROR = "The two password fields did not match. Please, try again"
 
 DEPARTMENT_NAME_REQUIRED = "Department name is required. Fill department field"
-COMPANY_NAME_REQUIRED = "Company name is required. Fill company field"
+COMPANY_NAME_REQUIRED = "Company is required. Select company"
 
 TRAINING_GROUP_CODE_REQUIRED = "Training group is required. Fill training group code field"
 
@@ -14,6 +14,15 @@ START_DATE_REQUIRED = "Start date is required. Fill start date field"
 FINISH_DATE_REQUIRED = "Finish date is required. Fill finish date field"
 
 CLIENT_STATUS_REQUIRED = "Client status is required. Fill client status field"
+COACH_SPECIALITY_REQUIRED = "Coach speciality is required. Fill coach speciality field"
+COMPANY_REQUIRED = "Company name is required. Fill company field"
+COUNTRY_REQUIRED = "Country name is required. Fill country field"
+GENDER_REQUIRED = "Gender name is required. Fill country field"
+PAYMENT_DOCUMENT_REQUIRED = "Payment document name is required. Fill payment document field"
+PAYMENT_TYPE_REQUIRED = "Payment type name is required. Fill payment type field"
+TRAINING_YEAR_REQUIRED = "Training year (period) name is required. Fill training year field"
+
+
 
 EMOTIONAL_LEVEL_NAME_REQUIRED = "Emotional level name is required. Fill this field"
 SATISFACTION_LEVEL_NAME_REQUIRED = "Self satisfaction level name is required. Fill this field"
@@ -68,6 +77,13 @@ EMAIL_ALREADY_EXISTS = "Such email already exists. Try another email"
 EMOTIONAL_LEVEL_VALUE_EXISTS = "Emotional level with this level value already exists. Try again"
 EMOTIONAL_LEVEL_NAME_EXISTS = "Emotional level with this name already exists. Try again"
 CLIENT_STATUS_EXISTS = "Client status with this name already exists. Try again"
+COACH_SPECIALITY_EXISTS = "Coach speciality with this name already exists. Try again"
+COMPANY_EXISTS = "Company with this name already exists. Try again"
+COUNTRY_EXISTS = "Country with this name already exists. Try again"
+GENDER_EXISTS = "Gender with this name already exists. Try again"
+PAYMENT_DOCUMENT_EXISTS = "Payment document with this name already exists. Try again"
+PAYMENT_TYPE_EXISTS = "Payment type with this name already exists. Try again"
+TRAINING_YEAR_EXISTS = "Training year (period) with this name already exists. Try again"
 
 
 SATISFACTION_LEVEL_VALUE_EXISTS = "Self satisfaction level with this value already exists. Try again"

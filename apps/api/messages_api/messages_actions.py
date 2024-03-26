@@ -34,6 +34,27 @@ ALL_CLIENTS_PROGRESS_MSG = "All clients progresses list:"
 NO_CLIENT_STATUSES_MSG = "Client statuses were not found. No one exists"
 ALL_CLIENT_STATUSES_MSG = "All client statuses list:"
 
+NO_COACH_SPECIALITIES_MSG = "Coach specialities were not found. No one exists"
+ALL_COACH_SPECIALITIES_MSG = "All coach specialities list:"
+
+NO_COMPANIES_MSG = "Companies were not found. No one exists"
+ALL_COMPANIES_MSG = "All companies list:"
+
+NO_COUNTRIES_MSG = "Countries were not found. No one exists"
+ALL_COUNTRIES_MSG = "All countries list:"
+
+NO_PAYMENT_DOCUMENTS_MSG = "Payment documents were not found. No one exists"
+ALL_PAYMENT_DOCUMENTS_MSG = "All payment documents list:"
+
+NO_PAYMENT_TYPES_MSG = "Payment types were not found. No one exists"
+ALL_PAYMENT_TYPES_MSG = "All payment types list:"
+
+NO_TRAINING_YEARS_MSG = "Training years were not found. No one exists"
+ALL_TRAINING_YEARS_MSG = "All training years list:"
+
+NO_GENDERS_MSG = "Genders were not found. No one exists"
+ALL_GENDERS_MSG = "All genders list:"
+
 NO_EMOTIONAL_LEVELS_MSG = "Emotional levels were not found. No one exists"
 ALL_EMOTIONAL_LEVELS_MSG = "All emotional levels list:"
 
@@ -51,6 +72,27 @@ CLIENT_PROGRESS_DETAILS = "Client progress details:"
 
 NO_CLIENT_STATUS_WITH_ID_MSG = "Client status was not found"
 CLIENT_STATUS_DETAILS = "Client status details:"
+
+NO_COACH_SPECIALITY_WITH_ID_MSG = "Coach speciality was not found"
+COACH_SPECIALITY_DETAILS = "Coach speciality details:"
+
+NO_COMPANY_WITH_ID_MSG = "Company was not found"
+COMPANY_DETAILS = "Company details:"
+
+NO_COUNTRY_WITH_ID_MSG = "Country was not found"
+COUNTRY_DETAILS = "Country details:"
+
+NO_PAYMENT_DOCUMENT_WITH_ID_MSG = "Payment document was not found"
+PAYMENT_DOCUMENT_DETAILS = "Payment document details:"
+
+NO_PAYMENT_TYPE_WITH_ID_MSG = "Payment type was not found"
+PAYMENT_TYPE_DETAILS = "Payment type details:"
+
+NO_TRAINING_YEAR_WITH_ID_MSG = "Training year was not found"
+TRAINING_YEAR_DETAILS = "Training year details:"
+
+NO_GENDER_WITH_ID_MSG = "Gender was not found"
+GENDER_DETAILS = "Gender details:"
 
 NO_EMOTIONAL_LEVEL_WITH_ID_MSG = "Emotional level was not found"
 EMOTIONAL_LEVEL_DETAILS = "Emotional level details:"
@@ -119,6 +161,47 @@ CLIENT_STATUS_UPDATED_MSG = "Client status was updated successfully"
 CLIENT_STATUS_NOT_UPDATED_MSG = "Client status was not updated"
 CLIENT_STATUS_DELETED_MSG = "Client status was deleted successfully"
 
+COACH_SPECIALITY_CREATED_MSG = "Coach speciality was created successfully"
+COACH_SPECIALITY_NOT_CREATED_MSG = "Coach speciality was not created"
+COACH_SPECIALITY_UPDATED_MSG = "Coach speciality was updated successfully"
+COACH_SPECIALITY_NOT_UPDATED_MSG = "Coach speciality was not updated"
+COACH_SPECIALITY_DELETED_MSG = "Coach speciality was deleted successfully"
+
+COMPANY_CREATED_MSG = "Company was created successfully"
+COMPANY_NOT_CREATED_MSG = "Company was not created"
+COMPANY_UPDATED_MSG = "Company was updated successfully"
+COMPANY_NOT_UPDATED_MSG = "Company was not updated"
+COMPANY_DELETED_MSG = "Company was deleted successfully"
+
+COUNTRY_CREATED_MSG = "Country was created successfully"
+COUNTRY_NOT_CREATED_MSG = "Country was not created"
+COUNTRY_UPDATED_MSG = "Country was updated successfully"
+COUNTRY_NOT_UPDATED_MSG = "Country was not updated"
+COUNTRY_DELETED_MSG = "Country was deleted successfully"
+
+PAYMENT_DOCUMENT_CREATED_MSG = "Payment document was created successfully"
+PAYMENT_DOCUMENT_NOT_CREATED_MSG = "Payment document was not created"
+PAYMENT_DOCUMENT_UPDATED_MSG = "Payment document was updated successfully"
+PAYMENT_DOCUMENT_NOT_UPDATED_MSG = "Payment document was not updated"
+PAYMENT_DOCUMENT_DELETED_MSG = "Payment document was deleted successfully"
+
+PAYMENT_TYPE_CREATED_MSG = "Payment type was created successfully"
+PAYMENT_TYPE_NOT_CREATED_MSG = "Payment type was not created"
+PAYMENT_TYPE_UPDATED_MSG = "Payment type was updated successfully"
+PAYMENT_TYPE_NOT_UPDATED_MSG = "Payment type was not updated"
+PAYMENT_TYPE_DELETED_MSG = "Payment type was deleted successfully"
+
+TRAINING_YEAR_CREATED_MSG = "Training year was created successfully"
+TRAINING_YEAR_NOT_CREATED_MSG = "Training year was not created"
+TRAINING_YEAR_UPDATED_MSG = "Training year was updated successfully"
+TRAINING_YEAR_NOT_UPDATED_MSG = "Training year was not updated"
+TRAINING_YEAR_DELETED_MSG = "Training year was deleted successfully"
+
+GENDER_CREATED_MSG = "Gender was created successfully"
+GENDER_NOT_CREATED_MSG = "Gender was not created"
+GENDER_UPDATED_MSG = "Gender was updated successfully"
+GENDER_NOT_UPDATED_MSG = "Gender was not updated"
+GENDER_DELETED_MSG = "Gender was deleted successfully"
 
 SUPERUSER_CREATED_MSG = "Superuser was created successfully"
 SUPERUSER_NOT_CREATED_MSG = "Superuser was not created"
