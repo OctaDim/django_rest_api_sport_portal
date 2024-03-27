@@ -195,6 +195,6 @@ Media/
 
 .dump*
 
-.local_endpoints
+#.local_endpoints
 
 .notes
