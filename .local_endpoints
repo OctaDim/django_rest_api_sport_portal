@@ -1,0 +1,133 @@
+local endpoints: faker_helper
+http://127.0.0.1:8000/api/v1/faker_helpers/generate_test_data/
+
+local endpoints: admin panel
+http://127.0.0.1:8000/admin/
+
+local endpoints: swagger
+http://127.0.0.1:8000/swagger/
+
+local endpoints: redoc
+http://127.0.0.1:8000/redoc/
+
+local endpoints: authentication
+http://127.0.0.1:8000/api/v1/authentication/user_logout/
+
+local endpoints: authentication_jwt
+http://127.0.0.1:8000/api/v1/authentication_jwt/jwt_obtain_token/
+http://127.0.0.1:8000/api/v1/authentication_jwt/jwt_refresh_token/
+http://127.0.0.1:8000/api/v1/authentication_jwt/jwt_verify_token/
+
+local endpoints: users (for superuser)
+http://127.0.0.1:8000/api/v1/users/list_all_users_all_fields/
+http://127.0.0.1:8000/api/v1/users/register_new_superuser/
+http://127.0.0.1:8000/api/v1/users/user_by_id_hard/{user_id}/
+
+local endpoints: users (for superuser, for administrators)
+http://127.0.0.1:8000/api/v1/users/list_all_users_limit_fields/
+http://127.0.0.1:8000/api/v1/users/register_new_user/
+http://127.0.0.1:8000/api/v1/users/register_new_staff_user/
+http://127.0.0.1:8000/api/v1/users/register_new_trainer_user/
+http://127.0.0.1:8000/api/v1/users/user_by_id_soft/<int:user_id>/
+
+local endpoints: users (my advanced methods of creating user)
+http://127.0.0.1:8000/api/v1/users/_test_register_new_user/
+http://127.0.0.1:8000/api/v1/users/_test_register_new_staff_user/
+http://127.0.0.1:8000/api/v1/users/_test_register_new_trainer/
+http://127.0.0.1:8000/api/v1/users/_test_register_new_superuser/
+
+local endpoints: administrators
+http://127.0.0.1:8000/api/v1/administrators/all_administrators/
+http://127.0.0.1:8000/api/v1/administrators/create_new_administrator/
+http://127.0.0.1:8000/api/v1/administrators/administrator_by_id_soft/33/
+http://127.0.0.1:8000/api/v1/administrators/administrator_by_id_hard/33/
+
+local endpoints: coaches
+http://127.0.0.1:8000/api/v1/coaches/all_coaches/
+http://127.0.0.1:8000/api/v1/coaches/create_new_coach/
+http://127.0.0.1:8000/api/v1/coaches/coach_by_id_soft/33/
+http://127.0.0.1:8000/api/v1/coaches/coach_by_id_hard/33/
+
+local endpoints: clients
+http://127.0.0.1:8000/api/v1/clients/all_clients/
+http://127.0.0.1:8000/api/v1/clients/create_new_client/
+http://127.0.0.1:8000/api/v1/clients/client_by_id_soft/33/
+http://127.0.0.1:8000/api/v1/clients/client_by_id_hard/33/
+
+local endpoints: departments
+http://127.0.0.1:8000/api/v1/departments/all_departments/
+http://127.0.0.1:8000/api/v1/departments/create_new_department/
+http://127.0.0.1:8000/api/v1/departments/department_by_id_soft/33/
+http://127.0.0.1:8000/api/v1/departments/department_by_id_hard/33/
+
+local endpoints: training_groups
+http://127.0.0.1:8000/api/v1/training_groups/all_training_groups/
+http://127.0.0.1:8000/api/v1/training_groups/create_new_training_group/
+http://127.0.0.1:8000/api/v1/training_groups/training_group_by_id_soft/33/
+http://127.0.0.1:8000/api/v1/training_groups/training_group_by_id_hard/33/
+
+local endpoints: client_progress
+http://127.0.0.1:8000/api/v1/clients_progress/all_clients_progress/
+http://127.0.0.1:8000/api/v1/clients_progress/create_new_client_progress/
+http://127.0.0.1:8000/api/v1/clients_progress/client_progress_by_id_soft/33/
+http://127.0.0.1:8000/api/v1/clients_progress/client_progress_by_id_hard/33/
+
+local endpoints: emotional_levels
+http://127.0.0.1:8000/api/v1/emotional_levels/all_emotional_levels/
+http://127.0.0.1:8000/api/v1/emotional_levels/create_new_emotional_level/
+http://127.0.0.1:8000/api/v1/emotional_levels/emotional_level_by_id_soft/33/
+http://127.0.0.1:8000/api/v1/emotional_levels/emotional_level_by_id_hard/33/
+
+local endpoints: satisfaction_levels
+http://127.0.0.1:8000/api/v1/satisfaction_levels/all_satisfaction_levels/
+http://127.0.0.1:8000/api/v1/satisfaction_levels/create_new_satisfaction_level/
+http://127.0.0.1:8000/api/v1/satisfaction_levels/satisfaction_level_by_id_soft/33/
+http://127.0.0.1:8000/api/v1/satisfaction_levels/satisfaction_level_by_id_hard/33/
+
+local endpoints: client_statuses
+http://127.0.0.1:8000/api/v1/client_statuses/all_client_statuses/
+http://127.0.0.1:8000/api/v1/client_statuses/create_new_client_status/
+http://127.0.0.1:8000/api/v1/client_statuses/client_status_by_id_soft/33/
+http://127.0.0.1:8000/api/v1/client_statuses/client_status_by_id_hard/33/
+
+local endpoints: coach_specialities
+http://127.0.0.1:8000/api/v1/coach_specialities/all_coach_specialities/
+http://127.0.0.1:8000/api/v1/coach_specialities/create_new_coach_speciality/
+http://127.0.0.1:8000/api/v1/coach_specialities/coach_speciality_by_id_soft/33/
+http://127.0.0.1:8000/api/v1/coach_specialities/coach_speciality_by_id_hard/33/
+
+local endpoints: companies
+http://127.0.0.1:8000/api/v1/companies/all_companies/
+http://127.0.0.1:8000/api/v1/companies/create_new_company/
+http://127.0.0.1:8000/api/v1/companies/company_by_id_soft/33/
+http://127.0.0.1:8000/api/v1/companies/company_by_id_hard/33/
+
+local endpoints: countries
+http://127.0.0.1:8000/api/v1/countries/all_countries/
+http://127.0.0.1:8000/api/v1/countries/create_new_country/
+http://127.0.0.1:8000/api/v1/countries/country_by_id_soft/33/
+http://127.0.0.1:8000/api/v1/countries/country_by_id_hard/33/
+
+local endpoints: genders
+http://127.0.0.1:8000/api/v1/genders/all_genders/
+http://127.0.0.1:8000/api/v1/genders/create_new_gender/
+http://127.0.0.1:8000/api/v1/genders/gender_by_id_soft/33/
+http://127.0.0.1:8000/api/v1/genders/gender_by_id_hard/33/
+
+local endpoints: payment_documents
+http://127.0.0.1:8000/api/v1/payment_documents/all_payment_documents/
+http://127.0.0.1:8000/api/v1/payment_documents/create_new_payment_document/
+http://127.0.0.1:8000/api/v1/payment_documents/payment_document_by_id_soft/33/
+http://127.0.0.1:8000/api/v1/payment_documents/payment_document_by_id_hard/33/
+
+local endpoints: payment_types
+http://127.0.0.1:8000/api/v1/payment_types/all_payment_types/
+http://127.0.0.1:8000/api/v1/payment_types/create_new_payment_type/
+http://127.0.0.1:8000/api/v1/payment_types/payment_type_by_id_soft/33/
+http://127.0.0.1:8000/api/v1/payment_types/payment_type_by_id_hard/33/
+
+local endpoints: training_years
+http://127.0.0.1:8000/api/v1/training_years/all_training_years/
+http://127.0.0.1:8000/api/v1/training_years/create_new_training_year/
+http://127.0.0.1:8000/api/v1/training_years/training_year_by_id_soft/33/
+http://127.0.0.1:8000/api/v1/training_years/training_year_by_id_hard/33/
