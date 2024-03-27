@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     "admin_reorder",  # To reorder admin panel side bar
     "drf_yasg",  # Added for SWAGER
     "PIL",
+    "faker",
 
     ##### local apps #####
     "apps.api.authentication.apps.AuthenticationConfig",
@@ -92,6 +93,7 @@ INSTALLED_APPS = [
     "apps.api.group_many_client.apps.GroupManyClientConfig",
     "apps.api.group_many_administrator.apps.GroupManyAdministratorConfig",
     "apps.api.group_many_coach.apps.GroupManyCoachConfig",
+    "apps.api.faker_helper.apps.FakerHelperConfig",
 
 ]
 
@@ -182,7 +184,7 @@ REST_FRAMEWORK = {
         'rest_framework.parsers.MultiPartParser'
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        # 'rest_framework_simplejwt.authentication.JWTAuthentication'
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication'
     ],
