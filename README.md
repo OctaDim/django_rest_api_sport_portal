@@ -1,8 +1,8 @@
-# **SPORT PORTAL**
+# SPORT PORTAL
 
-"Sports Portal" project, where clients and coaches can save and track 
-their sports results, receiving information in dynamics.
+"Sports Portal" - platform project, where clients and coaches can save
+and track  their sports results and analytics, receiving information 
+in dynamics.
 
-Coaches can also create their own training programmes and provide 
-access to their clients according to clients statuses and VIP
-category
+Coaches can also create their own training programmes and provide access
+to it to their clients according to clients statuses and categories
