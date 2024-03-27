@@ -3,8 +3,11 @@ from django.urls import path, include
 app_name = "router"
 
 urlpatterns = [
+    path('faker_helpers/', include("apps.api.faker_helper.urls")),
+
     path('authentication/', include("apps.api.authentication.urls")),  # IMPORTANT: DON'T FORGET TO ADD .urls to the end
     path('authentication_jwt/', include("apps.api.authentication_jwt.urls")),
+
     path('users/', include("apps.api.user.urls")),
     path('administrators/', include("apps.api.administrator.urls")),
     path('clients/', include("apps.api.client.urls")),
@@ -26,15 +29,5 @@ urlpatterns = [
     path('payment_documents/', include("apps.api.payment_document.urls")),
     path('payment_types/', include("apps.api.payment_type.urls")),
     path('training_years/', include("apps.api.training_year.urls")),
-
-
-
-    # path('clients_payments/', include("apps.api.group_client_payment.urls")),
-    # path('clients_start_data/', include("apps.api.group_client_start_data.urls")),
-    # path('groups_clients/', include("apps.api.group_many_client.urls")),
-    # path('groups_coaches/', include("apps.api.group_many_coach.urls")),
-    # path('groups_clients/', include("apps.api.group_many_client.urls")),
-    # path('groups_administrators/', include("apps.api.group_many_administrator.urls")),
-
 
 ]
